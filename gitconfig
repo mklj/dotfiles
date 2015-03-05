@@ -1,0 +1,24 @@
+[user]
+	name = mklj
+	email = michael.j2n@gmail.com
+[core]
+	autocrlf = input
+	safecrlf = true
+	editor = vim
+	pager = /usr/bin/less -FRSX
+[color]
+	ui = true
+[alias]
+	co = checkout
+	ci = commit
+	type = cat-file -t
+	dump = cat-file -p
+	l = log --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+	br = branch
+	st = status
+[push]
+	default = tracking
+[status]
+	color = auto
+[diff]
+	color = auto

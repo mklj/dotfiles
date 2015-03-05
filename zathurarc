@@ -1,0 +1,8 @@
+## MAPPINGS
+map <f> toggle_fullscreen
+map <Esc> abort
+
+## OPTIONS
+set highlight-color "#eed828"
+set highlight-active-color "#ffee63"
+set highlight-transparency 0.5

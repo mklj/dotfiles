@@ -1,0 +1,36 @@
+[general]
+auto_display_list = true
+syntax = true
+arg_spec = true
+#hist_file = "/home/michael/.pythonhist"
+paste_time = 0.02
+hist_length = 100
+tab_length = 4
+pastebin_url = "http://bpaste.net/xmlrpc/"
+pastebin_private = true
+pastebin_show_url = "http://bpaste.net/show/$paste_id/"
+#pastebin_helper = 
+color_scheme = mine
+flush_output = False
+
+[keyboard]
+pastebin = F8
+last_output = F9
+save = C-s
+undo = C-r
+up_one_line = C-p
+down_one_line = C-n
+cut_to_buffer = C-k
+search = C-o
+yank_from_buffer = C-y
+clean_word = C-w
+clear_line = C-u
+clear_screen = C-l
+show_source = F2
+exit = C-d
+
+[cli]
+suggestion_width = 0.9
+
+[gtk]
+#font = Monospace 10
