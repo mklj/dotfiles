@@ -23,30 +23,71 @@ set input-meta on
 # display characters with the eighth bit set directly
 # rather than as meta-prefixed characters
 set output-meta on
-
 # To allow the use of 8bit-characters like the german umlauts, uncomment
 # the line below. However this makes the meta key not work as a meta key,
 # which is annoying to those which don't need to type in 8-bit characters.
-
-# set convert-meta off
-
+#set convert-meta off
 # try to enable the application keypad when it is called.  Some systems
 # need this to enable the arrow keys.
-# set enable-keypad on
-
-# see /usr/share/doc/bash/inputrc.arrows for other codes of arrow keys
-
+#set enable-keypad on
 # do not bell on tab-completion
 set bell-style none
-#set bell-style visible
 
+# ----------------------- completion settings ---------------------------------
+# case-insensitive tab completion
+set completion-ignore-case on
+# hit tab only once when there are several choices
+#set show-all-if-ambiguous on
+# produce a list only when no completion is possible
+set show-all-ifunmodified on
+# do not show hidden files in the list
+#set match-hidden-files off
+# remove the annoying "-- more --" prompt
+set page-completions off
+# show the "Display all X possibilities?" starting at X items
+set completion-query-items 300 
+# displays possible completions using different colors to indicate
+# their file type. The color definitions are taken from the value of the
+# LS_COLORS environment variable. The default is ‘off’.
+set colored-stats on
+# If set to ‘on’, completed names which are symbolic links to directories have
+# a slash appended (subject to the value of mark-directories). The default is
+# ‘off’.
+set mark-symlinked-directories on
+# Alters the default completion behavior when inserting a single match into the
+# line. It’s only active when performing completion in the middle of a word. If
+# enabled, readline does not insert characters from the completion that match
+# characters after point in the word being completed, so portions of the word
+# following the cursor are not duplicated. For instance, if this is enabled,
+# attempting completion when the cursor is after the ‘e’ in ‘Makefile’ will
+# result in ‘Makefile’ rather than ‘Makefilefile’, assuming there is a single
+# possible completion. The default value is ‘off’.
+set skip-completed-text on
+
+# ------------------------- key bindings --------------------------------------
 # change from the default Emacs-like key binding to use vi line editing
 # commands:
 #set editing-mode vi
 #set editing-mode emacs 
 
+# The best way to find out what a key or key combination sends for your
+# terminal, is run sed -n l and to type it followed by Enter on the keyboard.
+# Then you'll see something like:
+# $ sed -n l
+# ^[[1;5A
+# \033[1;5A$
+# The first line is caused by the local terminal
+# echo done by the terminal device (it may not be reliable as terminal device
+# settings would affect it).
+# The second line is output by sed. The $ is not to be included, it's only to
+# show you where the end of the line is.
+# Above that means that Ctrl-Up (which I've pressed) send the 6 characters ESC,
+# [, 1, ;, 5 and A (0x1b 0x5b 0x31 0x3b 0x35 0x41)
+
 # some defaults / modifications for the emacs mode
 $if mode=emacs
+	# make control-tab complete from history
+	# C-TAB: dynamic-complete-history
 
 	# allow the use of the Home/End keys
 	"\e[1~": beginning-of-line
@@ -96,37 +137,6 @@ $if Bash
     "\e[6~": history-search-forward
 	# Alt-left-arrow
 	"\e[1;3D": backward-kill-word
-	# case-insensitive tab completion
-	set completion-ignore-case on
-	# hit tab only once when there are several choices
-	#set show-all-if-ambiguous on
-	# produce a list only when no completion is possible
-	set show-all-ifunmodified on
-	# do not show hidden files in the list
-	#set match-hidden-files off
-	# remove the annoying "-- more --" prompt
-	set page-completions off
-	# show the "Display all X possibilities?" starting at X items
-	set completion-query-items 300 
-	# displays possible completions using different colors to indicate
-	# their file type. The color definitions are taken from the value of the
-	# LS_COLORS environment variable. The default is ‘off’.
-	set colored-stats on
-$endif
-
-# If set to ‘on’, completed names which are symbolic links to directories have
-# a slash appended (subject to the value of mark-directories). The default is
-# ‘off’.
-set mark-symlinked-directories on
-# Alters the default completion behavior when inserting a single match into the
-# line. It’s only active when performing completion in the middle of a word. If
-# enabled, readline does not insert characters from the completion that match
-# characters after point in the word being completed, so portions of the word
-# following the cursor are not duplicated. For instance, if this is enabled,
-# attempting completion when the cursor is after the ‘e’ in ‘Makefile’ will
-# result in ‘Makefile’ rather than ‘Makefilefile’, assuming there is a single
-# possible completion. The default value is ‘off’.
-set skip-completed-text on
 
 # For FTP
 $if Ftp
@@ -135,16 +145,3 @@ $if Ftp
 	"\M-.": yank-last-arg
 $endif
 
-# The best way to find out what a key or key combination sends for your
-# terminal, is run sed -n l and to type it followed by Enter on the keyboard.
-# Then you'll see something like:
-# $ sed -n l
-# ^[[1;5A
-# \033[1;5A$
-# The first line is caused by the local terminal
-# echo done by the terminal device (it may not be reliable as terminal device
-# settings would affect it).
-# The second line is output by sed. The $ is not to be included, it's only to
-# show you where the end of the line is.
-# Above that means that Ctrl-Up (which I've pressed) send the 6 characters ESC,
-# [, 1, ;, 5 and A (0x1b 0x5b 0x31 0x3b 0x35 0x41)
