@@ -1,8 +1,27 @@
 # /etc/inputrc - global inputrc for libreadline
-# See readline(3readline) and `info rluserman' for more information.
+# This file controls the behaviour of line input editing for
+# programs that use the GNU Readline library.  Existing
+# programs include FTP, Bash, and GDB. Zsh does not use readline, instead it
+# uses its own and more powerful zle. It does not read /etc/inputrc or
+# ~/.inputrc .
+# The bind -p command displays Readline function names and bindings in a format
+# that can put directly into an initialization file. See Bash Builtins.
+# For more information: 
+# readline(3readline) and `info rluserman'
+# https://www.gnu.org/software/bash/manual/html_node/Readline-Init-File.html
+#
+# You can re-read the inputrc file with C-x C-r.
+# Lines beginning with '#' are comments.
+#
+# First, include any system-wide bindings and variable
+# assignments from /etc/Inputrc
+$include /etc/inputrc
 
 # Be 8 bit clean.
+# don't strip characters to 7 bits when reading
 set input-meta on
+# display characters with the eighth bit set directly
+# rather than as meta-prefixed characters
 set output-meta on
 
 # To allow the use of 8bit-characters like the german umlauts, uncomment
@@ -19,7 +38,12 @@ set output-meta on
 
 # do not bell on tab-completion
 set bell-style none
-# set bell-style visible
+#set bell-style visible
+
+# change from the default Emacs-like key binding to use vi line editing
+# commands:
+#set editing-mode vi
+#set editing-mode emacs 
 
 # some defaults / modifications for the emacs mode
 $if mode=emacs
@@ -63,12 +87,15 @@ $if mode=emacs
 	# "\e[H": beginning-of-line
 	# "\e[F": end-of-line
 $endif
-# end of /etc/inputrc (ubuntu 14.04)
 
 $if Bash
     # Search history back and forward using page-up and page-down
+	# PageUp
     "\e[5~": history-search-backward
+	# PageDown
     "\e[6~": history-search-forward
+	# Alt-left-arrow
+	"\e[1;3D": backward-kill-word
 	# case-insensitive tab completion
 	set completion-ignore-case on
 	# hit tab only once when there are several choices
@@ -81,4 +108,43 @@ $if Bash
 	set page-completions off
 	# show the "Display all X possibilities?" starting at X items
 	set completion-query-items 300 
+	# displays possible completions using different colors to indicate
+	# their file type. The color definitions are taken from the value of the
+	# LS_COLORS environment variable. The default is ‘off’.
+	set colored-stats on
 $endif
+
+# If set to ‘on’, completed names which are symbolic links to directories have
+# a slash appended (subject to the value of mark-directories). The default is
+# ‘off’.
+set mark-symlinked-directories on
+# Alters the default completion behavior when inserting a single match into the
+# line. It’s only active when performing completion in the middle of a word. If
+# enabled, readline does not insert characters from the completion that match
+# characters after point in the word being completed, so portions of the word
+# following the cursor are not duplicated. For instance, if this is enabled,
+# attempting completion when the cursor is after the ‘e’ in ‘Makefile’ will
+# result in ‘Makefile’ rather than ‘Makefilefile’, assuming there is a single
+# possible completion. The default value is ‘off’.
+set skip-completed-text on
+
+# For FTP
+$if Ftp
+	"\C-xg": "get \M-?"
+	"\C-xt": "put \M-?"
+	"\M-.": yank-last-arg
+$endif
+
+# The best way to find out what a key or key combination sends for your
+# terminal, is run sed -n l and to type it followed by Enter on the keyboard.
+# Then you'll see something like:
+# $ sed -n l
+# ^[[1;5A
+# \033[1;5A$
+# The first line is caused by the local terminal
+# echo done by the terminal device (it may not be reliable as terminal device
+# settings would affect it).
+# The second line is output by sed. The $ is not to be included, it's only to
+# show you where the end of the line is.
+# Above that means that Ctrl-Up (which I've pressed) send the 6 characters ESC,
+# [, 1, ;, 5 and A (0x1b 0x5b 0x31 0x3b 0x35 0x41)
