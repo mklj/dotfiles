@@ -68,7 +68,7 @@ set skip-completed-text on
 # change from the default Emacs-like key binding to use vi line editing
 # commands:
 #set editing-mode vi
-#set editing-mode emacs 
+set editing-mode emacs 
 
 # The best way to find out what a key or key combination sends for your
 # terminal, is run sed -n l and to type it followed by Enter on the keyboard.
