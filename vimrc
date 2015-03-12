@@ -57,7 +57,7 @@ if filereadable(expand("~/.vim/bundle/Vundle.vim/README.md"))
 	" see :h vundle for more details or wiki for FAQ
 	" NOTE: comments after Plugin commands are not allowed.
 	" Put your stuff after this line
-	echom "Plugins loaded with Vundle!"
+	"echo "Plugins loaded with Vundle!"
 endif
 
 " APPEARANCE  -----------------------------------------------------------------
