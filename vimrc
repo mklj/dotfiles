@@ -27,6 +27,7 @@ if filereadable(expand("~/.vim/bundle/Vundle.vim/README.md"))
 	Plugin 'tpope/vim-surround'
 	Plugin 'flazz/vim-colorschemes'
 	Plugin 'wincent/command-t'
+	Plugin 'Raimondi/delimitMate'
 	" The sparkup vim script is in a subdirectory of this repo called vim.
 	" Pass the path to set the runtimepath properly.
 	"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
@@ -166,17 +167,16 @@ nnoremap <F3> :bn<CR>
 " they are still too scary this can be a convenient workaround while you're
 " perfecting your vim chops.
 
-" See :help clipboard for more detailed information.
-set clipboard=unnamedplus
+if has('unnamedplus')
+	set clipboard=unnamedplus,unnamed
+else
+	" Vim now also uses the selection system clipboard for default yank/paste.
+	set clipboard+=unnamed
+endif
 "vnoremap <C-c> "+y
 " can use Maj+Inser to paste from system clipboard
 " copying/pasting from the system clipboard will not work if
 " :echo has('clipboard') returns 0
-"vmap <C-C> "+y
-"map <C-V> <esc>"+p
-"imap <C-V> <esc>"+pi
-"nnoremap ; :
-" Enable/Disable paste mode, where data won't be autoindented
 
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
@@ -224,7 +224,6 @@ set hlsearch
 nmap <silent> <leader><space> :nohlsearch<cr>
 
 " TAGBAR ----------------------------------------------------------------------
-" majutsushi.github.com/tagbar/
 nmap <F9> :TagbarToggle<cr>
 
 " ULTISNIPS -------------------------------------------------------------------
