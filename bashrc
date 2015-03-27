@@ -324,8 +324,8 @@ alias l.='ls -d .*'
 alias lt='ls -lrth --time-style=long-iso'
 # recursive directory listing
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'''
-alias lf='ls -Gl | grep ^d' # only list directories
-alias ld='ls -Gal | grep ^d' # only list directories, including hidden ones
+alias ld='ls -Gl | grep ^d' # only list directories
+alias lda='ls -Gal | grep ^d' # only list directories, including hidden ones
 
 # cd
 alias ..='cd ..'
@@ -355,6 +355,7 @@ alias mv='mv -i'
 
 # color output
 alias grep='grep --color'
+alias egrep='egrep --color'
 alias cdiff='colordiff'
 
 ## PACKAGES MANAGEMENT
