@@ -3,4 +3,4 @@
 	url = git@github.com:gmarik/Vundle.vim.git
 [submodule "dotty"]
 	path = dotty
-	url = https://github.com/mklj/dotty.git
+	url = git@github.com:mklj/dotty.git
