@@ -1,0 +1,22 @@
+{
+	"directories":,
+
+	"copy": {
+	},
+
+	"link": {
+		"bash_logout": "~./bash_logout",
+		"bashrc": "~/.bashrc",	
+		"bpython/": "~/.config/bpython",
+		"gitconfig": "~/.gitconfig",
+		"gmrunrc": "~/.gmrunrc",
+		"inputrc": "~/.inputrc",
+		"profile": "~/.profile",
+		"toprc": "~/.toprc",
+		"vim/": "~/.vim",
+		"vimrc": "~/.vimrc"
+	}
+
+	"commands":
+		["ln -s ~/.profile ~/.pam_environment"]
+}
