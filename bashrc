@@ -38,7 +38,7 @@ fi
 shopt -s checkwinsize
 
 # automatically prepend cd when entering just a path in the shell
-shopt -s autocd
+#[[ $BASH_VERSINFO -ge 4 ]] && shopt -s autocd
 
 # echo-builtin command expands backslash-escape sequences by default
 # (POSIX, SUS, XPG)
