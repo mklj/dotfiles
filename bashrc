@@ -54,6 +54,13 @@ unset safe_term match_lhs
 EC() { echo -e '\e[1;33m'code $?'\e[m\n'; }
 trap EC ERR
 
+# * matches  any  string,  including the null string.  When the globstar shell
+# option is enabled, and * is used in a pathname expansion context, two
+# adjacent *s used as a single pattern will match all files and zero or more
+# directories and subdirectories.  If followed by a /, two adjacent *s will
+# match only directories and subdirectories.
+shopt -s globstar
+
 ## terminal title
 ## http://www.davidpashley.com/articles/xterm-titles-with-bash/
 # If set, any traps on DEBUG and RETURN are inherited by shell functions,
