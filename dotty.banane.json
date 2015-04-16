@@ -1,0 +1,24 @@
+{
+	"directories": [],
+
+	"copy": {
+	},
+
+	"link": {
+		"bash_logout": "~/.bash_logout",
+		"bashrc": "~/.bashrc",	
+		"bpython/": "~/.config/bpython",
+		"gitconfig": "~/.gitconfig",
+		"gmrunrc": "~/.gmrunrc",
+		"inputrc": "~/.inputrc",
+		"profile": "~/.profile",
+		"toprc": "~/.toprc",
+		"vim/": "~/.vim",
+		"vimrc": "~/.vimrc",
+		"subl/user_pref": "~/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"subl/user_key_bindings_linux": "~/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap"
+	},
+
+	"commands":
+		["ln -s ~/.profile ~/.pam_environment"]
+}
