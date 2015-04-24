@@ -77,7 +77,9 @@ set title " show filename in terminal title
 set wrap
 set textwidth=79
 set formatoptions=qrn1
-set colorcolumn=80
+if exists('+colorcolumn')
+	set colorcolumn=80
+endif
 
 " BEHAVIOUR  ------------------------------------------------------------------
 filetype off " required with Vundle
