@@ -344,7 +344,7 @@ function cdd() { builtin cd "$*" && ls; }
 
 ## TOOLS
 alias reload="source $HOME/.bashrc"
-alias cl='clear && reset'
+alias rr='reset'
 alias xx='exit'
 alias du="du -sh"
 alias cal='cal -NMb'
