@@ -137,6 +137,8 @@ $if Bash
     "\e[6~": history-search-forward
 	# Alt-left-arrow
 	"\e[1;3D": backward-kill-word
+	# Alt-right-arrow
+	"\e[1;3C": kill-word
 
 # For FTP
 $if Ftp
