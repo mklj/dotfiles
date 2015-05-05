@@ -38,7 +38,7 @@ fi
 shopt -s checkwinsize
 
 # automatically prepend cd when entering just a path in the shell
-#[[ $BASH_VERSINFO -ge 4 ]] && shopt -s autocd
+#[ $BASH_VERSINFO -ge 4 ] && shopt -s autocd
 
 # echo-builtin command expands backslash-escape sequences by default
 # (POSIX, SUS, XPG)
@@ -59,7 +59,7 @@ trap EC ERR
 # adjacent *s used as a single pattern will match all files and zero or more
 # directories and subdirectories.  If followed by a /, two adjacent *s will
 # match only directories and subdirectories.
-shopt -s globstar
+[ $BASH_VERSINFO -ge 4 ] && shopt -s globstar
 
 ## terminal title
 ## http://www.davidpashley.com/articles/xterm-titles-with-bash/
