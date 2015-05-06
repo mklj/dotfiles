@@ -261,7 +261,7 @@ function colors2()
 set_prompt() {
 	local color_off='\[\e[0m\]'   # text reset
 	local yellow='\[\e[0;33m\]'
-	local red='\[\e[0;37;41m\]'
+	local red='\[\e[0;91m\]'
 	local bg_red='\[\e[41m\]'
 	local bg_grey='\[\e[7;37m\]'
 
@@ -269,7 +269,7 @@ set_prompt() {
 	if [[ $UID -ge 1000 ]]; then
 		user_color=$yellow
 	elif [[ $UID -eq 0 ]]; then
-		user_color=$bg_red
+		user_color=$red
 	fi
 	# server color
 	if [[ -n "$SSH_CLIENT" || -n "$SSH2_CLIENT" ]]; then
@@ -278,7 +278,7 @@ set_prompt() {
 		machine_color=$yellow
 	fi
 
-	PS1="\n $yellow\u@\h:\w \$ $color_off"
+	PS1="\n $user_color\u@\h:\w \$$color_off "
 	#PS1="\n $user_color\u@$machine_color\h:$color_off\W \$ "
 }
 # also, make sure all terminals save history
