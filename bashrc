@@ -387,6 +387,7 @@ alias pacinsd='sudo pacman -S --asdeps'        # Install given package(s) as dep
 alias pacmir='sudo pacman -Syy'                # Force refresh of all package lists after updating /etc/pacman.d/mirrorlist
 
 ## APPLICATIONS
+alias ee='emacs --no-window'
 alias vv='vim'
 alias vvrc='vim $HOME/.vimrc'
 alias jc='javac'
