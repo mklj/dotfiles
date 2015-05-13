@@ -51,8 +51,8 @@ shopt -s histappend
 unset safe_term match_lhs
 
 ## intercept the non-zero return code of last program
-EC() { echo -e '\e[1;33m'code $?'\e[m\n'; }
-trap EC ERR
+#EC() { echo -e '\e[1;33m'code $?'\e[m\n'; }
+#trap EC ERR
 
 # * matches  any  string,  including the null string.  When the globstar shell
 # option is enabled, and * is used in a pathname expansion context, two
@@ -278,7 +278,7 @@ set_prompt() {
 		machine_color=$yellow
 	fi
 
-	PS1="\n $user_color\u@\h:\w \$$color_off "
+	PS1="\n $user_color[\$?] \u@\h:\w \$$color_off "
 	#PS1="\n $user_color\u@$machine_color\h:$color_off\W \$ "
 }
 # also, make sure all terminals save history
