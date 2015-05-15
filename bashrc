@@ -371,7 +371,7 @@ alias maj='sudo apt-get update && sudo apt-get upgrade'
 function pksearch() { apt-cache search $1 | sort; }
 alias pkshow='apt-cache show'
 alias pk='dpkg --get-selections | grep -i'
-alias repos='grep -rE "^deb " /etc/apt/sources.list /etc/apt/sources.list.d/*.list | sed "s/^.*:\/\///g"'
+alias repos='grep -rE "^deb " /etc/apt/sources.list /etc/apt/sources.list.d/*.list | sed "s/^.*:\/\///g" | sort'
 ## pacman
 alias pacupg='sudo pacman -Syu'        # Synchronize with repositories and then upgrade packages that are out of date on the local system.
 alias pacin='sudo pacman -S'           # Install specific package(s) from the repositories
