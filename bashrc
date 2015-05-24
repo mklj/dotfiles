@@ -278,8 +278,7 @@ set_prompt() {
 		machine_color=$yellow
 	fi
 
-	PS1="\n $user_color[\$?] \u@\h:\w \$$color_off "
-	#PS1="\n $user_color\u@$machine_color\h:$color_off\W \$ "
+	PS1="\n $user_color[$?] \u@\h:\w \\$\[\e[0m\] "
 }
 # also, make sure all terminals save history
 PROMPT_COMMAND='history -a; show_name; set_prompt'
