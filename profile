@@ -51,7 +51,7 @@ HISTIGNORE="pwd:l:ls:ll:la:lla"
 
 # LESS OPTIONS
 # -i : case-insensitive search unless uppercase letters are typed
-LESS="-i"
+LESS="-iR"
 
 #  Indicate preferred webbrowser for graphical or text terminal respectively
 [ $DISPLAY ] && export BROWSER=google-chrome || export BROWSER=w3m
