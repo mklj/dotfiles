@@ -1,5 +1,4 @@
-confbox
-=======
+# dotfiles #
 
 Some config files...
 
