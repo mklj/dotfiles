@@ -61,6 +61,13 @@ unset safe_term match_lhs
 # match only directories and subdirectories.
 [ $BASH_VERSINFO -ge 4 ] && shopt -s globstar
 
+# If set, Bash lists the status of any stopped and running jobs before exiting
+# an interactive shell. If any jobs are running, this causes the exit to be
+# deferred until a second exit is attempted without an intervening command. The
+# shell always postpones exiting if any jobs are stopped.
+# Available only in interactive shells.
+[ $BASH_VERSINFO -ge 4 ] && shopt -s checkjobs
+
 ## terminal title
 ## http://www.davidpashley.com/articles/xterm-titles-with-bash/
 # If set, any traps on DEBUG and RETURN are inherited by shell functions,
