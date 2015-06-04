@@ -29,6 +29,7 @@
 	#autostash = true
 [rerere]
 	enabled = true
+	autoupdate = false
 [status]
 	color = auto
 	# status will see inside untracked directories
