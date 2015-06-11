@@ -11,6 +11,7 @@
 		"gitconfig": "~/.gitconfig",
 		"gmrunrc": "~/.gmrunrc",
 		"inputrc": "~/.inputrc",
+		"mpv/": "~/.config/mpv",
 		"profile": "~/.profile",
 		"toprc": "~/.toprc",
 		"vim/": "~/.vim",
