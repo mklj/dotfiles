@@ -78,7 +78,7 @@ set showmode
 set ruler "show line,column
 set showcmd
 set wildmenu " enhanced command-line completion
-let mapleader="," " change the mapleader from \ to ,
+set number
 set backspace=indent,eol,start " backspace for dummies 
 set mouse=a " unleash the rodent
 " Quickly edit/reload the vimrc file
@@ -92,7 +92,10 @@ set backupdir=~/.vim/backup
 set directory=~/.vim/backup
 "set noswapfile
 
-" WINDOWS ---------------------------------------------------------------------
+" KEYBINDINGS -----------------------------------------------------------------
+let mapleader="," " change the mapleader from \ to ,
+
+" windows
 map <C-h> <C-w>h<C-w>
 map <C-j> <C-w>j<C-w>
 map <C-k> <C-w>k<C-w>
@@ -100,12 +103,35 @@ map <C-l> <C-w>l<C-w>
 " moves around split windows
 nnoremap <leader>w <C-w><C-w>
 
-" BUFFERS ---------------------------------------------------------------------
+" buffers ---------------------------------------------------------------------
 " switches around buffers
 nnoremap <F2> :bp<CR>
 nnoremap <F3> :bn<CR>
 nnoremap <F5> :tabprevious<CR>
 nnoremap <F6> :tabnext<CR>
+
+" help
+" open help text in a new tab
+cabbrev help tab help
+cabbrev h tab help
+
+" Treat long lines as break lines (useful when moving around in them)
+map j gj
+map k gk
+
+" ARROW KEYS ------------------------------------------------------------------
+"noremap <up> <nop>
+"inoremap <up> <nop>
+"noremap <down> <nop>
+"inoremap <down> <nop>
+"noremap <left> <nop>
+"noremap <right> <nop>
+"inoremap <left> <nop>
+"inoremap <right> <nop>
+" B-A-<start>
+
+nnoremap j gj
+nnoremap k gk
 
 " COPY & PASTE ----------------------------------------------------------------
 
@@ -165,6 +191,7 @@ endif
 " copying/pasting from the system clipboard will not work if
 " :echo has('clipboard') returns 0
 
+<<<<<<< HEAD
 " http://stackoverflow.com/questions/2514445/turning-off-auto-indent-when-pasting-text-into-vim
 set copyindent
 
