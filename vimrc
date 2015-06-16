@@ -28,6 +28,7 @@ if filereadable(expand("~/.vim/bundle/Vundle.vim/README.md"))
 	Plugin 'flazz/vim-colorschemes'
 	Plugin 'wincent/command-t'
 	Plugin 'Raimondi/delimitMate'
+	Plugin 'evidens/vim-twig'
 	" The sparkup vim script is in a subdirectory of this repo called vim.
 	" Pass the path to set the runtimepath properly.
 	"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
