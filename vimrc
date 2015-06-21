@@ -1,66 +1,48 @@
-" forget being compatible with good ol'vi
-set nocompatible
+" Note: Skip initialization for vim-tiny or vim-small.
+if 0 | endif
 
-if filereadable(expand("~/.vim/bundle/Vundle.vim/README.md"))
-	" set the runtime path to include Vundle and initialize
-	set rtp+=~/.vim/bundle/Vundle.vim/
-	call vundle#begin()
-	"  alternatively, pass a path where Vundle should install bundles
-	" let path = '~/some/path/here'
-	"call vundle#rc(path)
-
-	" let Vundle manage Vundle, required
-	Plugin 'gmarik/Vundle.vim'
-
-	" The following are examples of different formats supported.
-	" Keep bundle commands between here and filetype plugin indent on.
-
-	" scripts on GitHub repos
-	" Plugin 'tpope/vim-fugitive'
-	" Plugin 'Lokaltog/vim-easymotion'
-	" Plugin 'tpope/vim-rails.git'
-	Plugin 'SirVer/ultisnips'
-	Plugin 'honza/vim-snippets'
-	Plugin 'scrooloose/nerdcommenter'
-	Plugin 'Valloric/YouCompleteMe'
-	Plugin 'majutsushi/tagbar'
-	Plugin 'tpope/vim-surround'
-	Plugin 'flazz/vim-colorschemes'
-	Plugin 'wincent/command-t'
-	Plugin 'Raimondi/delimitMate'
-	Plugin 'evidens/vim-twig'
-	" The sparkup vim script is in a subdirectory of this repo called vim.
-	" Pass the path to set the runtimepath properly.
-	"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-
-	" scripts from http://vim-scripts.org/vim/scripts.html
-	"Plugin 'L9'
-	"Plugin 'FuzzyFinder'
-
-	" scripts not on GitHub
-	"Plugin 'git://git.wincent.com/command-t.git'
-
-	" git repos on your local machine (i.e. when working on your own plugin)
-	"Plugin 'file:///home/gmarik/path/to/plugin'
-
-	" All of your Plugins must be added before the following line
-	call vundle#end() " required
-
-	"filetype plugin indent on " required
-	" To ignore plugin indent changes, instead use:
-	filetype plugin on
-
-	" Brief help
-	" :PluginList          - list configured bundles
-	" :PluginInstall(!)    - install (update) bundles
-	" :PluginSearch(!) foo - search (or refresh cache first) for foo
-	" :PluginClean(!)      - confirm (or auto-approve) removal of unused bundles
-
-	" see :h vundle for more details or wiki for FAQ
-	" NOTE: comments after Plugin commands are not allowed.
-	" Put your stuff after this line
-	"echo "Plugins loaded with Vundle!"
+if has('vim_starting')
+	if &compatible
+		set nocompatible               " Be iMproved
+	 endif
+" Required:
+	set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
+
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" My Bundles here:
+" Refer to |:NeoBundle-examples|.
+" Note: You don't set neobundle setting in .gvimrc!
+NeoBundle 'bling/vim-airline'
+"NeoBundle 'tpope/vim-fugitive'
+"NeoBundle 'Lokaltog/vim-easymotion'
+"NeoBundle 'tpope/vim-rails.git'
+"NeoBundle 'SirVer/ultisnips'
+"NeoBundle 'honza/vim-snippets'
+NeoBundle 'scrooloose/nerdcommenter'
+"NeoBundle 'Valloric/YouCompleteMe'
+NeoBundle 'majutsushi/tagbar'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'flazz/vim-colorschemes'
+"NeoBundle 'wincent/command-t'
+"NeoBundle 'Raimondi/delimitMate'
+NeoBundle 'evidens/vim-twig'
+NeoBundle 'Shougo/neocomplete.vim'
+
+call neobundle#end()
+
+" Required:
+filetype plugin indent on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+"NeoBundleCheck
 
 " APPEARANCE  -----------------------------------------------------------------
 "set background=dark
@@ -89,7 +71,7 @@ filetype off " required with Vundle
 let g:tex_flavor = "latex" " use latex flavor for all .tex files
 syntax on " turn on syntax highlighting
 set encoding=utf-8
-set hidden " allow modified buffers in th background
+set hidden " allow modified buffers in the background
 set lazyredraw " Don't update the display while executing macros
 set scrolloff=5 " minimum lines to keep above and below cursor
 set showmode
@@ -100,8 +82,8 @@ let mapleader="," " change the mapleader from \ to ,
 set backspace=indent,eol,start " backspace for dummies 
 set mouse=a " unleash the rodent
 " Quickly edit/reload the vimrc file
-nmap <silent> <leader>ee :vsplit $MYVIMRC<cr>
-nmap <silent> <leader>ss :so $MYVIMRC<cr>
+nmap <silent> <leader>ee :vsplit $MYVIMRC<CR>
+nmap <silent> <leader>ss :so $MYVIMRC<CR>
 " spell checking and automatic wrapping at 72 columns to git commit messages
 autocmd Filetype gitcommit setlocal spell textwidth=72
 
@@ -122,6 +104,8 @@ nnoremap <leader>w <C-w><C-w>
 " switches around buffers
 nnoremap <F2> :bp<CR>
 nnoremap <F3> :bn<CR>
+nnoremap <F5> :tabprevious<CR>
+nnoremap <F6> :tabnext<CR>
 
 " COPY & PASTE ----------------------------------------------------------------
 
@@ -181,6 +165,9 @@ endif
 " copying/pasting from the system clipboard will not work if
 " :echo has('clipboard') returns 0
 
+" http://stackoverflow.com/questions/2514445/turning-off-auto-indent-when-pasting-text-into-vim
+set copyindent
+
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
 map k gk
@@ -208,6 +195,7 @@ set shiftwidth=4
 set noexpandtab
 
 " FOLDING ---------------------------------------------------------------------
+set foldcolumn=2
 set foldmethod=indent
 set foldnestmax=10 "deepest fold is ten levels
 set nofoldenable "dont fold by default
@@ -224,14 +212,101 @@ set incsearch
 "set showmatch
 set hlsearch
 " clearing highlighted search
-nmap <silent> <leader><space> :nohlsearch<cr>
+nmap <silent> <leader><space> :nohlsearch<CR>
 
 " TAGBAR ----------------------------------------------------------------------
-nmap <F9> :TagbarToggle<cr>
+nmap <F9> :TagbarToggle<CR>
 
 " ULTISNIPS -------------------------------------------------------------------
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "snippets_custom"]
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-let g:UltiSnipsListSnippets="<C-b>"
+"let g:UltiSnipsSnippetDirectories=["UltiSnips", "snippets_custom"]
+"let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="<tab>"
+"let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+"let g:UltiSnipsListSnippets="<C-b>"
+
+" AIRLINE ---------------------------------------------------------------------
+let g:airline#extensions#tabline#enabled = 1
+set laststatus=2
+
+" NEOCOMPLETE -----------------------------------------------------------------
+" Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+"
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : ''
+\ }
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+	let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g> neocomplete#undo_completion()
+inoremap <expr><C-l> neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+"inoremap <silent><CR><C-r> = <SID>my_cr_function()<CR>
+"function! s:my_cr_function()
+	"return neocomplete#close_popup() . "\<CR>"
+	" For no inserting <CR> key.
+	"return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+"endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS>	neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y> neocomplete#close_popup()
+inoremap <expr><C-e> neocomplete#cancel_popup()
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
+
+" For cursor moving in insert mode (Not recommended)
+"inoremap <expr><Left> neocomplete#close_popup() . "\<Left>"
+"inoremap <expr><Right> neocomplete#close_popup() . "\<Right>"
+"inoremap <expr><Up> neocomplete#close_popup() . "\<Up>"
+"inoremap <expr><Down> neocomplete#close_popup() . "\<Down>"
+" Or set this.
+"let g:neocomplete#enable_cursor_hold_i = 1
+" Or set this.
+"let g:neocomplete#enable_insert_char_pre = 1
+
+" AutoComplPop like behavior.
+"let g:neocomplete#enable_auto_select = 1
+
+" Shell like behavior(not recommended).
+"set completeopt+=longest
+"let g:neocomplete#enable_auto_select = 1
+"let g:neocomplete#disable_auto_complete = 1
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+	let g:neocomplete#sources#omni#input_patterns = {}
+endif
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+" For perlomni.vim setting.
+" https://github.com/c9s/perlomni.vim
+let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'"'
+
