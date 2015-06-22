@@ -4,7 +4,7 @@ if 0 | endif
 if has('vim_starting')
 	if &compatible
 		set nocompatible               " Be iMproved
-	 endif
+	endif
 " Required:
 	set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
@@ -20,20 +20,22 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " Refer to |:NeoBundle-examples|.
 " Note: You don't set neobundle setting in .gvimrc!
 NeoBundle 'bling/vim-airline'
-"NeoBundle 'tpope/vim-fugitive'
-"NeoBundle 'Lokaltog/vim-easymotion'
-"NeoBundle 'tpope/vim-rails.git'
-"NeoBundle 'SirVer/ultisnips'
-"NeoBundle 'honza/vim-snippets'
-NeoBundle 'scrooloose/nerdcommenter'
-"NeoBundle 'Valloric/YouCompleteMe'
-NeoBundle 'majutsushi/tagbar'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'flazz/vim-colorschemes'
-"NeoBundle 'wincent/command-t'
-"NeoBundle 'Raimondi/delimitMate'
 NeoBundle 'evidens/vim-twig'
+"NeoBundle 'flazz/vim-colorschemes'
+"NeoBundle 'honza/vim-snippets'
+"NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'majutsushi/tagbar'
+"NeoBundle 'Raimondi/delimitMate'
+NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'Shougo/unite.vim'
+"NeoBundle 'SirVer/ultisnips'
+"NeoBundle 'tpope/vim-fugitive'
+"NeoBundle 'tpope/vim-rails.git'
+NeoBundle 'tpope/vim-surround'
+"NeoBundle 'Valloric/YouCompleteMe'
+"NeoBundle 'wincent/command-t'
+NeoBundle 'nanotech/jellybeans.vim'
 
 call neobundle#end()
 
@@ -47,9 +49,6 @@ filetype plugin indent on
 " APPEARANCE  -----------------------------------------------------------------
 "set background=dark
 set t_Co=256 " 256 colors terminal
-"let g:zenburn_terminal_Background=1 " no background
-"let g:zenburn_high_Contrast=1
-"let g:zenburn_old_Visual=1
 colorscheme jellybeans
 set cursorline " highlight the line the cursor is on
 set title " show filename in terminal title
@@ -79,7 +78,7 @@ set ruler "show line,column
 set showcmd
 set wildmenu " enhanced command-line completion
 set number
-set backspace=indent,eol,start " backspace for dummies 
+set backspace=indent,eol,start " backspace for dummies
 set mouse=a " unleash the rodent
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ee :vsplit $MYVIMRC<CR>
@@ -109,11 +108,23 @@ nnoremap <F2> :bp<CR>
 nnoremap <F3> :bn<CR>
 nnoremap <F5> :tabprevious<CR>
 nnoremap <F6> :tabnext<CR>
+nnoremap <Leader>d :bd<CR>
 
 " help
 " open help text in a new tab
-cabbrev help tab help
-cabbrev h tab help
+"cabbrev help tab help
+"cabbrev h tab help
+"function! OpenHelpInCurrentWindow(topic)
+	"view $VIMRUNTIME/doc/help.txt
+	"setl filetype=help
+	"setl buftype=nofile
+	""setl buftype=help
+	"setl nomodifiable
+	"exe 'keepjumps help ' . a:topic
+"endfunction
+
+"command! -nargs=? -complete=help Help call OpenHelpInCurrentWindow(<q-args>)
+"nnoremap <silent> <leader>h :Help
 
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
@@ -191,9 +202,10 @@ endif
 " copying/pasting from the system clipboard will not work if
 " :echo has('clipboard') returns 0
 
-<<<<<<< HEAD
 " http://stackoverflow.com/questions/2514445/turning-off-auto-indent-when-pasting-text-into-vim
 set copyindent
+" http://superuser.com/questions/134709/how-can-i-keep-the-code-formated-as-original-source-when-i-paste-them-to-vim
+set pastetoggle=<F4>
 
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
@@ -254,6 +266,14 @@ nmap <F9> :TagbarToggle<CR>
 " AIRLINE ---------------------------------------------------------------------
 let g:airline#extensions#tabline#enabled = 1
 set laststatus=2
+
+" UNITE -----------------------------------------------------------------------
+nnoremap <Leader>l :Unite -start-insert file file_rec buffer<CR>
+"nnoremap <C-l> :Unite file file_rec buffer file_mru everything<CR>
+nnoremap <Leader>m :Unite line<CR>
+let g:unite_source_history_yank_enable = 1
+nnoremap <Leader>y :Unite history/yank<CR>
+nnoremap <Leader>s :Unite -quick-match buffer<CR>
 
 " NEOCOMPLETE -----------------------------------------------------------------
 " Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
