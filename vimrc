@@ -203,9 +203,10 @@ endif
 " :echo has('clipboard') returns 0
 
 " http://stackoverflow.com/questions/2514445/turning-off-auto-indent-when-pasting-text-into-vim
-set copyindent
+"set copyindent
 " http://superuser.com/questions/134709/how-can-i-keep-the-code-formated-as-original-source-when-i-paste-them-to-vim
 set pastetoggle=<F4>
+nmap <silent> <leader>p :set paste<CR>"*p:set nopaste<CR>
 
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
