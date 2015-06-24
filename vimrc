@@ -2,42 +2,36 @@
 if 0 | endif
 
 if has('vim_starting')
-	if &compatible
-		set nocompatible               " Be iMproved
-	endif
-" Required:
-	set runtimepath+=~/.vim/bundle/neobundle.vim/
+    if &compatible
+        set nocompatible               " Be iMproved
+    endif
+    set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
-" Required:
 call neobundle#begin(expand('~/.vim/bundle/'))
-
 " Let NeoBundle manage NeoBundle
-" Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-" My Bundles here:
 " Refer to |:NeoBundle-examples|.
 " Note: You don't set neobundle setting in .gvimrc!
 NeoBundle 'Shougo/vimproc.vim', {
-\	'build' : {
-\		'windows' : 'tools\\update-dll-mingw',
-\		'cygwin' : 'make -f make_cygwin.mak',
-\		'mac' : 'make -f make_mac.mak',
-\		'linux' : 'make',
-\		'unix' : 'gmake',
-\	},
+\   'build' : {
+\       'windows' : 'tools\\update-dll-mingw',
+\       'cygwin' : 'make -f make_cygwin.mak',
+\       'mac' : 'make -f make_mac.mak',
+\       'linux' : 'make',
+\       'unix' : 'gmake',
+\   },
 \}
 NeoBundle 'bling/vim-airline'
 NeoBundle 'chriskempson/vim-tomorrow-theme'
-NeoBundle 'evidens/vim-twig'
-"NeoBundle 'flazz/vim-colorschemes'
+NeoBundleLazy 'evidens/vim-twig'
+autocmd FileType twig NeoBundleSource vim-twig
 "NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'nanotech/jellybeans.vim'
 "NeoBundle 'Raimondi/delimitMate'
 NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/unite.vim'
 "NeoBundle 'SirVer/ultisnips'
 "NeoBundle 'tpope/vim-fugitive'
@@ -47,48 +41,35 @@ NeoBundle 'tpope/vim-surround'
 "NeoBundle 'wincent/command-t'
 NeoBundle 'Lokaltog/vim-easymotion'
 
-call neobundle#end()
-
-" Required:
-filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-"NeoBundleCheck
-
 " APPEARANCE  -----------------------------------------------------------------
 "set background=dark
 set t_Co=256 " 256 colors terminal
-colorscheme jellybeans
 set cursorline " highlight the line the cursor is on
 set title " show filename in terminal title
 
-" long lines handling / right margin
-"highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-"match OverLength /\%80v.\+/
-set wrap
-set textwidth=79
-set formatoptions=qrn1
-if exists('+colorcolumn')
-	set colorcolumn=80
-endif
-
 " BEHAVIOUR  ------------------------------------------------------------------
-"filetype off " required with Vundle
+
 " from http://wiki.contextgarden.net/Vim
 let g:tex_flavor = "latex" " use latex flavor for all .tex files
-syntax on " turn on syntax highlighting
+syntax on "turn on syntax highlighting
 set encoding=utf-8
+
+" disable sounds
+set noerrorbells
+set novisualbell
+set t_vb=
+
 set hidden " allow modified buffers in the background
+set autoread "auto reload if file saved externally
 set lazyredraw " Don't update the display while executing macros
-set scrolloff=5 " minimum lines to keep above and below cursor
+set scrolloff=3 " minimum lines to keep above and below cursor
+set scrolljump=5 "minimum number of lines to scroll
 set number
-set backspace=indent,eol,start " backspace for dummies
 set mouse=a " unleash the rodent
-" Quickly edit/reload the vimrc file
-nmap <silent> <leader>ee :vsplit $MYVIMRC<CR>
-nmap <silent> <leader>ss :so $MYVIMRC<CR>
-" spell checking and automatic wrapping at 72 columns to git commit messages
+"set mousehide " hide when characters are typed - only works in the GUI
+set backspace=indent,eol,start "allow backspacing everything in insert mode
+"set list "highlight whitespace
+" git commit messages: spell checking and automatic wrapping at 72 columns
 autocmd Filetype gitcommit setlocal spell textwidth=72
 
 " where backup files are kept
@@ -96,16 +77,34 @@ set backupdir=~/.vim/backup
 set directory=~/.vim/backup
 "set noswapfile
 
+" long lines handling / right margin
+"highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+"match OverLength /\%80v.\+/
+set wrap
+set textwidth=79
+set formatoptions=qrn1j
+if exists('+colorcolumn')
+    set colorcolumn=80
+endif
+
+function! Preserve(command)
+    " preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " do the business:
+    execute a:command
+    " clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
+
+function! StripTrailingWhitespace()
+    call Preserve("%s/\\s\\+$//e")
+endfunction
+
 " KEYBINDINGS -----------------------------------------------------------------
 let mapleader="," " change the mapleader from \ to ,
-
-" windows
-map <C-h> <C-w>h<C-w>
-map <C-j> <C-w>j<C-w>
-map <C-k> <C-w>k<C-w>
-map <C-l> <C-w>l<C-w>
-" moves around split windows
-nnoremap <leader>w <C-w><C-w>
 
 " buffers ---------------------------------------------------------------------
 " switches around buffers
@@ -120,22 +119,24 @@ nnoremap <Leader>d :bd<CR>
 "cabbrev help tab help
 "cabbrev h tab help
 "function! OpenHelpInCurrentWindow(topic)
-	"view $VIMRUNTIME/doc/help.txt
-	"setl filetype=help
-	"setl buftype=nofile
-	""setl buftype=help
-	"setl nomodifiable
-	"exe 'keepjumps help ' . a:topic
+    "view $VIMRUNTIME/doc/help.txt
+    "setl filetype=help
+    "setl buftype=nofile
+    ""setl buftype=help
+    "setl nomodifiable
+    "exe 'keepjumps help ' . a:topic
 "endfunction
 
 "command! -nargs=? -complete=help Help call OpenHelpInCurrentWindow(<q-args>)
 "nnoremap <silent> <leader>h :Help
 
-" Treat long lines as break lines (useful when moving around in them)
-map j gj
-map k gk
+" MOVING AROUND ---------------------------------------------------------------
 
-" ARROW KEYS ------------------------------------------------------------------
+" Treat long lines as break lines (useful when moving around in them)
+noremap j gj
+noremap k gk
+
+" disable arrow keys
 "noremap <up> <nop>
 "inoremap <up> <nop>
 "noremap <down> <nop>
@@ -144,10 +145,35 @@ map k gk
 "noremap <right> <nop>
 "inoremap <left> <nop>
 "inoremap <right> <nop>
-" B-A-<start>
+"B-A-<start>
 
-nnoremap j gj
-nnoremap k gk
+" windows
+map <C-h> <C-w>h<C-w>
+map <C-j> <C-w>j<C-w>
+map <C-k> <C-w>k<C-w>
+map <C-l> <C-w>l<C-w>
+" moves around split windows
+nnoremap <leader>w <C-w><C-w>
+
+" EASYMOTION ------------------------------------------------------------------
+
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" Bi-directional find motion
+" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+" `s{char}{label}`
+nmap f <Plug>(easymotion-s)
+" or
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+"nmap s <Plug>(easymotion-s2)
+
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
 
 " COPY & PASTE ----------------------------------------------------------------
 
@@ -197,10 +223,10 @@ nnoremap k gk
 " perfecting your vim chops.
 
 "if has('unnamedplus')
-	"set clipboard=unnamedplus,unnamed
+    "set clipboard=unnamedplus,unnamed
 "else
-	"" Vim now also uses the selection system clipboard for default yank/paste.
-	"set clipboard+=unnamed
+    "" Vim now also uses the selection system clipboard for default yank/paste.
+    "set clipboard+=unnamed
 "endif
 "vnoremap <C-c> "+y
 " can use Maj+Inser to paste from system clipboard
@@ -212,9 +238,6 @@ nnoremap k gk
 " http://superuser.com/questions/134709/how-can-i-keep-the-code-formated-as-original-source-when-i-paste-them-to-vim
 set pastetoggle=<F4>
 "nmap <silent> <leader>p :set paste<CR>"*p:set nopaste<CR>
-vnoremap <silent> <Leader>y :write !xclip -i-selection clipboard<CR>
-nnoremap <silent> <Leader>p :read !xclip -o -selection clipboard<CR>
-
 
 "On Mac OSX
 "copy selected part: visually select text(type v or V in normal mode) and type :w !pbcopy
@@ -228,33 +251,35 @@ nnoremap <silent> <Leader>p :read !xclip -o -selection clipboard<CR>
 "-- Note: In case neither of these tools (xsel and xclip) are preinstalled on your distro, you can probably find them in the repos
 
 "On linux this works with :w !xclip -sel c or :w !xsel -b –  Zeus77 yesterday
-
-" ARROW KEYS ------------------------------------------------------------------
-"noremap <up> <nop>
-"inoremap <up> <nop>
-"noremap <down> <nop>
-"inoremap <down> <nop>
-"noremap <left> <nop>
-"noremap <right> <nop>
-"inoremap <left> <nop>
-"inoremap <right> <nop>
-" B-A-<start>
-
-nnoremap j gj
-nnoremap k gk
+if executable('xclip')
+    vnoremap <silent> <Leader>y :write !xclip -i-selection clipboard<CR>
+    nnoremap <silent> <Leader>p :read !xclip -o -selection clipboard<CR>
+endif
 
 " INDENTATION -----------------------------------------------------------------
+
+" To convert tabs to space
+" :set expandtab
+" :retab!
+" Convert spaces to tabs
+" :set noexpandtab
+" :retab!
+
+set expandtab
 set tabstop=4
 set shiftwidth=4
-set noexpandtab
 
 " FOLDING ---------------------------------------------------------------------
+
+set foldenable "enable folds by default
 set foldcolumn=2
-set foldmethod=indent
+set foldmethod=syntax
+"set foldmethod=indent
 set foldnestmax=10 "deepest fold is ten levels
-set nofoldenable "dont fold by default
-set foldlevel=1
-" shortcuts za - zr (?)
+"set nofoldenable "dont fold by default
+"set foldlevel=1
+set foldlevelstart=99 "open all folds by default
+let g:xml_syntax_folding=1 "enable xml folding
 
 " SEARCH & REPLACE ------------------------------------------------------------
 " move toward more pythonic regex
@@ -264,9 +289,9 @@ set ignorecase " case-insensitive search...
 set smartcase " ... unless an uppercase character is typed
 set incsearch
 "set showmatch
-set hlsearch
+"set hlsearch
 " clearing highlighted search
-nmap <silent> <leader><space> :nohlsearch<CR>
+"nmap <silent> <leader><space> :nohlsearch<CR>
 
 " TAGBAR ----------------------------------------------------------------------
 nmap <F9> :TagbarToggle<CR>
@@ -288,91 +313,108 @@ set wildmenu " enhanced command-line completion
 
 " UNITE -----------------------------------------------------------------------
 let g:unite_source_history_yank_enable = 1
+
+if executable('grep')
+    let g:unite_source_grep_command='grep'
+    let g:unite_source_grep_default_opts='-i --color=auto --line-number'
+    "let g:unite_source_grep_recursive_opt=''
+endif
+
 nnoremap <Leader>l :Unite -start-insert file file_rec buffer<CR>
-nnoremap <Leader> :Unite grep:.<CR>
+nnoremap <Leader>g :Unite grep:.<CR>
 nnoremap <Leader>m :Unite line<CR>
 nnoremap <Leader>y :Unite history/yank<CR>
 nnoremap <Leader>s :Unite -quick-match buffer<CR>
 
 " NEOCOMPLETE -----------------------------------------------------------------
-" Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-"
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : ''
-\ }
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-	let g:neocomplete#keyword_patterns = {}
+
+if has('lua')
+    NeoBundle 'Shougo/neocomplete.vim'
+    " Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+    " Disable AutoComplPop.
+    let g:acp_enableAtStartup = 0
+    let g:neocomplete#enable_at_startup = 1 "Use neocomplete.
+    let g:neocomplete#enable_smart_case = 1 "Use smartcase.
+    " Set minimum syntax keyword length.
+    let g:neocomplete#sources#syntax#min_keyword_length = 3
+    let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+    "
+    " Define dictionary.
+    let g:neocomplete#sources#dictionary#dictionaries = {
+        \ 'default' : ''
+    \ }
+    " Define keyword.
+    if !exists('g:neocomplete#keyword_patterns')
+        let g:neocomplete#keyword_patterns = {}
+    endif
+    let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+    " Plugin key-mappings.
+    inoremap <expr><C-g> neocomplete#undo_completion()
+    inoremap <expr><C-l> neocomplete#complete_common_string()
+
+    " Recommended key-mappings.
+    " <CR>: close popup and save indent.
+    "inoremap <silent><CR><C-r> = <SID>my_cr_function()<CR>
+    "function! s:my_cr_function()
+        "return neocomplete#close_popup() . "\<CR>"
+        " For no inserting <CR> key.
+        "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+    "endfunction
+    " <TAB>: completion.
+    inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+    " <C-h>, <BS>: close popup and delete backword char.
+    inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+    inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+    inoremap <expr><C-y> neocomplete#close_popup()
+    inoremap <expr><C-e> neocomplete#cancel_popup()
+    " Close popup by <Space>.
+    "inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
+
+    " For cursor moving in insert mode (Not recommended)
+    "inoremap <expr><Left> neocomplete#close_popup() . "\<Left>"
+    "inoremap <expr><Right> neocomplete#close_popup() . "\<Right>"
+    "inoremap <expr><Up> neocomplete#close_popup() . "\<Up>"
+    "inoremap <expr><Down> neocomplete#close_popup() . "\<Down>"
+    " Or set this.
+    "let g:neocomplete#enable_cursor_hold_i = 1
+    " Or set this.
+    "let g:neocomplete#enable_insert_char_pre = 1
+
+    " AutoComplPop like behavior.
+    "let g:neocomplete#enable_auto_select = 1
+
+    " Shell like behavior(not recommended).
+    "set completeopt+=longest
+    "let g:neocomplete#enable_auto_select = 1
+    "let g:neocomplete#disable_auto_complete = 1
+    "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
+    " Enable omni completion.
+    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+    " Enable heavy omni completion.
+    if !exists('g:neocomplete#sources#omni#input_patterns')
+        let g:neocomplete#sources#omni#input_patterns = {}
+    endif
+    let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+    "let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+    "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+    " For perlomni.vim setting.
+    " https://github.com/c9s/perlomni.vim
+    "let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'"'
 endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
-" Plugin key-mappings.
-inoremap <expr><C-g> neocomplete#undo_completion()
-inoremap <expr><C-l> neocomplete#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-"inoremap <silent><CR><C-r> = <SID>my_cr_function()<CR>
-"function! s:my_cr_function()
-	"return neocomplete#close_popup() . "\<CR>"
-	" For no inserting <CR> key.
-	"return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-"endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS>	neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y> neocomplete#close_popup()
-inoremap <expr><C-e> neocomplete#cancel_popup()
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
-
-" For cursor moving in insert mode (Not recommended)
-"inoremap <expr><Left> neocomplete#close_popup() . "\<Left>"
-"inoremap <expr><Right> neocomplete#close_popup() . "\<Right>"
-"inoremap <expr><Up> neocomplete#close_popup() . "\<Up>"
-"inoremap <expr><Down> neocomplete#close_popup() . "\<Down>"
-" Or set this.
-"let g:neocomplete#enable_cursor_hold_i = 1
-" Or set this.
-"let g:neocomplete#enable_insert_char_pre = 1
-
-" AutoComplPop like behavior.
-"let g:neocomplete#enable_auto_select = 1
-
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplete#enable_auto_select = 1
-"let g:neocomplete#disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-	let g:neocomplete#sources#omni#input_patterns = {}
-endif
-let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-" For perlomni.vim setting.
-" https://github.com/c9s/perlomni.vim
-let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'"'
+call neobundle#end()
+filetype plugin indent on
+syntax enable
+colorscheme jellybeans
+" If there are uninstalled bundles found on startup, this will conveniently
+" prompt you to install them.
+NeoBundleCheck
 
