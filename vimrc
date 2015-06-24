@@ -19,12 +19,22 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " My Bundles here:
 " Refer to |:NeoBundle-examples|.
 " Note: You don't set neobundle setting in .gvimrc!
+NeoBundle 'Shougo/vimproc.vim', {
+\	'build' : {
+\		'windows' : 'tools\\update-dll-mingw',
+\		'cygwin' : 'make -f make_cygwin.mak',
+\		'mac' : 'make -f make_mac.mak',
+\		'linux' : 'make',
+\		'unix' : 'gmake',
+\	},
+\}
 NeoBundle 'bling/vim-airline'
+NeoBundle 'chriskempson/vim-tomorrow-theme'
 NeoBundle 'evidens/vim-twig'
 "NeoBundle 'flazz/vim-colorschemes'
-"NeoBundle 'honza/vim-snippets'
 "NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'majutsushi/tagbar'
+NeoBundle 'nanotech/jellybeans.vim'
 "NeoBundle 'Raimondi/delimitMate'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'Shougo/neocomplete.vim'
@@ -35,7 +45,7 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'tpope/vim-surround'
 "NeoBundle 'Valloric/YouCompleteMe'
 "NeoBundle 'wincent/command-t'
-NeoBundle 'nanotech/jellybeans.vim'
+NeoBundle 'Lokaltog/vim-easymotion'
 
 call neobundle#end()
 
@@ -64,8 +74,7 @@ if exists('+colorcolumn')
 endif
 
 " BEHAVIOUR  ------------------------------------------------------------------
-filetype off " required with Vundle
-"filetype indent on
+"filetype off " required with Vundle
 " from http://wiki.contextgarden.net/Vim
 let g:tex_flavor = "latex" " use latex flavor for all .tex files
 syntax on " turn on syntax highlighting
@@ -73,10 +82,6 @@ set encoding=utf-8
 set hidden " allow modified buffers in the background
 set lazyredraw " Don't update the display while executing macros
 set scrolloff=5 " minimum lines to keep above and below cursor
-set showmode
-set ruler "show line,column
-set showcmd
-set wildmenu " enhanced command-line completion
 set number
 set backspace=indent,eol,start " backspace for dummies
 set mouse=a " unleash the rodent
@@ -191,12 +196,12 @@ nnoremap k gk
 " they are still too scary this can be a convenient workaround while you're
 " perfecting your vim chops.
 
-if has('unnamedplus')
-	set clipboard=unnamedplus,unnamed
-else
-	" Vim now also uses the selection system clipboard for default yank/paste.
-	set clipboard+=unnamed
-endif
+"if has('unnamedplus')
+	"set clipboard=unnamedplus,unnamed
+"else
+	"" Vim now also uses the selection system clipboard for default yank/paste.
+	"set clipboard+=unnamed
+"endif
 "vnoremap <C-c> "+y
 " can use Maj+Inser to paste from system clipboard
 " copying/pasting from the system clipboard will not work if
@@ -206,11 +211,23 @@ endif
 "set copyindent
 " http://superuser.com/questions/134709/how-can-i-keep-the-code-formated-as-original-source-when-i-paste-them-to-vim
 set pastetoggle=<F4>
-nmap <silent> <leader>p :set paste<CR>"*p:set nopaste<CR>
+"nmap <silent> <leader>p :set paste<CR>"*p:set nopaste<CR>
+vnoremap <silent> <Leader>y :write !xclip -i-selection clipboard<CR>
+nnoremap <silent> <Leader>p :read !xclip -o -selection clipboard<CR>
 
-" Treat long lines as break lines (useful when moving around in them)
-map j gj
-map k gk
+
+"On Mac OSX
+"copy selected part: visually select text(type v or V in normal mode) and type :w !pbcopy
+"copy the whole file :%w !pbcopy
+"past from the clipboard :r !pbpaste
+
+"On most Linux Distros, you can substitute:
+"pbcopy above with xclip -i -sel c or xsel -i -b
+"pbpaste using xclip -o -sel c or xsel -o -b
+"
+"-- Note: In case neither of these tools (xsel and xclip) are preinstalled on your distro, you can probably find them in the repos
+
+"On linux this works with :w !xclip -sel c or :w !xsel -b –  Zeus77 yesterday
 
 " ARROW KEYS ------------------------------------------------------------------
 "noremap <up> <nop>
@@ -225,9 +242,6 @@ map k gk
 
 nnoremap j gj
 nnoremap k gk
-
-" LINE NUMBERS ----------------------------------------------------------------
-set number
 
 " INDENTATION -----------------------------------------------------------------
 set tabstop=4
@@ -264,15 +278,19 @@ nmap <F9> :TagbarToggle<CR>
 "let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 "let g:UltiSnipsListSnippets="<C-b>"
 
-" AIRLINE ---------------------------------------------------------------------
+" STATUS LINE (AIRLINE) -------------------------------------------------------
+set noshowmode
 let g:airline#extensions#tabline#enabled = 1
 set laststatus=2
+"set ruler "show line,column
+set showcmd
+set wildmenu " enhanced command-line completion
 
 " UNITE -----------------------------------------------------------------------
-nnoremap <Leader>l :Unite -start-insert file file_rec buffer<CR>
-"nnoremap <C-l> :Unite file file_rec buffer file_mru everything<CR>
-nnoremap <Leader>m :Unite line<CR>
 let g:unite_source_history_yank_enable = 1
+nnoremap <Leader>l :Unite -start-insert file file_rec buffer<CR>
+nnoremap <Leader> :Unite grep:.<CR>
+nnoremap <Leader>m :Unite line<CR>
 nnoremap <Leader>y :Unite history/yank<CR>
 nnoremap <Leader>s :Unite -quick-match buffer<CR>
 
@@ -350,7 +368,7 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 if !exists('g:neocomplete#sources#omni#input_patterns')
 	let g:neocomplete#sources#omni#input_patterns = {}
 endif
-"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 "let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
