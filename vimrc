@@ -252,7 +252,7 @@ set pastetoggle=<F4>
 
 "On linux this works with :w !xclip -sel c or :w !xsel -b –  Zeus77 yesterday
 if executable('xclip')
-    vnoremap <silent> <Leader>y :write !xclip -i-selection clipboard<CR>
+    vnoremap <silent> <Leader>y :write !xclip -i -selection clipboard<CR><CR>
     nnoremap <silent> <Leader>p :read !xclip -o -selection clipboard<CR>
 endif
 
@@ -268,6 +268,7 @@ endif
 set expandtab
 set tabstop=4
 set shiftwidth=4
+set softtabstop=4
 
 " FOLDING ---------------------------------------------------------------------
 
