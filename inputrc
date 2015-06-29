@@ -136,6 +136,10 @@ $if mode=emacs
 $endif
 
 $if mode=vi
+
+    "k": history-search-backward
+    "j": history-search-forward
+
     set keymap vi-command
     # up|down-arrow
     "\e[A": history-search-backward
@@ -154,12 +158,13 @@ $if mode=vi
     "\e[B": history-search-forward
 $endif
 
-$if Bash
-    # Search history back and forward using page-up and page-down
-	# PageUp
-    "\e[5~": history-search-backward
-	# PageDown
-    "\e[6~": history-search-forward
+#$if Bash
+    ## Search history back and forward using page-up and page-down
+	## PageUp
+    #"\e[5~": history-search-backward
+	## PageDown
+    #"\e[6~": history-search-forward
+#$endif
 
 # For FTP
 $if Ftp
