@@ -6,9 +6,10 @@
 # ~/.inputrc .
 # The bind -p command displays Readline function names and bindings in a format
 # that can put directly into an initialization file. See Bash Builtins.
-# For more information: 
+# For more information:
 # readline(3readline) and `info rluserman'
 # https://www.gnu.org/software/bash/manual/html_node/Readline-Init-File.html
+# http://linux.about.com/library/cmd/blcmdl3_readline.htm
 #
 # You can re-read the inputrc file with C-x C-r.
 # Lines beginning with '#' are comments.
@@ -45,7 +46,7 @@ set show-all-ifunmodified on
 # remove the annoying "-- more --" prompt
 set page-completions off
 # show the "Display all X possibilities?" starting at X items
-set completion-query-items 300 
+set completion-query-items 300
 # displays possible completions using different colors to indicate
 # their file type. The color definitions are taken from the value of the
 # LS_COLORS environment variable. The default is ‘off’.
@@ -63,12 +64,15 @@ set mark-symlinked-directories on
 # result in ‘Makefile’ rather than ‘Makefilefile’, assuming there is a single
 # possible completion. The default value is ‘off’.
 set skip-completed-text on
+# on menu-complete, first display the common prefix, then cycle through the
+# options when hitting TAB
+set menu-complete-display-prefix on
 
 # ------------------------- key bindings --------------------------------------
 # change from the default Emacs-like key binding to use vi line editing
 # commands:
-#set editing-mode vi
-set editing-mode emacs 
+set editing-mode vi
+#set editing-mode emacs
 
 # The best way to find out what a key or key combination sends for your
 # terminal, is run sed -n l and to type it followed by Enter on the keyboard.
@@ -107,12 +111,14 @@ $if mode=emacs
 	# "\e[6~": history-search-forward
 
 	# mappings for Ctrl-left-arrow and Ctrl-right-arrow for word moving
-	"\e[1;5C": forward-word
 	"\e[1;5D": backward-word
-	"\e[5C": forward-word
-	"\e[5D": backward-word
-	"\e\e[C": forward-word
-	"\e\e[D": backward-word
+	"\e[1;5C": forward-word
+    # alt-;
+    "\e;": yank-last-arg
+	# Alt-left-arrow
+	"\e[1;3D": backward-kill-word
+	# Alt-right-arrow
+	"\e[1;3C": kill-word
 
 	$if term=rxvt
 		"\e[8~": end-of-line
@@ -129,16 +135,31 @@ $if mode=emacs
 	# "\e[F": end-of-line
 $endif
 
+$if mode=vi
+    set keymap vi-command
+    # up|down-arrow
+    "\e[A": history-search-backward
+    "\e[B": history-search-forward
+
+    set keymap vi-insert
+    # Ctrl-left|right-arrow
+    "\e[1;5D": vi-backward-bigword
+    "\e[1;5C": vi-forward-bigword
+    # Alt-;
+    "\e;": yank-last-arg
+    # Two escapes clear command line.
+    "\e\e": "\C-a\C-k"
+    # up|down-arrow
+    "\e[A": history-search-backward
+    "\e[B": history-search-forward
+$endif
+
 $if Bash
     # Search history back and forward using page-up and page-down
 	# PageUp
     "\e[5~": history-search-backward
 	# PageDown
     "\e[6~": history-search-forward
-	# Alt-left-arrow
-	"\e[1;3D": backward-kill-word
-	# Alt-right-arrow
-	"\e[1;3C": kill-word
 
 # For FTP
 $if Ftp
