@@ -27,7 +27,6 @@ NeoBundle 'bling/vim-airline'
 NeoBundle 'chriskempson/vim-tomorrow-theme'
 NeoBundleLazy 'evidens/vim-twig'
 autocmd FileType twig NeoBundleSource vim-twig
-"NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'nanotech/jellybeans.vim'
 "NeoBundle 'Raimondi/delimitMate'
@@ -39,7 +38,7 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'tpope/vim-surround'
 "NeoBundle 'Valloric/YouCompleteMe'
 "NeoBundle 'wincent/command-t'
-NeoBundle 'Lokaltog/vim-easymotion'
+"NeoBundle 'Lokaltog/vim-easymotion'
 
 " APPEARANCE  -----------------------------------------------------------------
 "set background=dark
@@ -157,23 +156,23 @@ nnoremap <leader>w <C-w><C-w>
 
 " EASYMOTION ------------------------------------------------------------------
 
-let g:EasyMotion_do_mapping = 0 " Disable default mappings
+"let g:EasyMotion_do_mapping = 0 " Disable default mappings
 
 " Bi-directional find motion
 " Jump to anywhere you want with minimal keystrokes, with just one key binding.
 " `s{char}{label}`
-nmap f <Plug>(easymotion-s)
+"nmap f <Plug>(easymotion-s)
 " or
 " `s{char}{char}{label}`
 " Need one more keystroke, but on average, it may be more comfortable.
-"nmap s <Plug>(easymotion-s2)
+"nmap f <Plug>(easymotion-s2)
 
 " Turn on case insensitive feature
-let g:EasyMotion_smartcase = 1
+"let g:EasyMotion_smartcase = 1
 
 " JK motions: Line motions
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
+"map <Leader>j <Plug>(easymotion-j)
+"map <Leader>k <Plug>(easymotion-k)
 
 " COPY & PASTE ----------------------------------------------------------------
 
@@ -284,8 +283,8 @@ let g:xml_syntax_folding=1 "enable xml folding
 
 " SEARCH & REPLACE ------------------------------------------------------------
 " move toward more pythonic regex
-nnoremap / /\v
-vnoremap / /\v
+nnoremap f /\v
+vnoremap f /\v
 set ignorecase " case-insensitive search...
 set smartcase " ... unless an uppercase character is typed
 set incsearch
@@ -324,7 +323,7 @@ endif
 nnoremap <Leader>l :Unite -start-insert file file_rec buffer<CR>
 nnoremap <Leader>g :Unite grep:.<CR>
 nnoremap <Leader>m :Unite line<CR>
-nnoremap <Leader>y :Unite history/yank<CR>
+nnoremap <Leader>r :Unite history/yank<CR>
 nnoremap <Leader>s :Unite -quick-match buffer<CR>
 
 " NEOCOMPLETE -----------------------------------------------------------------
