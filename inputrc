@@ -149,6 +149,9 @@ $if mode=vi
     # Ctrl-left|right-arrow
     "\e[1;5D": vi-backward-bigword
     "\e[1;5C": vi-forward-bigword
+	# Alt-left|right-arrow
+	"\e[1;3D": backward-kill-word
+	"\e[1;3C": kill-word
     # Alt-;
     "\e;": yank-last-arg
     # Two escapes clear command line.
