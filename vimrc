@@ -285,6 +285,8 @@ let g:xml_syntax_folding=1 "enable xml folding
 " move toward more pythonic regex
 nnoremap f /\v
 vnoremap f /\v
+nnoremap F ?\v
+vnoremap F ?\v
 set ignorecase " case-insensitive search...
 set smartcase " ... unless an uppercase character is typed
 set incsearch
