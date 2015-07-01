@@ -137,10 +137,9 @@ $endif
 
 $if mode=vi
 
+    set keymap vi-command
     "k": history-search-backward
     "j": history-search-forward
-
-    set keymap vi-command
     # up|down-arrow
     "\e[A": history-search-backward
     "\e[B": history-search-forward
