@@ -81,7 +81,7 @@ set directory=~/.vim/backup
 "match OverLength /\%80v.\+/
 set wrap
 set textwidth=79
-set formatoptions=qrn1j
+set formatoptions=qn1j
 if exists('+colorcolumn')
     set colorcolumn=80
 endif
@@ -147,10 +147,10 @@ noremap k gk
 "B-A-<start>
 
 " windows
-map <C-h> <C-w>h<C-w>
-map <C-j> <C-w>j<C-w>
-map <C-k> <C-w>k<C-w>
-map <C-l> <C-w>l<C-w>
+"map <C-h> <C-w>h<C-w>
+"map <C-j> <C-w>j<C-w>
+"map <C-k> <C-w>k<C-w>
+"map <C-l> <C-w>l<C-w>
 " moves around split windows
 nnoremap <leader>w <C-w><C-w>
 
@@ -260,7 +260,7 @@ endif
 " To convert tabs to space
 " :set expandtab
 " :retab!
-" Convert spaces to tabs
+" To convert spaces to tabs
 " :set noexpandtab
 " :retab!
 
@@ -403,7 +403,7 @@ if has('lua')
     if !exists('g:neocomplete#sources#omni#input_patterns')
         let g:neocomplete#sources#omni#input_patterns = {}
     endif
-    let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+    "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
     "let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
     "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
