@@ -38,7 +38,7 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'tpope/vim-surround'
 "NeoBundle 'Valloric/YouCompleteMe'
 "NeoBundle 'wincent/command-t'
-"NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'Lokaltog/vim-easymotion'
 
 " APPEARANCE  -----------------------------------------------------------------
 "set background=dark
@@ -156,7 +156,7 @@ nnoremap <leader>w <C-w><C-w>
 
 " EASYMOTION ------------------------------------------------------------------
 
-"let g:EasyMotion_do_mapping = 0 " Disable default mappings
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
 
 " Bi-directional find motion
 " Jump to anywhere you want with minimal keystrokes, with just one key binding.
@@ -165,14 +165,14 @@ nnoremap <leader>w <C-w><C-w>
 " or
 " `s{char}{char}{label}`
 " Need one more keystroke, but on average, it may be more comfortable.
-"nmap f <Plug>(easymotion-s2)
+nmap f <Plug>(easymotion-s2)
 
 " Turn on case insensitive feature
-"let g:EasyMotion_smartcase = 1
+let g:EasyMotion_smartcase = 1
 
 " JK motions: Line motions
-"map <Leader>j <Plug>(easymotion-j)
-"map <Leader>k <Plug>(easymotion-k)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
 
 " COPY & PASTE ----------------------------------------------------------------
 
@@ -283,10 +283,10 @@ let g:xml_syntax_folding=1 "enable xml folding
 
 " SEARCH & REPLACE ------------------------------------------------------------
 " move toward more pythonic regex
-nnoremap f /\v
-vnoremap f /\v
-nnoremap F ?\v
-vnoremap F ?\v
+"nnoremap f /\v
+"vnoremap f /\v
+"nnoremap F ?\v
+"vnoremap F ?\v
 set ignorecase " case-insensitive search...
 set smartcase " ... unless an uppercase character is typed
 set incsearch
@@ -312,6 +312,7 @@ set laststatus=2
 "set ruler "show line,column
 set showcmd
 set wildmenu " enhanced command-line completion
+set wildignorecase
 
 " UNITE -----------------------------------------------------------------------
 let g:unite_source_history_yank_enable = 1
