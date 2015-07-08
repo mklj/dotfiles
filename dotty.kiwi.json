@@ -1,15 +1,16 @@
 {
-	"directories":,
+	"directories": [],
 
 	"copy": {
 	},
 
 	"link": {
-		"bash_logout": "~./bash_logout",
+		"bash_logout": "~/.bash_logout",
 		"bashrc": "~/.bashrc",	
 		"bpython/": "~/.config/bpython",
 		"gitconfig": "~/.gitconfig",
 		"gmrunrc": "~/.gmrunrc",
+        "gnupg/gpg.conf": "~/gnupg/gpg.conf",
 		"inputrc": "~/.inputrc",
 		"mpv/": "~/.config/mpv",
 		"profile": "~/.profile",
