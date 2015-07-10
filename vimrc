@@ -31,20 +31,20 @@ NeoBundle 'majutsushi/tagbar'
 NeoBundle 'nanotech/jellybeans.vim'
 "NeoBundle 'Raimondi/delimitMate'
 NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'Shougo/unite.vim'
 "NeoBundle 'SirVer/ultisnips'
 "NeoBundle 'tpope/vim-fugitive'
 "NeoBundle 'tpope/vim-rails.git'
 NeoBundle 'tpope/vim-surround'
 "NeoBundle 'Valloric/YouCompleteMe'
 "NeoBundle 'wincent/command-t'
-NeoBundle 'Lokaltog/vim-easymotion'
+"NeoBundle 'Lokaltog/vim-easymotion'
 
 " APPEARANCE  -----------------------------------------------------------------
 "set background=dark
 set t_Co=256 " 256 colors terminal
 set cursorline " highlight the line the cursor is on
 set title " show filename in terminal title
+colorscheme jellybeans
 
 " BEHAVIOUR  ------------------------------------------------------------------
 
@@ -56,7 +56,7 @@ set encoding=utf-8
 " disable sounds
 set noerrorbells
 set novisualbell
-set t_vb=
+"set t_vb=
 
 set hidden " allow modified buffers in the background
 set autoread "auto reload if file saved externally
@@ -156,7 +156,7 @@ nnoremap <leader>w <C-w><C-w>
 
 " EASYMOTION ------------------------------------------------------------------
 
-let g:EasyMotion_do_mapping = 0 " Disable default mappings
+"let g:EasyMotion_do_mapping = 0 " Disable default mappings
 
 " Bi-directional find motion
 " Jump to anywhere you want with minimal keystrokes, with just one key binding.
@@ -165,14 +165,14 @@ let g:EasyMotion_do_mapping = 0 " Disable default mappings
 " or
 " `s{char}{char}{label}`
 " Need one more keystroke, but on average, it may be more comfortable.
-nmap f <Plug>(easymotion-s2)
+"nmap f <Plug>(easymotion-s2)
 
 " Turn on case insensitive feature
-let g:EasyMotion_smartcase = 1
+"let g:EasyMotion_smartcase = 1
 
 " JK motions: Line motions
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
+"map <Leader>j <Plug>(easymotion-j)
+"map <Leader>k <Plug>(easymotion-k)
 
 " COPY & PASTE ----------------------------------------------------------------
 
@@ -282,11 +282,13 @@ set foldlevelstart=99 "open all folds by default
 let g:xml_syntax_folding=1 "enable xml folding
 
 " SEARCH & REPLACE ------------------------------------------------------------
-" move toward more pythonic regex
-"nnoremap f /\v
-"vnoremap f /\v
+" see :help /magic
+nnoremap f /\v
+vnoremap f /\v
 "nnoremap F ?\v
 "vnoremap F ?\v
+nnoremap F /\V
+vnoremap F /\V
 set ignorecase " case-insensitive search...
 set smartcase " ... unless an uppercase character is typed
 set incsearch
@@ -305,29 +307,46 @@ nmap <F9> :TagbarToggle<CR>
 "let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 "let g:UltiSnipsListSnippets="<C-b>"
 
-" STATUS LINE (AIRLINE) -------------------------------------------------------
+" STATUS LINE (AND AIRLINE) ---------------------------------------------------
 set noshowmode
-let g:airline#extensions#tabline#enabled = 1
+set wildmenu " enhanced command-line completion
+if exists('&wildignorecase')
+    set wildignorecase
+endif
 set laststatus=2
 "set ruler "show line,column
 set showcmd
-set wildmenu " enhanced command-line completion
-set wildignorecase
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+
+" airline-whitespace
+let g:airline#extensions#whitespace#enabled = 1
+let g:airline#extensions#whitespace#mixed_indent_algo = 0
+let g:airline#extensions#whitespace#symbol = '!'
+let g:airline#extensions#whitespace#checks = [ 'indent', 'trailing' ]
+let g:airline#extensions#whitespace#show_message = 1
+let g:airline#extensions#whitespace#trailing_format = 'trailing[%s]'
+let g:airline#extensions#whitespace#mixed_indent_format = 'mixed-indent[%s]'
 
 " UNITE -----------------------------------------------------------------------
-let g:unite_source_history_yank_enable = 1
+if v:version > 702
+    NeoBundle 'Shougo/unite.vim'
+    let g:unite_source_history_yank_enable = 1
 
-if executable('grep')
-    let g:unite_source_grep_command='grep'
-    let g:unite_source_grep_default_opts='-i --color=auto --line-number'
-    "let g:unite_source_grep_recursive_opt=''
+    if executable('grep')
+        let g:unite_source_grep_command='grep'
+        let g:unite_source_grep_default_opts='-i --color=auto --line-number'
+        "let g:unite_source_grep_recursive_opt=''
+    endif
+
+    nnoremap <Leader>l :Unite -start-insert file file_rec buffer<CR>
+    nnoremap <Leader>g :Unite grep:.<CR>
+    nnoremap <Leader>m :Unite line<CR>
+    nnoremap <Leader>r :Unite history/yank<CR>
+    nnoremap <Leader>s :Unite -quick-match buffer<CR>
 endif
-
-nnoremap <Leader>l :Unite -start-insert file file_rec buffer<CR>
-nnoremap <Leader>g :Unite grep:.<CR>
-nnoremap <Leader>m :Unite line<CR>
-nnoremap <Leader>r :Unite history/yank<CR>
-nnoremap <Leader>s :Unite -quick-match buffer<CR>
 
 " NEOCOMPLETE -----------------------------------------------------------------
 
@@ -416,7 +435,6 @@ endif
 call neobundle#end()
 filetype plugin indent on
 syntax enable
-colorscheme jellybeans
 " If there are uninstalled bundles found on startup, this will conveniently
 " prompt you to install them.
 NeoBundleCheck
