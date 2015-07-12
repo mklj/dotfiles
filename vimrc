@@ -44,7 +44,6 @@ NeoBundle 'tpope/vim-surround'
 set t_Co=256 " 256 colors terminal
 set cursorline " highlight the line the cursor is on
 set title " show filename in terminal title
-colorscheme jellybeans
 
 " BEHAVIOUR  ------------------------------------------------------------------
 
@@ -63,6 +62,7 @@ set autoread "auto reload if file saved externally
 set lazyredraw " Don't update the display while executing macros
 set scrolloff=3 " minimum lines to keep above and below cursor
 set scrolljump=5 "minimum number of lines to scroll
+"set showmatch
 set number
 set mouse=a " unleash the rodent
 "set mousehide " hide when characters are typed - only works in the GUI
@@ -283,16 +283,13 @@ let g:xml_syntax_folding=1 "enable xml folding
 
 " SEARCH & REPLACE ------------------------------------------------------------
 " see :help /magic
-nnoremap f /\v
-vnoremap f /\v
-"nnoremap F ?\v
-"vnoremap F ?\v
-nnoremap F /\V
-vnoremap F /\V
+noremap f /\V
+noremap F ?\V
+noremap / /\v
+noremap ? ?\v
 set ignorecase " case-insensitive search...
 set smartcase " ... unless an uppercase character is typed
 set incsearch
-"set showmatch
 "set hlsearch
 " clearing highlighted search
 "nmap <silent> <leader><space> :nohlsearch<CR>
@@ -435,6 +432,7 @@ endif
 call neobundle#end()
 filetype plugin indent on
 syntax enable
+colorscheme jellybeans
 " If there are uninstalled bundles found on startup, this will conveniently
 " prompt you to install them.
 NeoBundleCheck
