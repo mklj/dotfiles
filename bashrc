@@ -353,7 +353,7 @@ function cdd() { builtin cd "$*" && ls; }
 alias reload="source $HOME/.bashrc"
 alias rr='reset'
 alias xx='exit'
-alias du="du -sh"
+alias du='du -h'
 alias cal='cal -NMb'
 alias tf='tail -f'
 
