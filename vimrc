@@ -338,11 +338,10 @@ if v:version > 702
         "let g:unite_source_grep_recursive_opt=''
     endif
 
-    nnoremap <Leader>l :Unite -start-insert file file_rec buffer<CR>
-    nnoremap <Leader>g :Unite grep:.<CR>
-    nnoremap <Leader>m :Unite line<CR>
+    nnoremap <Leader>l :Unite -start-insert file_rec/async:! buffer<CR>
+    nnoremap <Leader>g :Unite grep:.:-iR:file<CR>
     nnoremap <Leader>r :Unite history/yank<CR>
-    nnoremap <Leader>s :Unite -quick-match buffer<CR>
+    nnoremap <Leader>b :Unite -quick-match buffer<CR>
 endif
 
 " NEOCOMPLETE -----------------------------------------------------------------
