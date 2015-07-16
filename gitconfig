@@ -20,6 +20,8 @@
 [diff]
 	color = auto
 	mnemoniprefix = true
+[fetch]
+    prune = true
 [pull]
 	rebase = true
 [push]
