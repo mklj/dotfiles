@@ -328,6 +328,17 @@ let g:airline#extensions#whitespace#show_message = 1
 let g:airline#extensions#whitespace#trailing_format = 'trailing[%s]'
 let g:airline#extensions#whitespace#mixed_indent_format = 'mixed-indent[%s]'
 
+" buffer name format
+
+" The `unique_tail` algorithm will display the tail of the filename, unless
+" there is another file of the same name, in which it will display it along
+" with the containing parent directory.
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+
+" The `unique_tail_improved` - another algorithm, that will smartly uniquify
+" buffers names with similar filename, suppressing common parts of paths.
+"let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+
 " UNITE -----------------------------------------------------------------------
 if v:version > 702
     NeoBundle 'Shougo/unite.vim'
