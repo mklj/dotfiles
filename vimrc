@@ -334,12 +334,12 @@ if v:version > 702
 
     if executable('grep')
         let g:unite_source_grep_command='grep'
-        let g:unite_source_grep_default_opts='-i --color=auto --line-number'
+        let g:unite_source_grep_default_opts='-iR --color=auto --line-number'
         "let g:unite_source_grep_recursive_opt=''
     endif
 
     nnoremap <Leader>l :Unite -start-insert file_rec/async:! buffer<CR>
-    nnoremap <Leader>g :Unite grep:.:-iR:file<CR>
+    nnoremap <Leader>g :Unite grep:.<CR>
     nnoremap <Leader>r :Unite history/yank<CR>
     nnoremap <Leader>b :Unite -quick-match buffer<CR>
 endif
