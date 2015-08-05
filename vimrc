@@ -83,7 +83,7 @@ set wrap
 set textwidth=79
 set formatoptions=qn1j
 if exists('+colorcolumn')
-    set colorcolumn=80
+    set colorcolumn=80,120
 endif
 
 function! Preserve(command)
@@ -350,7 +350,7 @@ if v:version > 702
         "let g:unite_source_grep_recursive_opt=''
     endif
 
-    nnoremap <Leader>l :Unite -start-insert file_rec/async:! buffer<CR>
+    nnoremap <Leader>l :Unite -start-insert file_rec/async:. buffer<CR>
     nnoremap <Leader>g :Unite grep:.<CR>
     nnoremap <Leader>r :Unite history/yank<CR>
     nnoremap <Leader>b :Unite -quick-match buffer<CR>
