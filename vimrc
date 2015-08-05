@@ -47,8 +47,6 @@ set title " show filename in terminal title
 
 " BEHAVIOUR  ------------------------------------------------------------------
 
-" from http://wiki.contextgarden.net/Vim
-let g:tex_flavor = "latex" " use latex flavor for all .tex files
 syntax on "turn on syntax highlighting
 set encoding=utf-8
 
@@ -70,6 +68,8 @@ set backspace=indent,eol,start "allow backspacing everything in insert mode
 "set list "highlight whitespace
 " git commit messages: spell checking and automatic wrapping at 72 columns
 autocmd Filetype gitcommit setlocal spell textwidth=72
+" from http://wiki.contextgarden.net/Vim
+let g:tex_flavor = "latex" " use latex flavor for all .tex files
 
 " where backup files are kept
 set backupdir=~/.vim/backup
@@ -82,6 +82,7 @@ set directory=~/.vim/backup
 set wrap
 set textwidth=79
 set formatoptions=qn1j
+set viminfo='50,n~/.vim/viminfo
 if exists('+colorcolumn')
     set colorcolumn=80,120
 endif
