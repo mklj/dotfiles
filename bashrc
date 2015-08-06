@@ -49,7 +49,7 @@ shopt -s histappend
 # reedit a history substitution line if it failed
 shopt -s histreedit
 # edit a recalled history line before executing
-shopt -s histverify
+#shopt -s histverify
 
 # try to keep environment pollution down, EPA loves us
 unset safe_term match_lhs
@@ -99,7 +99,7 @@ function show_name {
 HISTSIZE=9000
 HISTFILESIZE=$HISTSIZE
 #HISTCONTROL=ignorespace:ignoredups
-HISTCONTROL=ignoredups
+HISTCONTROL=ignoredups:erasedups
 
 bash_history_sync() {
   builtin history -a         
