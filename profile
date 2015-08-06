@@ -42,16 +42,13 @@ PAPERSIZE=a4
 EDITOR=vim
 PAGER=less
 
-## history
+# history
 HISTTIMEFORMAT='%F %T --- '
-# HISTSIZE=450
-# HISTFILESIZE=450
-HISTCONTROL=erasedups
-HISTIGNORE="pwd:l:ls:ll:la:lla"
+HISTIGNORE='pwd:l:ls:ll:la:lla'
 
 # LESS OPTIONS
 # -i : case-insensitive search unless uppercase letters are typed
-LESS="-iR"
+LESS='-iR'
 
 #  Indicate preferred webbrowser for graphical or text terminal respectively
 [ $DISPLAY ] && export BROWSER=google-chrome || export BROWSER=w3m

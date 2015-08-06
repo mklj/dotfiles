@@ -44,8 +44,12 @@ shopt -s checkwinsize
 # (POSIX, SUS, XPG)
 shopt -s xpg_echo
 
-# append to the history file instead of overwrite it
+# When the shell exits, append to the history file instead of overwriting it
 shopt -s histappend
+# reedit a history substitution line if it failed
+shopt -s histreedit
+# edit a recalled history line before executing
+shopt -s histverify
 
 # try to keep environment pollution down, EPA loves us
 unset safe_term match_lhs
@@ -68,8 +72,12 @@ unset safe_term match_lhs
 # Available only in interactive shells.
 [ $BASH_VERSINFO -ge 4 ] && shopt -s checkjobs
 
-## terminal title
-## http://www.davidpashley.com/articles/xterm-titles-with-bash/
+# ==============================================================================
+# FUNCTIONS
+# ==============================================================================
+
+# terminal title
+# http://www.davidpashley.com/articles/xterm-titles-with-bash/
 # If set, any traps on DEBUG and RETURN are inherited by shell functions,
 # command substitutions, and commands executed in a subshell environment. The
 # DEBUG and RETURN traps are normally not inherited in such cases.
@@ -84,6 +92,24 @@ function show_name {
 		#trap 'echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
 		#trap 'echo -ne "\e]0;"; echo -n $HOSTNAME; echo -ne "\007"' DEBUG
 	#fi
+}
+
+# bash session history sharing
+# http://unix.stackexchange.com/questions/1288/preserve-bash-history-in-multiple-terminal-windows#3055135
+HISTSIZE=9000
+HISTFILESIZE=$HISTSIZE
+#HISTCONTROL=ignorespace:ignoredups
+HISTCONTROL=ignoredups
+
+bash_history_sync() {
+  builtin history -a         
+  HISTFILESIZE=$HISTSIZE     
+  builtin history -c         
+  builtin history -r         
+}
+history() {                  
+  bash_history_sync
+  builtin history "$@"
 }
 
 # ==============================================================================
@@ -288,7 +314,7 @@ set_prompt() {
 	PS1="\n $user_color[$?] \u@\h:\w \\$\[\e[0m\] "
 }
 # also, make sure all terminals save history
-PROMPT_COMMAND='history -a; show_name; set_prompt'
+PROMPT_COMMAND='bash_history_sync; show_name; set_prompt'
 
 # colored man pages
 # To customize the colors, see Wikipedia:ANSI escape code for reference
@@ -399,7 +425,6 @@ alias vv='vim'
 alias vvrc='vim $HOME/.vimrc'
 alias jc='javac'
 alias jj='java'
-# urxvt
 alias uu='urxvt'
 alias za='zathura'
 alias oo='xdg-open'
@@ -443,3 +468,4 @@ alias rgc='git commit -m "`curl -s http://whatthecommit.com/index.txt`"'
 
 if [[ -f $HOME/.albrc ]]; then source $HOME/.albrc; fi
 if [[ -f $HOME/.machines ]]; then source $HOME/.machines; fi
+

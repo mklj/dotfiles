@@ -130,14 +130,18 @@ setopt nocorrectall
 #--------------------
 # HISTORY
 #--------------------
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
-setopt append_history
-setopt share_history
+SAVEHIST=10000 # Number of entries
+HISTSIZE=10000
+HISTFILE=~/.zsh/history # File
+setopt APPEND_HISTORY # Don't erase history
+setopt EXTENDED_HISTORY # Add additional data to history like timestamp
+setopt INC_APPEND_HISTORY # Add immediately
+setopt HIST_FIND_NO_DUPS # Don't show duplicates in search
+#setopt HIST_IGNORE_SPACE # Don't preserve spaces. You may want to turn it off
+setopt NO_HIST_BEEP # Don't beep
+setopt share_history # Share history between session/terminals
 # setopt hist_expire_dups_first
 setopt hist_ignore_dups
-# setopt hist_ignore_space
 
 #--------------------
 # PROMPT
