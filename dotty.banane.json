@@ -16,7 +16,8 @@
 		"profile": "~/.profile",
 		"toprc": "~/.toprc",
 		"vim/": "~/.vim",
-		"vimrc": "~/.vimrc"
+		"vimrc": "~/.vimrc",
+        "Xmodmap": "~/.Xmodmap"
 	},
 
 	"commands":
