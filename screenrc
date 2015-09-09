@@ -161,11 +161,11 @@ termcapinfo xterm*|rxvt*|kterm*|Eterm* hs:ts=\E]0;:fs=\007:ds=\E]0;\007
 #hardstatus alwayslastline "%-Lw%{= BW}%50>%n%f* %t%{-}%+Lw%<"
 #  version d'avant, allégée avec seulement les window en cours et celle courante en jaune
 #  et fond bleu
-#hardstatus alwayslastline "%{= BY}%-Lw%{= YB}%50>%n%f* %t%{= BY}%+Lw%<"
+hardstatus alwayslastline "%{= wk}%-Lw%{= wk}%50>%n%f* %t%{= wk}%+Lw%<"
 # nouvelle version :
 # heure (avec secondes), nom de la machine en rouge, load de la machine
 # puis fenetres avec celle courante en jaune, le tout en fond bleu
-hardstatus alwayslastline "%{b kB}%{s gB}%c:%s%{b kB} %{b kR}%H %{b kB}%{s yB}%l%{b kB} %{b kB}%{rs Y}%-Lw%{BY}%50>%n%{R}%f%{B} %t%{YB}%+Lw%<"
+#hardstatus alwayslastline "%{w kB}%{s gB}%c:%s%{w kB} %{w kR}%H %{w kB}%{s yB}%l%{w kB} %{w kB}%{rs Y}%-Lw%{BY}%50>%n%{R}%f%{B} %t%{YB}%+Lw%<"
 
 # set these terminals up to be 'optimal' instead of vt100
 termcapinfo xterm*|linux*|rxvt*|Eterm* OP
@@ -195,6 +195,6 @@ termcapinfo xterm*|linux*|rxvt*|Eterm* ti@:te@
 # screen -t mail 8 mutt
 # screen -t daemon 9 tail -f /var/log/daemon.log
 
-sorendition =s WB 
+sorendition =s WB
 msgwait 3
 bell "^GBell in window %"
