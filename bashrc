@@ -94,24 +94,6 @@ function show_name {
 	#fi
 }
 
-# bash session history sharing
-# http://unix.stackexchange.com/questions/1288/preserve-bash-history-in-multiple-terminal-windows#3055135
-HISTSIZE=9000
-HISTFILESIZE=$HISTSIZE
-#HISTCONTROL=ignorespace:ignoredups
-HISTCONTROL=ignoredups:erasedups
-
-#bash_history_sync() {
-  #builtin history -a
-  #HISTFILESIZE=$HISTSIZE
-  #builtin history -c
-  #builtin history -r
-#}
-#history() {
-  #bash_history_sync
-  #builtin history "$@"
-#}
-
 # ==============================================================================
 # DOUBLE RAINBOW
 # ==============================================================================
