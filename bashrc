@@ -102,12 +102,12 @@ HISTFILESIZE=$HISTSIZE
 HISTCONTROL=ignoredups:erasedups
 
 #bash_history_sync() {
-  #builtin history -a         
-  #HISTFILESIZE=$HISTSIZE     
-  #builtin history -c         
-  #builtin history -r         
+  #builtin history -a
+  #HISTFILESIZE=$HISTSIZE
+  #builtin history -c
+  #builtin history -r
 #}
-#history() {                  
+#history() {
   #bash_history_sync
   #builtin history "$@"
 #}
@@ -122,7 +122,7 @@ if [[ "$TERM" != "dumb" ]]; then
 	alias ls='ls --color=auto'
 fi
 
-# The page at http://ascii-table.com/ansi-escape-sequences.php describes the 
+# The page at http://ascii-table.com/ansi-escape-sequences.php describes the
 # various available color escapes.
 # The following Bash function displays a table with ready-to-copy escape codes.
 colors()
@@ -162,7 +162,7 @@ function colors2()
 	declare -a FG=('' '1' '4' '5' '7' '30' '31' '32' \
 	'33' '34' '35' '36' '37') ;
 
-	echo 
+	echo
 
 	# Premiere ligne :
 	printf "FG \ BG\t%${#TEXT}s" ;
@@ -184,17 +184,17 @@ function colors2()
 # styles and colors format: \e[{style};{color}m
 # styles:
 # 0	reset all attributes
-# 1 bold/bright	
-# 2	dim	
-# 4	underlined	
-# 5	blink	
-# 7	reverse (invert the foreground and background colors)	
-# 8	hidden (usefull for passwords)	
-# 21 reset bold/bright	
-# 22 reset dim	
-# 24 reset underlined	
-# 25 reset blink	
-# 27 reset reverse	
+# 1 bold/bright
+# 2	dim
+# 4	underlined
+# 5	blink
+# 7	reverse (invert the foreground and background colors)
+# 8	hidden (usefull for passwords)
+# 21 reset bold/bright
+# 22 reset dim
+# 24 reset underlined
+# 25 reset blink
+# 27 reset reverse
 # 28 reset hidden
 # colors: normal
 # 30 black
@@ -235,7 +235,7 @@ function colors2()
 # Bash allows these prompt strings to be customized by inserting a
 # number of backslash-escaped special characters that are
 # decoded as follows:
-# 
+#
 # 	\a		an ASCII bell character (07)
 # 	\d		the date in "Weekday Month Date" format (e.g., "Tue May 26")
 # 	\D{format}	the format is passed to strftime(3) and the result
@@ -269,7 +269,7 @@ function colors2()
 # 	\[		begin a sequence of non-printing characters, which could be used
 # 			  to embed a terminal control sequence into the prompt
 # 	\]		end a sequence of non-printing characters
-# 
+#
 # 	The command number and the history number are usually different:
 # 	the history number of a command is its position in the history
 # 	list, which may include commands restored from the history file
@@ -286,7 +286,7 @@ function colors2()
 # to use in commands from your shell environment:
 # $ echo -e "${ublue}test"
 # Double quotes enable $color variable expansion and the \[ \] escapes around
-# them make them not count as character positions and the cursor position is 
+# them make them not count as character positions and the cursor position is
 # not wrong.
 # Note: If experiencing premature line wrapping when entering commands, then
 # missing escapes (\[ \]) is most likely the reason.
@@ -388,7 +388,7 @@ alias cdiff='colordiff'
 
 ## PACKAGES MANAGEMENT
 ## apt-get & dpkg
-alias maj='sudo apt-get update && sudo apt-get upgrade'	
+alias maj='sudo apt-get update && sudo apt-get upgrade'
 function pksearch() { apt-cache search $1 | sort; }
 alias pkshow='apt-cache show'
 alias pk='dpkg --get-selections | grep -i'
@@ -396,7 +396,7 @@ alias repos='grep -rE "^deb " /etc/apt/sources.list /etc/apt/sources.list.d/*.li
 ## pacman
 alias pacupg='sudo pacman -Syu'        # Synchronize with repositories and then upgrade packages that are out of date on the local system.
 alias pacin='sudo pacman -S'           # Install specific package(s) from the repositories
-alias pacins='sudo pacman -U'          # Install specific package not from the repositories but from a file 
+alias pacins='sudo pacman -U'          # Install specific package not from the repositories but from a file
 alias pacre='sudo pacman -R'           # Remove the specified     package(s), retaining its configuration(s) and required dependencies
 alias pacrem='sudo pacman -Rns'        # Remove the specified package(s), its configuration(s) and unneeded dependencies
 alias pacrep='pacman -Si'              # Display information about a given package in the repositories
@@ -421,8 +421,8 @@ alias oo='xdg-open'
 # list all users
 # could also use 'lastlog | sort -bd'
 alias listusers='cut -d: -f1 /etc/passwd | sort -bd'
-# list all groups
-#alias listgroups='cut -d: -f1 /etc/group | sort -bd'
+#  list all groups
+alias listgroups='cut -d: -f1 /etc/group | sort -bd'
 
 ## NETWORK
 ## get private ip
