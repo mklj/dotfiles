@@ -101,16 +101,16 @@ HISTFILESIZE=$HISTSIZE
 #HISTCONTROL=ignorespace:ignoredups
 HISTCONTROL=ignoredups:erasedups
 
-bash_history_sync() {
-  builtin history -a         
-  HISTFILESIZE=$HISTSIZE     
-  builtin history -c         
-  builtin history -r         
-}
-history() {                  
-  bash_history_sync
-  builtin history "$@"
-}
+#bash_history_sync() {
+  #builtin history -a         
+  #HISTFILESIZE=$HISTSIZE     
+  #builtin history -c         
+  #builtin history -r         
+#}
+#history() {                  
+  #bash_history_sync
+  #builtin history "$@"
+#}
 
 # ==============================================================================
 # DOUBLE RAINBOW
@@ -311,25 +311,13 @@ set_prompt() {
 		machine_color=$yellow
 	fi
 
-	PS1="\n $user_color[$?] \u@\h:\w \\$\[\e[0m\] "
+	PS1="\n $user_color[\$?] \u@\h:\w \\$\[\e[0m\] "
 }
 # also, make sure all terminals save history
-PROMPT_COMMAND='bash_history_sync; show_name; set_prompt'
-
-# colored man pages
-# To customize the colors, see Wikipedia:ANSI escape code for reference
-#man() {
-#    env LESS_TERMCAP_mb=$'\e[01;31m' \
-#    LESS_TERMCAP_md=$'\e[01;38;5;74m' \
-#    LESS_TERMCAP_me=$'\e[0m' \
-#    LESS_TERMCAP_se=$'\e[0m' \
-#    LESS_TERMCAP_so=$'\e[38;5;246m' \
-#    LESS_TERMCAP_ue=$'\e[0m' \
-#    LESS_TERMCAP_us=$'\e[04;38;5;146m' \
-#    man "$@"
-#}
+PROMPT_COMMAND='show_name; set_prompt;'
 
 # support colors in less
+# To customize the colors, see Wikipedia:ANSI escape code for reference
 export LESS_TERMCAP_mb=$'\e[01;31m'
 export LESS_TERMCAP_md=$'\e[01;31m'
 export LESS_TERMCAP_me=$'\e[0m'
