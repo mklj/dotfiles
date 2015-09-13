@@ -56,15 +56,15 @@ export LC_IDENTIFICATION=fr_FR.UTF-8
 export PAPERSIZE=a4
 
 # history
-HISTTIMEFORMAT='%F %T - '
+export HISTTIMEFORMAT='%F %T - '
 #HISTIGNORE='pwd:l:ls:ll:la:lla'
-HISTSIZE=9000
-HISTFILESIZE=$HISTSIZE
+export HISTSIZE=9000
+export HISTFILESIZE=$HISTSIZE
 #HISTCONTROL=ignorespace:ignoredups
-HISTCONTROL=ignoredups:erasedups
+export HISTCONTROL=ignoredups:erasedups
 
 # LESS OPTIONS
-LESS='-iR'
+export LESS='-iR'
 
 # executables
 export EDITOR=vim
