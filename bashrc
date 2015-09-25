@@ -350,7 +350,7 @@ alias reload="source $HOME/.bashrc"
 alias rr='reset'
 alias xx='exit'
 alias du='du -h'
-alias cal='cal -NMb'
+#alias cal='cal -NMb'
 alias tf='tail -f'
 
 alias hh='history'
