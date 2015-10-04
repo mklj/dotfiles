@@ -328,14 +328,15 @@ alias l='ls'
 alias ll='ls -lh --time-style=long-iso'
 alias l1='ls -1'
 alias la='ls -a'
-alias lla='ls -Alh --time-style=long-iso'
+alias lla='ll -a'
+alias lt='ll -rt'
 alias l.='ls -d .*'
-alias lt='ls -lrth --time-style=long-iso'
+# only list directories
+alias ld='ll | grep --color=never ^d'
+# only list directories, including hidden ones
+alias lda='lla | grep --color=never ^d'
 # recursive directory listing
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'''
-alias ld='ls -Gl | grep ^d' # only list directories
-alias ld='ls -lh --time-style=long-iso | grep --color=never ^d' # only list directories
-alias lda='ls -alh --time-style=long-iso | grep --color=never ^d' # only list directories, including hidden ones
 
 # cd
 alias ..='cd ..'
