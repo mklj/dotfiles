@@ -17,7 +17,7 @@
 		"toprc": "~/.toprc",
 		"vim/": "~/.vim",
 		"vimrc": "~/.vimrc",
-        "Xmodmap": "~/.Xmodmap"
+        "Xmodmap.ubuntu": "~/.Xmodmap"
 	},
 
 	"commands":
