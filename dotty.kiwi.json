@@ -15,6 +15,7 @@
         "inputrc": "~/.inputrc",
         "mpv/": "~/.config/mpv",
         "profile": "~/.profile",
+        "sqliterc": "~/.sqliterc",
         "toprc": "~/.toprc",
         "vim/": "~/.vim",
         "vimrc": "~/.vimrc"
