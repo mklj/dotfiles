@@ -54,6 +54,7 @@ export LC_TELEPHONE=fr_FR.UTF-8
 export LC_MEASUREMENT=fr_FR.UTF-8
 export LC_IDENTIFICATION=fr_FR.UTF-8
 export PAPERSIZE=a4
+#export LC_ALL=
 
 # history
 export HISTTIMEFORMAT='%F %T - '
