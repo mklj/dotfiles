@@ -82,7 +82,7 @@ unset safe_term match_lhs
 # command substitutions, and commands executed in a subshell environment. The
 # DEBUG and RETURN traps are normally not inherited in such cases.
 #set -o functrace
-function show_name {
+show_name() {
 	#if [[ -n "$BASH_COMMAND" ]]
 	#then
 		#set -o functrace
@@ -135,7 +135,7 @@ colors()
 	done
 }
 
-function colors2()
+colors2()
 {
 	# Texte de l'exemple (>= 3 caracteres) :
 	TEXT=" Bash " ;
@@ -344,7 +344,7 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 
 # function: cd then ls
-function cdd() { builtin cd "$*" && ls; }
+cdd() { builtin cd "$*" && ls; }
 
 ## TOOLS
 alias reload="source $HOME/.bashrc"
@@ -373,7 +373,7 @@ alias cdiff='colordiff'
 ## PACKAGES MANAGEMENT
 ## apt-get & dpkg
 alias maj='sudo apt-get update && sudo apt-get upgrade'
-function pksearch() { apt-cache search $1 | sort; }
+pksearch() { apt-cache search $1 | sort; }
 alias pkshow='apt-cache show'
 alias pk='dpkg --get-selections | grep -i'
 alias repos='grep -rE "^deb " /etc/apt/sources.list /etc/apt/sources.list.d/*.list | sed "s/^.*:\/\///g" | sort'
@@ -421,7 +421,7 @@ alias netlisteners='lsof -i -P | grep LISTEN'
 # list current IP on your network
 alias listips='nmap -sP 192.168.2.0/24'
 # Connection state totals
-#function constats()
+#constats()
 #{
 #	netstat -nat | awk '{print $6}' | sort | uniq -c | sort -n
 #}
