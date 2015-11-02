@@ -37,7 +37,6 @@ NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'tpope/vim-surround'
 "NeoBundle 'Valloric/YouCompleteMe'
 "NeoBundle 'wincent/command-t'
-"NeoBundle 'Lokaltog/vim-easymotion'
 
 " APPEARANCE  -----------------------------------------------------------------
 "set background=dark
@@ -154,26 +153,6 @@ noremap k gk
 "map <C-l> <C-w>l<C-w>
 " moves around split windows
 nnoremap <leader>w <C-w><C-w>
-
-" EASYMOTION ------------------------------------------------------------------
-
-"let g:EasyMotion_do_mapping = 0 " Disable default mappings
-
-" Bi-directional find motion
-" Jump to anywhere you want with minimal keystrokes, with just one key binding.
-" `s{char}{label}`
-"nmap f <Plug>(easymotion-s)
-" or
-" `s{char}{char}{label}`
-" Need one more keystroke, but on average, it may be more comfortable.
-"nmap f <Plug>(easymotion-s2)
-
-" Turn on case insensitive feature
-"let g:EasyMotion_smartcase = 1
-
-" JK motions: Line motions
-"map <Leader>j <Plug>(easymotion-j)
-"map <Leader>k <Plug>(easymotion-k)
 
 " COPY & PASTE ----------------------------------------------------------------
 
@@ -351,8 +330,8 @@ if v:version > 702
         "let g:unite_source_grep_recursive_opt=''
     endif
 
-    nnoremap <Leader>l :Unite -start-insert file_rec/async:. buffer<CR>
-    nnoremap <Leader>g :Unite grep:.<CR>
+    nnoremap <Leader>l :Unite -no-split -start-insert file_rec/async:! buffer<CR>
+    nnoremap <Leader>g :Unite -start-insert grep:.<CR>
     nnoremap <Leader>r :Unite history/yank<CR>
     nnoremap <Leader>b :Unite -quick-match buffer<CR>
 endif
@@ -442,10 +421,13 @@ if has('lua')
 endif
 
 call neobundle#end()
+
 filetype plugin indent on
 syntax enable
 colorscheme jellybeans
+
 " If there are uninstalled bundles found on startup, this will conveniently
 " prompt you to install them.
 NeoBundleCheck
+
 
