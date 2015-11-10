@@ -10,7 +10,7 @@
 		"bpython/": "~/.config/bpython",
 		"gitconfig": "~/.gitconfig",
 		"gmrunrc": "~/.gmrunrc",
-        "gnupg/gpg.conf": "~/gnupg/gpg.conf",
+        "gnupg/gpg.conf": "~/.gnupg/gpg.conf",
 		"inputrc": "~/.inputrc",
 		"mpv/": "~/.config/mpv",
 		"profile": "~/.profile",
