@@ -324,17 +324,15 @@ export LESS_TERMCAP_us=$'\e[01;32m'
 alias sudo='sudo '
 
 # ls
-alias l='ls'
+alias l='ll'
 alias ll='ls -lh --time-style=long-iso'
-alias l1='ls -1'
-alias la='ls -a'
-alias lla='ll -a'
-alias lt='ll -rt'
-alias l.='ls -d .*'
+alias la='l -A'
+alias lt='l -rt'
+alias l.='l -d .*'
 # only list directories
-alias ld='ll | grep --color=never ^d'
+alias ld='l | grep --color=never ^d'
 # only list directories, including hidden ones
-alias lda='lla | grep --color=never ^d'
+alias lda='la | grep --color=never ^d'
 # recursive directory listing
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'''
 
