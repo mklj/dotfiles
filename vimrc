@@ -339,7 +339,11 @@ endif
 " NEOCOMPLETE -----------------------------------------------------------------
 
 if has('lua')
-    NeoBundle 'Shougo/neocomplete.vim'
+    NeoBundleLazy 'Shougo/neocomplete.vim', {
+    \   'autoload': {
+    \       'insert': 1,
+    \   },
+    \ }
     " Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
     " Disable AutoComplPop.
     let g:acp_enableAtStartup = 0
@@ -423,11 +427,9 @@ endif
 call neobundle#end()
 
 filetype plugin indent on
-syntax enable
 colorscheme jellybeans
 
 " If there are uninstalled bundles found on startup, this will conveniently
 " prompt you to install them.
 NeoBundleCheck
-
 
