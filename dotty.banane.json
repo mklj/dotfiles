@@ -12,6 +12,7 @@
 		"gmrunrc": "~/.gmrunrc",
         "gnupg/gpg.conf": "~/.gnupg/gpg.conf",
 		"inputrc": "~/.inputrc",
+        "mc": "~/.config/mc",
 		"mpv/": "~/.config/mpv",
 		"profile": "~/.profile",
         "sqliterc": "~/.sqliterc",
