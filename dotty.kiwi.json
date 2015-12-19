@@ -18,8 +18,9 @@
         "sqliterc": "~/.sqliterc",
         "toprc": "~/.toprc",
         "vim/": "~/.vim",
-        "vimrc": "~/.vimrc"
-    }
+        "vimrc": "~/.vimrc",
+        "zathura": "~/.config/zathura"
+    },
 
     "commands":
         ["ln -s ~/.profile ~/.pam_environment"],

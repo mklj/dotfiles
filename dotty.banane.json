@@ -19,7 +19,8 @@
 		"toprc": "~/.toprc",
 		"vim/": "~/.vim",
 		"vimrc": "~/.vimrc",
-        "Xmodmap.ubuntu": "~/.Xmodmap"
+        "Xmodmap.ubuntu": "~/.Xmodmap",
+        "zathura": "~/.config/zathura"
 	},
 
 	"commands":
