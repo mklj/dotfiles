@@ -7,23 +7,19 @@
     "link": {
         "bash_logout": "~/.bash_logout",
         "bashrc": "~/.bashrc",
-        "beets/config.yaml": "~/.config/beets/config.yaml",
-        "bpython/": "~/.config/bpython",
         "gitconfig": "~/.gitconfig",
-        "gmrunrc": "~/.gmrunrc",
         "gnupg/gpg.conf": "~/.gnupg/gpg.conf",
         "inputrc": "~/.inputrc",
-        "mpv/": "~/.config/mpv",
         "profile": "~/.profile",
         "sqliterc": "~/.sqliterc",
         "toprc": "~/.toprc",
         "vim/": "~/.vim",
         "vimrc": "~/.vimrc",
-        "zathura": "~/.config/zathura"
+        "Xmodmap": "~/.Xmodmap"
     },
 
     "commands":
         ["ln -s ~/.profile ~/.pam_environment"],
-        ["mkdir -p ~/.config/beets"]
+        ["mkdir ~/.gnupg"]
 }
 
