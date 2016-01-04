@@ -70,5 +70,5 @@ export LESS='-iR'
 # executables
 export EDITOR=vim
 export PAGER=less
-[ -n "$DISPLAY" ] && export BROWSER=chromium || export BROWSER=w3m
+[ -n "$DISPLAY" ] && export BROWSER=firefox || export BROWSER=w3m
 
