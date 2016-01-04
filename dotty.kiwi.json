@@ -15,11 +15,11 @@
         "toprc": "~/.toprc",
         "vim/": "~/.vim",
         "vimrc": "~/.vimrc",
-        "Xmodmap": "~/.Xmodmap"
     },
 
-    "commands":
-        ["ln -s ~/.profile ~/.pam_environment"],
-        ["mkdir ~/.gnupg"]
+    "commands": [
+        "ln -s ~/.profile ~/.pam_environment",
+        "mkdir ~/.gnupg"
+    ]
 }
 
