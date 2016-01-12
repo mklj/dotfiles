@@ -351,7 +351,7 @@ alias xx='exit'
 alias du='du -h'
 #alias cal='cal -NMb'
 alias tf='tail -f'
-pss() { ps -eo euser,ruser,pid,ppid,lstart,stat,args | grep -E "EUSER|$1" | grep -v grep; }
+pss() { ps -eo euser,ruser,pid,ppid,lstart,stat,args | grep -v grep| grep -E "EUSER|$1"; }
 
 alias hh='history'
 # history search
