@@ -58,7 +58,7 @@ export PAPERSIZE=a4
 
 # history
 export HISTTIMEFORMAT='%F %T - '
-#HISTIGNORE='pwd:l:ls:ll:la:lla'
+HISTIGNORE='pwd:l:ls:ll:la:lla:l.'
 export HISTSIZE=9000
 export HISTFILESIZE=$HISTSIZE
 #HISTCONTROL=ignorespace:ignoredups
