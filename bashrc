@@ -436,5 +436,5 @@ alias rgc='git commit -m "`curl -s http://whatthecommit.com/index.txt`"'
 # ADDITIONAL STUFF
 # ==============================================================================
 
-[[ -f $HOME/ami/albrc ]] && source $HOME/ami/albrc
+[[ -f $HOME/.albrc ]] && source $HOME/.albrc
 
