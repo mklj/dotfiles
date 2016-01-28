@@ -16,6 +16,7 @@
 		"mpv/": "~/.config/mpv",
 		"profile": "~/.profile",
         "sqliterc": "~/.sqliterc",
+        "tmuxrc": "~/.tmuxrc",
 		"toprc": "~/.toprc",
 		"vim/": "~/.vim",
 		"vimrc": "~/.vimrc",
