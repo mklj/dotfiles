@@ -54,6 +54,7 @@ set noerrorbells
 set novisualbell
 "set t_vb=
 
+set ttyfast
 set hidden " allow modified buffers in the background
 set autoread "auto reload if file saved externally
 set lazyredraw " Don't update the display while executing macros
@@ -71,6 +72,8 @@ autocmd Filetype gitcommit setlocal spell textwidth=72
 let g:tex_flavor = "latex" " use latex flavor for all .tex files
 
 " where backup files are kept
+set undofile
+set undodir=~/.vim/backup
 set backupdir=~/.vim/backup
 set directory=~/.vim/backup
 "set noswapfile
@@ -80,7 +83,7 @@ set directory=~/.vim/backup
 "match OverLength /\%80v.\+/
 set wrap
 set textwidth=79
-set formatoptions=qn1j
+set formatoptions=qrn1
 set viminfo='50,n~/.vim/viminfo
 if exists('+colorcolumn')
     set colorcolumn=80,120
@@ -104,6 +107,7 @@ endfunction
 
 " KEYBINDINGS -----------------------------------------------------------------
 let mapleader="," " change the mapleader from \ to ,
+inoremap jj <ESC>
 
 " buffers ---------------------------------------------------------------------
 " switches around buffers
@@ -287,6 +291,7 @@ nmap <F9> :TagbarToggle<CR>
 " STATUS LINE (AND AIRLINE) ---------------------------------------------------
 set noshowmode
 set wildmenu " enhanced command-line completion
+set wildmode=list:longest
 if exists('&wildignorecase')
     set wildignorecase
 endif
@@ -427,7 +432,7 @@ endif
 call neobundle#end()
 
 filetype plugin indent on
-colorscheme jellybeans
+colorscheme Tomorrow-Night-Bright
 
 " If there are uninstalled bundles found on startup, this will conveniently
 " prompt you to install them.
