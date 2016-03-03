@@ -352,6 +352,8 @@ alias du='du -h'
 #alias cal='cal -NMb'
 alias tf='tail -f'
 pss() { ps -eo euser,ruser,pid,ppid,lstart,stat,args | grep -v grep| grep -E "EUSER|$1"; }
+highlight() { grep --color -E "$1|*"; }
+alias hl='highlight'
 
 alias hh='history'
 # history search
