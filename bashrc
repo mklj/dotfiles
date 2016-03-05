@@ -281,10 +281,10 @@ set_prompt() {
 	local bg_grey='\[\e[7;37m\]'
 
 	# user color
-	if [[ $UID -ge 1000 ]]; then
-		user_color=$yellow
-	elif [[ $UID -eq 0 ]]; then
+	if [[ $UID -eq 0 ]]; then
 		user_color=$red
+    else
+		user_color=$yellow
 	fi
 	# server color
 	if [[ -n "$SSH_CLIENT" || -n "$SSH2_CLIENT" ]]; then
@@ -438,5 +438,7 @@ alias rgc='git commit -m "`curl -s http://whatthecommit.com/index.txt`"'
 # ADDITIONAL STUFF
 # ==============================================================================
 
-[[ -f $HOME/.albrc ]] && source $HOME/.albrc
+if [[ -f $HOME/.albrc ]]; then
+    source $HOME/.albrc
+fi
 
