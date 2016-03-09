@@ -2,7 +2,7 @@
 	path = dotty
 	url = git@github.com:mklj/dotty.git
 	branch = master
-[submodule "vim/bundle/neobundle.vim"]
-	path = vim/bundle/neobundle.vim
-	url = git@github.com:Shougo/neobundle.vim.git
+[submodule "vim/bundle/Vundle.vim"]
+	path = vim/bundle/Vundle.vim
+	url = git@github.com:VundleVim/Vundle.vim.git
 	branch = master
