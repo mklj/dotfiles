@@ -294,7 +294,7 @@ noremap ? ?\v
 set ignorecase " case-insensitive search...
 set smartcase " ... unless an uppercase character is typed
 set incsearch
-"set hlsearch
+set hlsearch
 " clearing highlighted search
 "nmap <silent> <leader><space> :nohlsearch<CR>
 
@@ -338,12 +338,11 @@ let g:airline#extensions#whitespace#mixed_indent_format = 'mixed-indent[%s]'
 " The `unique_tail` algorithm will display the tail of the filename, unless
 " there is another file of the same name, in which it will display it along
 " with the containing parent directory.
-let g:airline#extensions#tabline#formatter = 'unique_tail'
+"let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 " The `unique_tail_improved` - another algorithm, that will smartly uniquify
 " buffers names with similar filename, suppressing common parts of paths.
-"let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
 " YOU COMPLETE ME -------------------------------------------------------------
 let g:ycm_filetype_blacklist = {
@@ -357,4 +356,5 @@ let g:ycm_filetype_blacklist = {
       \ 'infolog' : 1,
       \ 'mail' : 1
       \}
+let g:ycm_complete_in_comments = 0
 
