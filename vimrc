@@ -294,7 +294,7 @@ noremap ? ?\v
 set ignorecase " case-insensitive search...
 set smartcase " ... unless an uppercase character is typed
 set incsearch
-set hlsearch
+"set hlsearch
 " clearing highlighted search
 "nmap <silent> <leader><space> :nohlsearch<CR>
 
