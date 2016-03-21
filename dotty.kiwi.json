@@ -19,7 +19,7 @@
 
     "commands": [
         "ln -s ~/.profile ~/.pam_environment",
+        "mkdir ~/.vim/backup ~/.vim/swap",
         "mkdir ~/.gnupg"
     ]
 }
-

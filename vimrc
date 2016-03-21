@@ -75,7 +75,7 @@ au InsertLeave * set notimeout
 set undofile
 set undodir=~/.vim/backup
 set backupdir=~/.vim/backup
-set directory=. " swap file location
+set directory=~/.vim/swap " swap file location
 "set noswapfile
 
 """ Custom backup and swap files

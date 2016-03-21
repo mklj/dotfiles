@@ -6,7 +6,7 @@
 
 	"link": {
 		"bash_logout": "~/.bash_logout",
-		"bashrc": "~/.bashrc",	
+		"bashrc": "~/.bashrc",
 		"bpython/": "~/.config/bpython",
 		"gitconfig": "~/.gitconfig",
 		"gmrunrc": "~/.gmrunrc",
@@ -24,6 +24,8 @@
         "zathura": "~/.config/zathura"
 	},
 
-	"commands":
-		["ln -s ~/.profile ~/.pam_environment"]
+	"commands": [
+		"ln -s ~/.profile ~/.pam_environment",
+        "mkdir ~/.vim/backup ~/.vim/swap"
+    ]
 }
