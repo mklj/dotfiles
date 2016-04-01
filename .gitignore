@@ -5,10 +5,12 @@
 # deploy script documentation: must be generated locally
 deploy/doc-html
 
-# vim plugins handled by Vundle.vim
+# vim plugins handled by neobundle.vim
 vim/bundle/*
 !vim/bundle/neobundle.vim
 
+vim/backup
+vim/swap
 vim/viminfo
 # netrw is a kind of vim plugin/script which supports reading and writing files
 # across networks. .netrwhist is a history file which maintains all the
