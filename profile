@@ -36,8 +36,7 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" -a -z $(echo "$PATH" | grep -o "$HOME/bin") ]
-then
+if [ -d "$HOME/bin" ] && [ -z $(echo "$PATH" | grep -o "$HOME/bin") ]; then
         export PATH="$HOME/bin:${PATH}"
 fi
 
