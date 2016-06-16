@@ -407,6 +407,7 @@ alias oo='xdg-open'
 alias listusers='cut -d: -f1 /etc/passwd | sort -bd'
 #  list all groups
 alias listgroups='cut -d: -f1 /etc/group | sort -bd'
+alias lsblk_my='lsblk -mio NAME,KNAME,MAJ:MIN,FSTYPE,MOUNTPOINT,LABEL,UUID,SIZE,STATE,MODE,TYPE'
 
 ## NETWORK
 ## get private ip
