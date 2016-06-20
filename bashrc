@@ -106,49 +106,19 @@ fi
 
 # The page at http://ascii-table.com/ansi-escape-sequences.php describes the
 # various available color escapes.
-# The following Bash function displays a table with ready-to-copy escape codes.
 colors()
 {
-	local fgc bgc vals seq0
-
 	printf "Color escapes are %s\n" '\e[${value};...;${value}m'
 	printf "Values 30..37 are \e[33mforeground colors\e[m\n"
 	printf "Values 40..47 are \e[43mbackground colors\e[m\n"
 	printf "Value  1 gives a  \e[1mbold-faced look\e[m\n\n"
-
-	# foreground colors
-	for fgc in {30..37}; do
-		# background colors
-		for bgc in {40..47}; do
-			fgc=${fgc#37} # white
-			bgc=${bgc#40} # black
-
-			vals="${fgc:+$fgc;}${bgc}"
-			vals=${vals%%;}
-
-			seq0="${vals:+\e[${vals}m}"
-			printf "  %-9s" "${seq0:-(default)}"
-			printf " ${seq0}TEXT\e[m"
-			printf " \e[${vals:+${vals+$vals;}}1mBOLD\e[m"
-		done
-	echo; echo
-	done
-}
-
-colors2()
-{
-	printf "Color escapes are %s\n" '\e[${value};...;${value}m'
-	printf "Values 30..37 are \e[33mforeground colors\e[m\n"
-	printf "Values 40..47 are \e[43mbackground colors\e[m\n"
-	printf "Value  1 gives a  \e[1mbold-faced look\e[m\n\n"
-	# Texte de l'exemple (>= 3 caracteres) :
-	local text=" Bash " ;
 	declare -a FG=('' '1' '4' '5' '7' '30' '31' '32' \
 	'33' '34' '35' '36' '37') ;
 
 	echo
 
-	# Premiere ligne :
+    # example text (>= 3 characters)
+	local text=" Bash " ;
     # horizontal header
 	printf "FG \ BG\t%${#text}s" ;
 	for bg in {40..47} ; do
@@ -156,7 +126,6 @@ colors2()
 	done
 	echo ;
 
-	# Creation du tableau de presentation des combinaisons :
 	for fg in ${!FG[*]} ; do
 		echo -ne "${FG[fg]}\t\033[${FG[fg]}m$text" ;
 		for bg in {40..47} ; do
@@ -166,8 +135,7 @@ colors2()
 	done
 }
 
-
-    # tput_colors - Demonstrate color combinations.
+# colors_tput - Demonstrate color combinations.
 colors_tput()
 {
     for fg_color in {0..7}; do
@@ -183,54 +151,54 @@ colors_tput()
 
 # styles and colors format: \e[{style};{color}m
 # styles:
-# 0	reset all attributes
-# 1 bold/bright
-# 2	dim
-# 4	underlined
-# 5	blink
-# 7	reverse (invert the foreground and background colors)
-# 8	hidden (usefull for passwords)
-# 21 reset bold/bright
-# 22 reset dim
-# 24 reset underlined
-# 25 reset blink
-# 27 reset reverse
-# 28 reset hidden
+    # 0	reset all attributes
+    # 1 bold/bright
+    # 2	dim
+    # 4	underlined
+    # 5	blink
+    # 7	reverse (invert the foreground and background colors)
+    # 8	hidden (usefull for passwords)
+    # 21 reset bold/bright
+    # 22 reset dim
+    # 24 reset underlined
+    # 25 reset blink
+    # 27 reset reverse
+    # 28 reset hidden
 # colors: normal
-# 30 black
-# 31 red
-# 32 green
-# 33 yellow
-# 34 blue
-# 35 purple
-# 36 cyan
-# 37 white
+    # 30 black
+    # 31 red
+    # 32 green
+    # 33 yellow
+    # 34 blue
+    # 35 purple
+    # 36 cyan
+    # 37 white
 # colors: background
-# black 40
-# red 41
-# green 42
-# yellow 43
-# blue 44
-# purple 45
-# cyan 46
-# white 47
+    # black 40
+    # red 41
+    # green 42
+    # yellow 43
+    # blue 44
+    # purple 45
+    # cyan 46
+    # white 47
 # colors:high intensity
-# black 90
-# red 91
-# green 92
-# yellow 93
-# blue 94
-# purple 95
-# cyan 96
-# white 97
+    # black 90
+    # red 91
+    # green 92
+    # yellow 93
+    # blue 94
+    # purple 95
+    # cyan 96
+    # white 97
 # colors: high intensity backgrounds
-# black 100
-# red 101
-# green 102
-# blue 104
-# purple 105
-# cyan 106
-# white 107
+    # black 100
+    # red 101
+    # green 102
+    # blue 104
+    # purple 105
+    # cyan 106
+    # white 107
 
 # Bash allows these prompt strings to be customized by inserting a
 # number of backslash-escaped special characters that are
