@@ -137,30 +137,48 @@ colors()
 
 colors2()
 {
+	printf "Color escapes are %s\n" '\e[${value};...;${value}m'
+	printf "Values 30..37 are \e[33mforeground colors\e[m\n"
+	printf "Values 40..47 are \e[43mbackground colors\e[m\n"
+	printf "Value  1 gives a  \e[1mbold-faced look\e[m\n\n"
 	# Texte de l'exemple (>= 3 caracteres) :
-	TEXT=" Bash " ;
-
-	# Couleur du texte :
+	local text=" Bash " ;
 	declare -a FG=('' '1' '4' '5' '7' '30' '31' '32' \
 	'33' '34' '35' '36' '37') ;
 
 	echo
 
 	# Premiere ligne :
-	printf "FG \ BG\t%${#TEXT}s" ;
+    # horizontal header
+	printf "FG \ BG\t%${#text}s" ;
 	for bg in {40..47} ; do
-		printf "%${#TEXT}s" "${bg}  " ;
+		printf "%${#text}s" "${bg}  " ;
 	done
 	echo ;
 
 	# Creation du tableau de presentation des combinaisons :
 	for fg in ${!FG[*]} ; do
-		echo -ne "${FG[fg]}\t\033[${FG[fg]}m$TEXT" ;
+		echo -ne "${FG[fg]}\t\033[${FG[fg]}m$text" ;
 		for bg in {40..47} ; do
-			echo -ne "\033[${FG[fg]};${bg}m$TEXT\033[0m" ;
+			echo -ne "\033[${FG[fg]};${bg}m$text\033[0m" ;
 		done
 		echo ;
 	done
+}
+
+
+    # tput_colors - Demonstrate color combinations.
+colors_tput()
+{
+    for fg_color in {0..7}; do
+        set_foreground=$(tput setaf $fg_color)
+        for bg_color in {0..7}; do
+            set_background=$(tput setab $bg_color)
+            echo -n $set_background$set_foreground
+            printf ' F:%s B:%s ' $fg_color $bg_color
+        done
+        echo $(tput sgr0)
+    done
 }
 
 # styles and colors format: \e[{style};{color}m
@@ -439,7 +457,12 @@ alias rgc='git commit -m "`curl -s http://whatthecommit.com/index.txt`"'
 # ADDITIONAL STUFF
 # ==============================================================================
 
-if [[ -f $HOME/.albrc ]]; then
-    source $HOME/.albrc
-fi
+include_file()
+{
+    if [[ -r "$1" ]]; then
+        source "$1"
+    fi
+}
+
+include_file $HOME/dotfiles/lib/albert.sh
 
