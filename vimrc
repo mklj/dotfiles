@@ -240,7 +240,6 @@ nnoremap <leader>w <C-w><C-w>
 "set copyindent
 " http://superuser.com/questions/134709/how-can-i-keep-the-code-formated-as-original-source-when-i-paste-them-to-vim
 set pastetoggle=<F4>
-"nmap <silent> <leader>p :set paste<CR>"*p:set nopaste<CR>
 
 "On Mac OSX
 "copy selected part: visually select text(type v or V in normal mode) and type :w !pbcopy
@@ -251,12 +250,13 @@ set pastetoggle=<F4>
 "pbcopy above with xclip -i -sel c or xsel -i -b
 "pbpaste using xclip -o -sel c or xsel -o -b
 "
-"-- Note: In case neither of these tools (xsel and xclip) are preinstalled on your distro, you can probably find them in the repos
+"-- Note: In case neither of these tools (xsel and xclip) are preinstalled on
+"your distro, you can probably find them in the repos
 
 "On linux this works with :w !xclip -sel c or :w !xsel -b –  Zeus77 yesterday
-if executable('xclip')
-    vnoremap <silent> <Leader>y :write !xclip -i -selection clipboard<CR><CR>
-    nnoremap <silent> <Leader>p :read !xclip -o -selection clipboard<CR>
+if executable('xsel')
+    vnoremap <silent> <Leader>y :write !xsel -i -b<CR><CR>
+    nnoremap <silent> <Leader>p :read !xsel -o -b<CR>
 endif
 
 " INDENTATION -----------------------------------------------------------------
