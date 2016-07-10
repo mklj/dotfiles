@@ -5,3 +5,4 @@
 [submodule "dotty"]
 	path = dotty
 	url = git@github.com:vibhavp/dotty.git
+	branch = master
