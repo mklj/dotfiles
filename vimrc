@@ -356,5 +356,5 @@ let g:ycm_filetype_blacklist = {
       \ 'infolog' : 1,
       \ 'mail' : 1
       \}
-let g:ycm_complete_in_comments = 0
+let g:ycm_complete_in_comments = 1
 
