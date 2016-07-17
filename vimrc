@@ -254,9 +254,9 @@ set pastetoggle=<F4>
 "your distro, you can probably find them in the repos
 
 "On linux this works with :w !xclip -sel c or :w !xsel -b –  Zeus77 yesterday
-if executable('xsel')
-    vnoremap <silent> <Leader>y :write !xsel -i -b<CR><CR>
-    nnoremap <silent> <Leader>p :read !xsel -o -b<CR>
+if executable('xclip')
+    vnoremap <silent> <Leader>y :write !xclip -i -selection clipboard<CR><CR>
+    nnoremap <silent> <Leader>p :read !xclip -o -selection clipboard<CR>
 endif
 
 " INDENTATION -----------------------------------------------------------------
