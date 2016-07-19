@@ -86,6 +86,8 @@ endfunction
 
 " KEYBINDINGS -----------------------------------------------------------------
 let mapleader="," " change the mapleader from \ to ,
+inoremap jj <esc>*/
+map <leader>? <Plug>NERDCommenterToggle<CR>
 
 " buffers ---------------------------------------------------------------------
 " switches around buffers
