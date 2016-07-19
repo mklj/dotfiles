@@ -5,37 +5,45 @@ if &compatible
     set nocompatible
 endif
 set all& "reset everything to their defaults
+
+" ======= plugins manager initialization
 set runtimepath+=~/.vim/bundle/dein.vim
 call dein#begin(expand('~/.vim/bundle'))
-
 call dein#add('Shougo/dein.vim')
 "call dein#add('~/.vim/bundle/dein.vim')
-call dein#add('bling/vim-airline')
-call dein#add('chriskempson/vim-tomorrow-theme')
-call dein#add('evidens/vim-twig')
-call dein#add('flazz/vim-colorschemes')
-call dein#add('majutsushi/tagbar')
-"call dein#add('nanotech/jellybeans.vim')
-call dein#add('scrooloose/nerdcommenter')
-call dein#add('Shougo/vimproc.vim', {'build': 'make'})
-call dein#add('tpope/vim-surround')
 
-" APPEARANCE  -----------------------------------------------------------------
+" ======= functions
+function! Preserve(command)
+    " preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " do the business:
+    execute a:command
+    " clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
+
+function! StripTrailingWhitespace()
+    call Preserve("%s/\\s\\+$//e")
+endfunction
+
+
+" ======= appearance
 "set background=dark
 set t_Co=256 " 256 colors terminal
 set cursorline " highlight the line the cursor is on
 set title " show filename in terminal title
 
-" BEHAVIOUR  ------------------------------------------------------------------
-
 syntax enable
 set encoding=utf-8
 
-" disable sounds
 set noerrorbells
 set novisualbell
 "set t_vb=
 
+" ======= behaviour
 set hidden " allow modified buffers in the background
 set autoread "auto reload if file saved externally
 set lazyredraw " Don't update the display while executing macros
@@ -68,97 +76,25 @@ if exists('+colorcolumn')
     set colorcolumn=80,120
 endif
 
-function! Preserve(command)
-    " preparation: save last search, and cursor position.
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    " do the business:
-    execute a:command
-    " clean up: restore previous search history, and cursor position
-    let @/=_s
-    call cursor(l, c)
-endfunction
-
-function! StripTrailingWhitespace()
-    call Preserve("%s/\\s\\+$//e")
-endfunction
-
 " KEYBINDINGS -----------------------------------------------------------------
 let mapleader="," " change the mapleader from \ to ,
 inoremap jj <esc>*/
-map <leader>? <Plug>NERDCommenterToggle<CR>
 
-" buffers ---------------------------------------------------------------------
-" switches around buffers
+" ======= buffers
 nnoremap <F2> :bp<CR>
 nnoremap <F3> :bn<CR>
 nnoremap <F5> :tabprevious<CR>
 nnoremap <F6> :tabnext<CR>
 nnoremap <Leader>d :bd<CR>
 
-" help
-" open help text in a new tab
-"cabbrev help tab help
-"cabbrev h tab help
-"function! OpenHelpInCurrentWindow(topic)
-    "view $VIMRUNTIME/doc/help.txt
-    "setl filetype=help
-    "setl buftype=nofile
-    ""setl buftype=help
-    "setl nomodifiable
-    "exe 'keepjumps help ' . a:topic
-"endfunction
-
-"command! -nargs=? -complete=help Help call OpenHelpInCurrentWindow(<q-args>)
-"nnoremap <silent> <leader>h :Help
-
-" MOVING AROUND ---------------------------------------------------------------
-
+" ======= moving around
 " Treat long lines as break lines (useful when moving around in them)
 noremap j gj
 noremap k gk
-
-" disable arrow keys
-"noremap <up> <nop>
-"inoremap <up> <nop>
-"noremap <down> <nop>
-"inoremap <down> <nop>
-"noremap <left> <nop>
-"noremap <right> <nop>
-"inoremap <left> <nop>
-"inoremap <right> <nop>
-"B-A-<start>
-
-" windows
-"map <C-h> <C-w>h<C-w>
-"map <C-j> <C-w>j<C-w>
-"map <C-k> <C-w>k<C-w>
-"map <C-l> <C-w>l<C-w>
 " moves around split windows
 nnoremap <leader>w <C-w><C-w>
 
-" EASYMOTION ------------------------------------------------------------------
-
-"let g:EasyMotion_do_mapping = 0 " Disable default mappings
-
-" Bi-directional find motion
-" Jump to anywhere you want with minimal keystrokes, with just one key binding.
-" `s{char}{label}`
-"nmap f <Plug>(easymotion-s)
-" or
-" `s{char}{char}{label}`
-" Need one more keystroke, but on average, it may be more comfortable.
-"nmap f <Plug>(easymotion-s2)
-
-" Turn on case insensitive feature
-"let g:EasyMotion_smartcase = 1
-
-" JK motions: Line motions
-"map <Leader>j <Plug>(easymotion-j)
-"map <Leader>k <Plug>(easymotion-k)
-
-" COPY & PASTE ----------------------------------------------------------------
+" ======= copy - paste
 
 " from
 " http://stackoverflow.com/questions/11489428/how-to-make-vim-paste-from-and-copy-to-systems-clipboard
@@ -230,8 +166,6 @@ set pastetoggle=<F4>
 "On most Linux Distros, you can substitute:
 "pbcopy above with xclip -i -sel c or xsel -i -b
 "pbpaste using xclip -o -sel c or xsel -o -b
-"
-"-- Note: In case neither of these tools (xsel and xclip) are preinstalled on your distro, you can probably find them in the repos
 
 "On linux this works with :w !xclip -sel c or :w !xsel -b –  Zeus77 yesterday
 if executable('xclip')
@@ -239,8 +173,7 @@ if executable('xclip')
     nnoremap <silent> <Leader>p :read !xclip -o -selection clipboard<CR>
 endif
 
-" INDENTATION -----------------------------------------------------------------
-
+" ======= indentation
 " To convert tabs to space
 " :set expandtab
 " :retab!
@@ -253,19 +186,17 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 
-" FOLDING ---------------------------------------------------------------------
-
+" ======= folding
 set foldenable "enable folds by default
 set foldcolumn=2
 set foldmethod=syntax
 "set foldmethod=indent
 set foldnestmax=10 "deepest fold is ten levels
-"set nofoldenable "dont fold by default
 "set foldlevel=1
 set foldlevelstart=99 "open all folds by default
 let g:xml_syntax_folding=1 "enable xml folding
 
-" SEARCH & REPLACE ------------------------------------------------------------
+" ======= search and replace
 " see :help /magic
 noremap f /\V
 noremap F ?\V
@@ -278,17 +209,7 @@ set incsearch
 " clearing highlighted search
 "nmap <silent> <leader><space> :nohlsearch<CR>
 
-" TAGBAR ----------------------------------------------------------------------
-nmap <F9> :TagbarToggle<CR>
-
-" ULTISNIPS -------------------------------------------------------------------
-"let g:UltiSnipsSnippetDirectories=["UltiSnips", "snippets_custom"]
-"let g:UltiSnipsExpandTrigger="<tab>"
-"let g:UltiSnipsJumpForwardTrigger="<tab>"
-"let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-"let g:UltiSnipsListSnippets="<C-b>"
-
-" STATUS LINE (AND AIRLINE) ---------------------------------------------------
+" ======= status line
 set noshowmode
 set wildmenu " enhanced command-line completion
 if exists('&wildignorecase')
@@ -298,7 +219,8 @@ set wildignore+=*.so,*.swp,*.zip,*.bz,*.bz2,*.gz
 set laststatus=2
 "set ruler "show line,column
 set showcmd
-
+" plugin: bling/vim-airline
+call dein#add('bling/vim-airline')
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
@@ -321,9 +243,9 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 " The `unique_tail_improved` - another algorithm, that will smartly uniquify
 " buffers names with similar filename, suppressing common parts of paths.
-"let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+    "let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
-" UNITE -----------------------------------------------------------------------
+" ======= plugin: Shougo/unite.vim
 if v:version > 702
     call dein#add('Shougo/unite.vim')
     let g:unite_source_history_yank_enable = 1
@@ -340,7 +262,7 @@ if v:version > 702
     nnoremap <Leader>b :Unite -quick-match buffer<CR>
 endif
 
-" COMPLETION ------------------------------------------------------------------
+" ======= completion
 " neocomplete if lua is available, neocomplcache otherwise
 
 if has('lua')
@@ -356,6 +278,19 @@ else
     let g:neocomplcache_enable_fuzzy_completion=1
 endif
 
+" =======
+call dein#add('Shougo/vimproc.vim', {'build': 'make'})
+call dein#add('chriskempson/vim-tomorrow-theme')
+call dein#add('evidens/vim-twig')
+call dein#add('flazz/vim-colorschemes')
+call dein#add('majutsushi/tagbar')
+nmap <F9> :TagbarToggle<CR>
+call dein#add('nanotech/jellybeans.vim')
+call dein#add('scrooloose/nerdcommenter')
+map <leader>? <Plug>NERDCommenterToggle<CR>
+call dein#add('tpope/vim-surround')
+
+" ======= end of initialization
 call dein#end()
 if dein#check_install()
     call dein#install()
