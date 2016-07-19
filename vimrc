@@ -1,54 +1,41 @@
-" Note: Skip initialization for vim-tiny or vim-small.
+" Skip initialization for vim-tiny or vim-small.
 if 0 | endif
 
-set nocompatible
-filetype off
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+if &compatible
+    set nocompatible
+endif
+set all& "reset everything to their defaults
+set runtimepath+=~/.vim/bundle/dein.vim
+call dein#begin(expand('~/.vim/bundle'))
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-"Plugin 'altercation/vim-colors-solarized'
-Plugin 'bling/vim-airline'
-Plugin 'chriskempson/vim-tomorrow-theme'
-Plugin 'evidens/vim-twig'
-Plugin 'majutsushi/tagbar'
-"Plugin 'nanotech/jellybeans.vim'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'tpope/vim-surround'
-Plugin 'Valloric/YouCompleteMe'
-"Plugin 'wincent/command-t'
-Plugin 'flazz/vim-colorschemes'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-au! BufRead,BufNewFile * if &ft == '' | set ft=undefined | endif
+call dein#add('Shougo/dein.vim')
+"call dein#add('~/.vim/bundle/dein.vim')
+call dein#add('bling/vim-airline')
+call dein#add('chriskempson/vim-tomorrow-theme')
+call dein#add('evidens/vim-twig')
+call dein#add('flazz/vim-colorschemes')
+call dein#add('majutsushi/tagbar')
+"call dein#add('nanotech/jellybeans.vim')
+call dein#add('scrooloose/nerdcommenter')
+call dein#add('Shougo/vimproc.vim', {'build': 'make'})
+call dein#add('tpope/vim-surround')
 
 " APPEARANCE  -----------------------------------------------------------------
 "set background=dark
 set t_Co=256 " 256 colors terminal
 set cursorline " highlight the line the cursor is on
 set title " show filename in terminal title
-colorscheme Tomorrow-Night-Bright
 
 " BEHAVIOUR  ------------------------------------------------------------------
 
 syntax enable
 set encoding=utf-8
-set fileencoding=utf-8 " The encoding written to file.
 
 " disable sounds
 set noerrorbells
 set novisualbell
+"set t_vb=
 
-set ttyfast
 set hidden " allow modified buffers in the background
 set autoread "auto reload if file saved externally
 set lazyredraw " Don't update the display while executing macros
@@ -56,7 +43,7 @@ set scrolloff=3 " minimum lines to keep above and below cursor
 set scrolljump=5 "minimum number of lines to scroll
 "set showmatch
 set number
-set mouse=nv " unleash the rodent in Normal and Visual Mode
+set mouse=a " unleash the rodent
 "set mousehide " hide when characters are typed - only works in the GUI
 set backspace=indent,eol,start "allow backspacing everything in insert mode
 "set list "highlight whitespace
@@ -65,44 +52,17 @@ autocmd Filetype gitcommit setlocal spell textwidth=72
 " from http://wiki.contextgarden.net/Vim
 let g:tex_flavor = "latex" " use latex flavor for all .tex files
 
-" Prevent lag when hitting escape
-set ttimeoutlen=0
-set timeoutlen=1000
-au InsertEnter * set timeout
-au InsertLeave * set notimeout
-
 " where backup files are kept
-set undofile
-set undodir=~/.vim/backup
 set backupdir=~/.vim/backup
-set directory=~/.vim/swap " swap file location
+set directory=~/.vim/backup
 "set noswapfile
-
-""" Custom backup and swap files
-"let myVimDir = expand("$HOME/.vim")
-"let myBackupDir = myVimDir . '/backup'
-"let mySwapDir = myVimDir . '/swap'
-"function! EnsureDirExists (dir)
-  "if !isdirectory(a:dir)
-    "call mkdir(a:dir,'p')
-  "endif
-"endfunction
-"call EnsureDirExists(myVimDir)
-"call EnsureDirExists(myBackupDir)
-"call EnsureDirExists(mySwapDir)
-"set backup
-"set backupskip=/tmp/*
-"set backupext=.bak
-"let &directory = mySwapDir
-"let &backupdir = myBackupDir
-"set writebackup
 
 " long lines handling / right margin
 "highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 "match OverLength /\%80v.\+/
 set wrap
 set textwidth=79
-set formatoptions=qrn1
+set formatoptions=qn1j
 set viminfo='50,n~/.vim/viminfo
 if exists('+colorcolumn')
     set colorcolumn=80,120
@@ -126,8 +86,6 @@ endfunction
 
 " KEYBINDINGS -----------------------------------------------------------------
 let mapleader="," " change the mapleader from \ to ,
-inoremap jj <ESC>
-map <leader>? <plug>NERDCommenterToggle<CR>
 
 " buffers ---------------------------------------------------------------------
 " switches around buffers
@@ -177,6 +135,26 @@ noremap k gk
 "map <C-l> <C-w>l<C-w>
 " moves around split windows
 nnoremap <leader>w <C-w><C-w>
+
+" EASYMOTION ------------------------------------------------------------------
+
+"let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" Bi-directional find motion
+" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+" `s{char}{label}`
+"nmap f <Plug>(easymotion-s)
+" or
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+"nmap f <Plug>(easymotion-s2)
+
+" Turn on case insensitive feature
+"let g:EasyMotion_smartcase = 1
+
+" JK motions: Line motions
+"map <Leader>j <Plug>(easymotion-j)
+"map <Leader>k <Plug>(easymotion-k)
 
 " COPY & PASTE ----------------------------------------------------------------
 
@@ -240,6 +218,7 @@ nnoremap <leader>w <C-w><C-w>
 "set copyindent
 " http://superuser.com/questions/134709/how-can-i-keep-the-code-formated-as-original-source-when-i-paste-them-to-vim
 set pastetoggle=<F4>
+"nmap <silent> <leader>p :set paste<CR>"*p:set nopaste<CR>
 
 "On Mac OSX
 "copy selected part: visually select text(type v or V in normal mode) and type :w !pbcopy
@@ -250,8 +229,7 @@ set pastetoggle=<F4>
 "pbcopy above with xclip -i -sel c or xsel -i -b
 "pbpaste using xclip -o -sel c or xsel -o -b
 "
-"-- Note: In case neither of these tools (xsel and xclip) are preinstalled on
-"your distro, you can probably find them in the repos
+"-- Note: In case neither of these tools (xsel and xclip) are preinstalled on your distro, you can probably find them in the repos
 
 "On linux this works with :w !xclip -sel c or :w !xsel -b –  Zeus77 yesterday
 if executable('xclip')
@@ -311,7 +289,6 @@ nmap <F9> :TagbarToggle<CR>
 " STATUS LINE (AND AIRLINE) ---------------------------------------------------
 set noshowmode
 set wildmenu " enhanced command-line completion
-set wildmode=list:longest
 if exists('&wildignorecase')
     set wildignorecase
 endif
@@ -338,23 +315,50 @@ let g:airline#extensions#whitespace#mixed_indent_format = 'mixed-indent[%s]'
 " The `unique_tail` algorithm will display the tail of the filename, unless
 " there is another file of the same name, in which it will display it along
 " with the containing parent directory.
-"let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 " The `unique_tail_improved` - another algorithm, that will smartly uniquify
 " buffers names with similar filename, suppressing common parts of paths.
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+"let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
-" YOU COMPLETE ME -------------------------------------------------------------
-let g:ycm_filetype_blacklist = {
-      \ 'tagbar' : 1,
-      \ 'qf' : 1,
-      \ 'notes' : 1,
-      \ 'markdown' : 1,
-      \ 'unite' : 1,
-      \ 'vimwiki' : 1,
-      \ 'pandoc' : 1,
-      \ 'infolog' : 1,
-      \ 'mail' : 1
-      \}
-let g:ycm_complete_in_comments = 1
+" UNITE -----------------------------------------------------------------------
+if v:version > 702
+    call dein#add('Shougo/unite.vim')
+    let g:unite_source_history_yank_enable = 1
+
+    if executable('grep')
+        let g:unite_source_grep_command='grep'
+        let g:unite_source_grep_default_opts='-iR --color=auto --line-number'
+        "let g:unite_source_grep_recursive_opt=''
+    endif
+
+    nnoremap <Leader>l :Unite -start-insert file_rec/async:. buffer<CR>
+    nnoremap <Leader>g :Unite grep:.<CR>
+    nnoremap <Leader>r :Unite history/yank<CR>
+    nnoremap <Leader>b :Unite -quick-match buffer<CR>
+endif
+
+" COMPLETION ------------------------------------------------------------------
+" neocomplete if lua is available, neocomplcache otherwise
+
+if has('lua')
+    call dein#add('Shougo/neocomplete.vim')
+    let g:neocomplete#enable_at_startup = 1 "Use neocomplete.
+    let g:neocomplete#enable_smart_case = 1 "Use smartcase.
+    let g:neocomplete#sources#syntax#min_keyword_length = 3
+    " key-mappings.
+    inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+else
+    call dein#add('Shougo/neocomplcache.vim')
+    let g:neocomplcache_enable_at_startup=1
+    let g:neocomplcache_enable_fuzzy_completion=1
+endif
+
+call dein#end()
+if dein#check_install()
+    call dein#install()
+endif
+
+filetype plugin indent on
+colorscheme Tomorrow-Night-Bright
 

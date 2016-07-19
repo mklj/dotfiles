@@ -7,7 +7,7 @@ deploy/doc-html
 
 # vim plugins handled by neobundle.vim
 vim/bundle/*
-!vim/bundle/neobundle.vim
+!vim/bundle/dein.vim
 
 vim/backup
 vim/swap
