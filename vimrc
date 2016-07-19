@@ -29,21 +29,22 @@ function! StripTrailingWhitespace()
     call Preserve("%s/\\s\\+$//e")
 endfunction
 
-
 " ======= appearance
 "set background=dark
 set t_Co=256 " 256 colors terminal
 set cursorline " highlight the line the cursor is on
 set title " show filename in terminal title
-
 syntax enable
 set encoding=utf-8
-
 set noerrorbells
 set novisualbell
 "set t_vb=
+if exists('+colorcolumn')
+    set colorcolumn=80,120
+endif
 
 " ======= behaviour
+let mapleader="," " change the mapleader from \ to ,
 set hidden " allow modified buffers in the background
 set autoread "auto reload if file saved externally
 set lazyredraw " Don't update the display while executing macros
@@ -52,47 +53,49 @@ set scrolljump=5 "minimum number of lines to scroll
 "set showmatch
 set number
 set mouse=a " unleash the rodent
-"set mousehide " hide when characters are typed - only works in the GUI
 set backspace=indent,eol,start "allow backspacing everything in insert mode
 "set list "highlight whitespace
 " git commit messages: spell checking and automatic wrapping at 72 columns
 autocmd Filetype gitcommit setlocal spell textwidth=72
-" from http://wiki.contextgarden.net/Vim
-let g:tex_flavor = "latex" " use latex flavor for all .tex files
+" use latex flavor for all .tex files
+let g:tex_flavor = "latex"
 
 " where backup files are kept
 set backupdir=~/.vim/backup
-set directory=~/.vim/backup
-"set noswapfile
+set directory=~/.vim/swap
 
-" long lines handling / right margin
-"highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-"match OverLength /\%80v.\+/
 set wrap
 set textwidth=79
 set formatoptions=qn1j
 set viminfo='50,n~/.vim/viminfo
-if exists('+colorcolumn')
-    set colorcolumn=80,120
-endif
 
-" KEYBINDINGS -----------------------------------------------------------------
-let mapleader="," " change the mapleader from \ to ,
-inoremap jj <esc>*/
+inoremap jj <ESC>
+cmap w!! w !sudo tee % >/dev/null
 
-" ======= buffers
+" ======= buffers, windows
 nnoremap <F2> :bp<CR>
 nnoremap <F3> :bn<CR>
 nnoremap <F5> :tabprevious<CR>
 nnoremap <F6> :tabnext<CR>
 nnoremap <Leader>d :bd<CR>
+" moves around split windows
+nnoremap <leader>w <C-w><C-w>
 
 " ======= moving around
 " Treat long lines as break lines (useful when moving around in them)
 noremap j gj
 noremap k gk
-" moves around split windows
-nnoremap <leader>w <C-w><C-w>
+" see :help /magic
+noremap f /\V
+noremap F ?\V
+noremap / /\v
+noremap ? ?\v
+set ignorecase " case-insensitive search...
+set smartcase " ... unless an uppercase character is typed
+set incsearch
+"set hlsearch
+" clearing highlighted search
+"nmap <silent> <leader><space> :nohlsearch<CR>
 
 " ======= copy - paste
 
@@ -195,19 +198,6 @@ set foldnestmax=10 "deepest fold is ten levels
 "set foldlevel=1
 set foldlevelstart=99 "open all folds by default
 let g:xml_syntax_folding=1 "enable xml folding
-
-" ======= search and replace
-" see :help /magic
-noremap f /\V
-noremap F ?\V
-noremap / /\v
-noremap ? ?\v
-set ignorecase " case-insensitive search...
-set smartcase " ... unless an uppercase character is typed
-set incsearch
-"set hlsearch
-" clearing highlighted search
-"nmap <silent> <leader><space> :nohlsearch<CR>
 
 " ======= status line
 set noshowmode
