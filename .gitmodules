@@ -2,7 +2,6 @@
 	path = dotty
 	url = git@github.com:vibhavp/dotty.git
 	branch = master
-[submodule "vim/bundle/dein.vim"]
-	path = vim/bundle/dein.vim
-	url = git@github.com:Shougo/dein.vim.git
-	branch = master
+[submodule "vim/vim-plug"]
+	path = vim/vim-plug
+	url = git@github.com:junegunn/vim-plug.git

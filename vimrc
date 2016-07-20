@@ -7,10 +7,7 @@ endif
 set all& "reset everything to their defaults
 
 " ======= plugins manager initialization
-set runtimepath+=~/.vim/bundle/dein.vim
-call dein#begin(expand('~/.vim/bundle'))
-call dein#add('Shougo/dein.vim')
-"call dein#add('~/.vim/bundle/dein.vim')
+call plug#begin('~/.vim/plugins')
 
 " ======= functions
 function! Preserve(command)
@@ -210,7 +207,7 @@ set laststatus=2
 "set ruler "show line,column
 set showcmd
 " plugin: bling/vim-airline
-call dein#add('bling/vim-airline')
+Plug 'bling/vim-airline'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
@@ -237,7 +234,7 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 " ======= plugin: Shougo/unite.vim
 if v:version > 702
-    call dein#add('Shougo/unite.vim')
+    Plug 'Shougo/unite.vim'
     let g:unite_source_history_yank_enable = 1
 
     if executable('grep')
@@ -256,35 +253,32 @@ endif
 " neocomplete if lua is available, neocomplcache otherwise
 
 if has('lua')
-    call dein#add('Shougo/neocomplete.vim')
+    Plug 'Shougo/neocomplete.vim'
     let g:neocomplete#enable_at_startup = 1 "Use neocomplete.
     let g:neocomplete#enable_smart_case = 1 "Use smartcase.
     let g:neocomplete#sources#syntax#min_keyword_length = 3
-    " key-mappings.
+    " key-mappings
     inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 else
-    call dein#add('Shougo/neocomplcache.vim')
+    Plug 'Shougo/neocomplcache.vim'
     let g:neocomplcache_enable_at_startup=1
     let g:neocomplcache_enable_fuzzy_completion=1
 endif
 
 " =======
-call dein#add('Shougo/vimproc.vim', {'build': 'make'})
-call dein#add('chriskempson/vim-tomorrow-theme')
-call dein#add('evidens/vim-twig')
-call dein#add('flazz/vim-colorschemes')
-call dein#add('majutsushi/tagbar')
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+Plug 'chriskempson/vim-tomorrow-theme'
+Plug 'evidens/vim-twig'
+Plug 'flazz/vim-colorschemes'
+Plug 'majutsushi/tagbar'
 nmap <F9> :TagbarToggle<CR>
-call dein#add('nanotech/jellybeans.vim')
-call dein#add('scrooloose/nerdcommenter')
+Plug 'nanotech/jellybeans.vim'
+Plug 'scrooloose/nerdcommenter'
 map <leader>? <Plug>NERDCommenterToggle<CR>
-call dein#add('tpope/vim-surround')
+Plug 'tpope/vim-surround'
 
 " ======= end of initialization
-call dein#end()
-if dein#check_install()
-    call dein#install()
-endif
+call plug#end()
 
 filetype plugin indent on
 colorscheme Tomorrow-Night-Bright
