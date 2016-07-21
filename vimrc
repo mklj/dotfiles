@@ -254,16 +254,17 @@ endif
 
 if has('lua')
     Plug 'Shougo/neocomplete.vim'
-    let g:neocomplete#enable_at_startup = 1 "Use neocomplete.
-    let g:neocomplete#enable_smart_case = 1 "Use smartcase.
+    let g:neocomplete#enable_at_startup = 1
+    let g:neocomplete#enable_smart_case = 1
     let g:neocomplete#sources#syntax#min_keyword_length = 3
-    " key-mappings
-    inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 else
     Plug 'Shougo/neocomplcache.vim'
     let g:neocomplcache_enable_at_startup=1
     let g:neocomplcache_enable_fuzzy_completion=1
 endif
+
+" shared key mappings
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " =======
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
