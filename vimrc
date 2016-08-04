@@ -94,6 +94,13 @@ set incsearch
 " clearing highlighted search
 "nmap <silent> <leader><space> :nohlsearch<CR>
 
+" allows incsearch highlighting for range commands
+cnoremap $t <CR>:t''<CR>
+cnoremap $T <CR>:T''<CR>
+cnoremap $m <CR>:m''<CR>
+cnoremap $M <CR>:M''<CR>
+cnoremap $d <CR>:d<CR>
+
 " ======= copy - paste
 
 " from
@@ -189,8 +196,7 @@ set softtabstop=4
 " ======= folding
 set foldenable "enable folds by default
 set foldcolumn=2
-set foldmethod=syntax
-"set foldmethod=indent
+set foldmethod=indent
 set foldnestmax=10 "deepest fold is ten levels
 "set foldlevel=1
 set foldlevelstart=99 "open all folds by default
