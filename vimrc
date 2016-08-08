@@ -63,7 +63,7 @@ set directory=~/.vim/swap
 
 set wrap
 set textwidth=79
-set formatoptions=qn1j
+set formatoptions=qnac1
 set viminfo='50,n~/.vim/viminfo
 
 inoremap jj <ESC>
