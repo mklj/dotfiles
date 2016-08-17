@@ -5,3 +5,4 @@
 [submodule "vim/vim-plug"]
 	path = vim/vim-plug
 	url = git@github.com:junegunn/vim-plug.git
+    branch = master
