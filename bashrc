@@ -432,5 +432,5 @@ include_file()
     fi
 }
 
-include_file $HOME/dotfiles/lib/albert.sh
+include_file $HOME/lib/albert.sh
 
