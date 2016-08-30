@@ -7,6 +7,7 @@
     "link": {
         "bash_logout": "~/.bash_logout",
         "bashrc": "~/.bashrc",
+        "cmus/rc": "~/.cmus/rc",
         "gitconfig": "~/.gitconfig",
         "gnupg/gpg.conf": "~/.gnupg/gpg.conf",
         "inputrc": "~/.inputrc",
@@ -14,11 +15,12 @@
         "sqliterc": "~/.sqliterc",
         "toprc": "~/.toprc",
         "vim/": "~/.vim",
-        "vimrc": "~/.vimrc",
+        "vimrc": "~/.vimrc"
     },
 
     "commands": [
         "ln -s ~/.profile ~/.pam_environment",
+        "mkdir ~/.cmus",
         "mkdir ~/.vim/backup ~/.vim/swap",
         "mkdir ~/.gnupg"
     ]

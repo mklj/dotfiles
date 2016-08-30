@@ -8,6 +8,7 @@
 		"bash_logout": "~/.bash_logout",
 		"bashrc": "~/.bashrc",
 		"bpython/": "~/.config/bpython",
+        "cmus/rc": "~/.cmus/rc",
 		"gitconfig": "~/.gitconfig",
 		"gmrunrc": "~/.gmrunrc",
         "gnupg/gpg.conf": "~/.gnupg/gpg.conf",
@@ -26,6 +27,7 @@
 
 	"commands": [
 		"ln -s ~/.profile ~/.pam_environment",
+        "mkdir ~/.cmus",
         "mkdir ~/.vim/backup ~/.vim/swap"
     ]
 }

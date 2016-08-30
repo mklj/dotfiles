@@ -1,0 +1,6 @@
+# $HOME/.cmus/rc personal configuration file
+
+cd $HOME/music/playlists
+
+unbind -f common z
+bind -f common w player-prev
