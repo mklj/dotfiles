@@ -52,10 +52,13 @@ set number
 set mouse=a " unleash the rodent
 set backspace=indent,eol,start "allow backspacing everything in insert mode
 "set list "highlight whitespace
+
+" ======= filetypes
 " git commit messages: spell checking and automatic wrapping at 72 columns
 autocmd Filetype gitcommit setlocal spell textwidth=72
 " use latex flavor for all .tex files
 let g:tex_flavor = "latex"
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 " where backup files are kept
 set backupdir=~/.vim/backup
