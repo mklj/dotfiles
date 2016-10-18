@@ -356,27 +356,6 @@ alias grep='grep --color'
 alias egrep='egrep --color'
 alias cdiff='colordiff'
 
-## PACKAGES MANAGEMENT
-## apt-get & dpkg
-alias maj='sudo apt-get update && sudo apt-get upgrade'
-pksearch() { apt-cache search $1 | sort; }
-alias pkshow='apt-cache show'
-pk() { dpkg-query -l "*$1*"; }
-alias repos='grep -rE "^deb " /etc/apt/sources.list /etc/apt/sources.list.d/*.list | sed "s/^.*:\/\///g" | sort'
-## pacman
-alias pacupg='sudo pacman -Syu'        # Synchronize with repositories and then upgrade packages that are out of date on the local system.
-alias pacin='sudo pacman -S'           # Install specific package(s) from the repositories
-alias pacins='sudo pacman -U'          # Install specific package not from the repositories but from a file
-alias pacre='sudo pacman -R'           # Remove the specified     package(s), retaining its configuration(s) and required dependencies
-alias pacrem='sudo pacman -Rns'        # Remove the specified package(s), its configuration(s) and unneeded dependencies
-alias pacrep='pacman -Si'              # Display information about a given package in the repositories
-alias pacreps='pacman -Ss'             # Search for package(s) in the repositories
-alias pacloc='pacman -Qi'              # Display information abouta given package in the local database
-alias paclocs='pacman -Qs'             # Search for package(s) in the local database
-alias pacupd='sudo pacman -Sy && sudo abs'     # Update and refresh the local package and ABS databases against repositories
-alias pacinsd='sudo pacman -S --asdeps'        # Install given package(s) as dependencies of another package
-alias pacmir='sudo pacman -Syy'                # Force refresh of all package lists after updating /etc/pacman.d/mirrorlist
-
 ## APPLICATIONS
 alias ee='emacs --no-window'
 alias vv='vim'
@@ -433,4 +412,5 @@ include_file()
 }
 
 include_file $HOME/lib/albert.sh
+include_file $HOME/lib/distro.sh && bootstrap_distro
 
