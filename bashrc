@@ -394,12 +394,6 @@ alias listips='nmap -sP 192.168.2.0/24'
 # get tcp opened ports and PID/Process associate
 alias ports='netstat -anop | grep -i list | grep tcp'
 
-## FUN
-# fortune + cowsay
-alias cow='fortune | cowsay -f $(ls /usr/share/cowsay/cows/ | shuf -n1)'
-# random git commit message
-alias rgc='git commit -m "`curl -s http://whatthecommit.com/index.txt`"'
-
 # ==============================================================================
 # ADDITIONAL STUFF
 # ==============================================================================
