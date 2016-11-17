@@ -213,6 +213,7 @@ set wildmenu " enhanced command-line completion
 if exists('&wildignorecase')
     set wildignorecase
 endif
+set wildmode=longest,list
 set wildignore+=*.so,*.swp,*.zip,*.bz,*.bz2,*.gz
 set laststatus=2
 "set ruler "show line,column
