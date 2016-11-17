@@ -185,6 +185,11 @@ if executable('xclip')
     nnoremap <silent> <Leader>p :read !xclip -o -selection clipboard<CR>
 endif
 
+" D deletes from the cursor to the end of the line; C changes from the cursor
+" to the end of the line. For some reason, however, Y yanks the entire line,
+" both before and after the cursor. We don't want this.
+nnoremap Y y$
+
 " ======= indentation
 " To convert tabs to space
 " :set expandtab
