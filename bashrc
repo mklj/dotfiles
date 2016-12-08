@@ -364,6 +364,7 @@ alias jc='javac'
 alias jj='java'
 alias uu='urxvt'
 alias za='zathura'
+alias o='less'
 alias oo='xdg-open'
 
 ## ADMIN
