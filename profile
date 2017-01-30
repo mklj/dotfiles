@@ -64,7 +64,7 @@ export HISTFILESIZE=$HISTSIZE
 export HISTCONTROL=ignoredups:erasedups
 
 # LESS OPTIONS
-export LESS='-iR'
+export LESS='-iRn'
 
 # executables
 export EDITOR=vim
