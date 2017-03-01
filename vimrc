@@ -88,10 +88,10 @@ nnoremap <leader>w <C-w><C-w>
 noremap j gj
 noremap k gk
 " see :help /magic
-noremap f /\V
-noremap F ?\V
-noremap / /\v
-noremap ? ?\v
+noremap / /\V
+noremap ? ?\V
+"noremap / /\v
+"noremap ? ?\v
 set ignorecase " case-insensitive search...
 set smartcase " ... unless an uppercase character is typed
 set incsearch
@@ -105,6 +105,42 @@ cnoremap $T <CR>:T''<CR>
 cnoremap $m <CR>:m''<CR>
 cnoremap $M <CR>:M''<CR>
 cnoremap $d <CR>:d<CR>
+
+" EASYMOTION ------------------------------------------------------------------
+"Plug 'easymotion/vim-easymotion'
+
+"let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" Bi-directional find motion
+" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+" `s{char}{label}`
+"nmap f <Plug>(easymotion-s)
+" or
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+"nmap f <Plug>(easymotion-s2)
+
+" Turn on case insensitive feature
+"let g:EasyMotion_smartcase = 1
+
+" JK motions: Line motions
+"map <Leader>j <Plug>(easymotion-j)
+"map <Leader>k <Plug>(easymotion-k)
+
+" <Leader>f{char} to move to {char}
+"map  f <Plug>(easymotion-bd-f)
+"nmap f <Plug>(easymotion-overwin-f)
+
+" s{char}{char} to move to {char}{char}
+"nmap s <Plug>(easymotion-overwin-f2)
+
+" Move to line
+"map <Leader>L <Plug>(easymotion-bd-jk)
+"nmap <Leader>L <Plug>(easymotion-overwin-line)
+
+" Move to word
+"map  w <Plug>(easymotion-bd-w)
+"nmap w <Plug>(easymotion-overwin-w)
 
 " ======= copy - paste
 
