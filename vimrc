@@ -90,8 +90,8 @@ noremap k gk
 " see :help /magic
 noremap / /\V
 noremap ? ?\V
-"noremap / /\v
-"noremap ? ?\v
+noremap f /\v
+noremap F ?\v
 set ignorecase " case-insensitive search...
 set smartcase " ... unless an uppercase character is typed
 set incsearch
