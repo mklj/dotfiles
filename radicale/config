@@ -1,0 +1,25 @@
+[server]
+hosts = 127.0.0.1:5232
+pid = /run/radicale.pid
+
+ssl = False
+
+# This needs to change if served from a subdirectory instead of a
+# subdomain
+#base_prefix = /
+base_prefix = /dav
+
+[encoding]
+request = utf-8
+stock = utf-8
+
+[auth]
+type = None
+
+[rights]
+type = None
+
+[storage]
+#type = filesystem
+type = multifilesystem
+filesystem_folder = /home/mkl/dav/collections/
