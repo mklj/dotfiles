@@ -338,6 +338,7 @@ alias du='du -h'
 #alias cal='cal -NMb'
 alias tf='tail -f'
 pss() { ps -eo euser,ruser,pid,ppid,lstart,stat,args | grep -v grep| grep -E "EUSER|$1"; }
+alias psleep='ps -eo ppid,pid,user,stat,pcpu,comm,wchan:32'
 highlight() { grep --color -E "$1|*"; }
 alias hl='highlight'
 
