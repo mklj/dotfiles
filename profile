@@ -71,3 +71,5 @@ export EDITOR=vim
 export PAGER=less
 [ -n "$DISPLAY" ] && export BROWSER=firefox || export BROWSER=w3m
 
+export TODAY=$(date +%Y%m%d)
+
