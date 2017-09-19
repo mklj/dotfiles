@@ -65,6 +65,7 @@ export HISTCONTROL=ignoredups:erasedups
 
 # LESS OPTIONS
 export LESS='-iRn'
+export SYSTEMD_LESS=FRXMK
 
 # executables
 export EDITOR=vim
