@@ -347,7 +347,7 @@ alias hh='history'
 alias hs='history | grep -i --color=auto'
 # most used commands
 alias freq='cut -f1 -d" " ~/.bash_history | sort | uniq -c | sort -nr | head -n 30'
-alias jobs='jobs -l'
+alias j='jobs -l'
 
 # be careful
 alias rm='rm -I'
