@@ -22,9 +22,10 @@ function! Preserve(command)
     call cursor(l, c)
 endfunction
 
-function! StripTrailingWhitespace()
+function! <SID>StripTrailingWhitespaces()
     call Preserve("%s/\\s\\+$//e")
 endfunction
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
 " ======= appearance
 "set background=dark
@@ -49,6 +50,7 @@ set scrolloff=3 " minimum lines to keep above and below cursor
 set scrolljump=5 "minimum number of lines to scroll
 "set showmatch
 set number
+set relativenumber
 set mouse=a " unleash the rodent
 set backspace=indent,eol,start "allow backspacing everything in insert mode
 nnoremap <F1> <nop>
@@ -75,11 +77,11 @@ inoremap jj <ESC>
 cmap w!! w !sudo tee % >/dev/null
 
 " ======= buffers, windows
-nnoremap <F2> :bp<CR>
-nnoremap <F3> :bn<CR>
+nnoremap <F2> :bprevious<CR>
+nnoremap <F3> :bnext<CR>
 nnoremap <F5> :tabprevious<CR>
 nnoremap <F6> :tabnext<CR>
-nnoremap <Leader>d :bd<CR>
+nnoremap <Leader>d :bdelete<CR>
 " moves around split windows
 nnoremap <leader>w <C-w><C-w>
 
@@ -130,6 +132,7 @@ cnoremap $d <CR>:d<CR>
 " <Leader>f{char} to move to {char}
 "map  f <Plug>(easymotion-bd-f)
 "nmap f <Plug>(easymotion-overwin-f)
+
 
 " s{char}{char} to move to {char}{char}
 "nmap s <Plug>(easymotion-overwin-f2)
@@ -304,7 +307,6 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 
 " airline-whitespace
 let g:airline#extensions#whitespace#enabled = 1
-let g:airline#extensions#whitespace#mixed_indent_algo = 0
 let g:airline#extensions#whitespace#symbol = '!'
 let g:airline#extensions#whitespace#checks = [ 'indent', 'trailing' ]
 let g:airline#extensions#whitespace#show_message = 1
@@ -325,18 +327,24 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 " ======= plugin: Shougo/unite.vim
 if v:version > 702
     Plug 'Shougo/unite.vim'
+    Plug 'Shougo/neoyank.vim'
+    Plug 'tsukkee/unite-help'
+    Plug 'Shougo/unite-outline'
+
     let g:unite_source_history_yank_enable = 1
 
     if executable('grep')
         let g:unite_source_grep_command='grep'
-        let g:unite_source_grep_default_opts='-iR --color=auto --line-number'
-        "let g:unite_source_grep_recursive_opt=''
+        let g:unite_source_grep_default_opts='-i --color=auto --line-number'
+        let g:unite_source_grep_recursive_opt='-iR --color=auto --line-number'
     endif
 
-    nnoremap <Leader>l :Unite -start-insert file_rec/async:. buffer<CR>
-    nnoremap <Leader>g :Unite grep:.<CR>
+    nnoremap <Leader>l :Unite -start-insert buffer file_rec/async:!<CR>
+    nnoremap <Leader>g :Unite grep:! -auto-preview<CR>
     nnoremap <Leader>r :Unite history/yank<CR>
-    nnoremap <Leader>b :Unite -quick-match buffer<CR>
+    nnoremap <Leader>b :Unite -quick-match buffer:!<CR>
+    nnoremap <Leader>o :Unite outline<CR>
+    nnoremap <Leader>h :Unite help<CR>
 endif
 
 " ======= completion
@@ -371,6 +379,6 @@ Plug 'tpope/vim-surround'
 " ======= end of initialization
 call plug#end()
 
-filetype plugin indent on
+"filetype plugin indent on " vim-plug already does that in plug#end()
 colorscheme Tomorrow-Night-Bright
 
