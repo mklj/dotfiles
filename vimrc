@@ -362,23 +362,47 @@ else
 endif
 
 " shared key mappings
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " =======
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'evidens/vim-twig'
-Plug 'flazz/vim-colorschemes'
-Plug 'majutsushi/tagbar'
-nmap <F9> :TagbarToggle<CR>
-Plug 'nanotech/jellybeans.vim'
+"Plug 'majutsushi/tagbar'
+"nmap <F9> :TagbarToggle<CR>
 Plug 'scrooloose/nerdcommenter'
 map <leader>? <Plug>NERDCommenterToggle<CR>
 Plug 'tpope/vim-surround'
+
+Plug 'kien/rainbow_parentheses.vim'
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+" colorschemes
+Plug 'altercation/vim-colors-solarized'
+Plug 'arcticicestudio/nord-vim'
+Plug 'chriskempson/tomorrow-theme'
+Plug 'cocopon/iceberg.vim'
+Plug 'jacoborus/tender.vim'
+Plug 'joshdick/onedark.vim'
+Plug 'lifepillar/vim-solarized8'
+Plug 'lokaltog/vim-distinguished'
+Plug 'morhetz/gruvbox'
+Plug 'nanotech/jellybeans.vim'
+Plug 'nielsmadan/harlequin'
+Plug 'nlknguyen/papercolor-theme'
+Plug 'noahfrederick/vim-hemisu'
+Plug 'reedes/vim-colors-pencil'
+Plug 'reewr/vim-monokai-phoenix'
+Plug 'roosta/srcery'
+Plug 'sjl/badwolf'
+Plug 'tomasr/molokai'
+Plug 'vim-scripts/wombat256.vim'
+Plug 'w0ng/vim-hybrid'
 
 " ======= end of initialization
 call plug#end()
 
 "filetype plugin indent on " vim-plug already does that in plug#end()
-colorscheme Tomorrow-Night-Bright
-
+colorscheme default
