@@ -50,6 +50,8 @@ shopt -s histappend
 shopt -s histreedit
 # edit a recalled history line before executing
 #shopt -s histverify
+# Save multi-line commands as one command
+shopt -s cmdhist
 
 # try to keep environment pollution down, EPA loves us
 unset safe_term match_lhs
@@ -64,6 +66,8 @@ unset safe_term match_lhs
 # directories and subdirectories.  If followed by a /, two adjacent *s will
 # match only directories and subdirectories.
 [ $BASH_VERSINFO -ge 4 ] && shopt -s globstar
+# Case-insensitive globbing (used in pathname expansion)
+shopt -s nocaseglob;
 
 # If set, Bash lists the status of any stopped and running jobs before exiting
 # an interactive shell. If any jobs are running, this causes the exit to be
@@ -282,7 +286,7 @@ set_prompt() {
 	PS1="\n $user_color[\$?] \u@\h:\w \\$\[\e[0m\] "
 }
 # also, make sure all terminals save history
-PROMPT_COMMAND='show_name; set_prompt;'
+PROMPT_COMMAND='history -a; show_name; set_prompt;'
 
 # support colors in less
 # To customize the colors, see Wikipedia:ANSI escape code for reference
@@ -401,13 +405,12 @@ alias ports='netstat -anop | grep -i list | grep tcp'
 # ADDITIONAL STUFF
 # ==============================================================================
 
-include_file()
-{
+function include_file {
     if [[ -r "$1" ]]; then
         source "$1"
     fi
 }
 
-include_file $HOME/lib/albert.sh
+include_file $HOME/lib/ami/albert.sh
 include_file $HOME/lib/distro.sh && bootstrap_distro
-
+#include_file $HOME/lib/bash-sensible/sensible.bash
