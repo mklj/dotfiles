@@ -37,6 +37,8 @@ set bell-style none
 # ----------------------- completion settings ---------------------------------
 # case-insensitive tab completion
 set completion-ignore-case on
+# Treat hyphens and underscores as equivalent
+set completion-map-case on
 # hit tab only once when there are several choices
 #set show-all-if-ambiguous on
 # produce a list only when no completion is possible
@@ -748,4 +750,3 @@ $endif
 #"y"  vi-yank-to
 #"|"  vi-column
 #"~"  vi-change-case
-
