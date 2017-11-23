@@ -57,11 +57,11 @@ export PAPERSIZE=a4
 
 # history
 export HISTTIMEFORMAT='%F %T - '
-HISTIGNORE='pwd:l:ls:ll:la:lla:l.'
-export HISTSIZE=9000
+export HISTIGNORE='&:[ ]*:exit:ls:bg:fg:history:clear:pwd:l:ll:la:lla:l.'
+export HISTSIZE=500000
 export HISTFILESIZE=$HISTSIZE
-#HISTCONTROL=ignorespace:ignoredups
-export HISTCONTROL=ignoredups:erasedups
+#HISTCONTROL=ignorespace:ignoredups:
+export HISTCONTROL='erasedups:ignoreboth'
 
 # LESS OPTIONS
 export LESS='-iRn'
@@ -72,5 +72,17 @@ export EDITOR=vim
 export PAGER=less
 [ -n "$DISPLAY" ] && export BROWSER=firefox || export BROWSER=w3m
 
+# This defines where cd looks for targets
+# Add the directories you want to have fast access to, separated by colon
+# Ex: CDPATH=".:~:~/projects" will look for targets in the current working
+# directory, in home and in the ~/projects folder
+CDPATH="."
+
+# This allows you to bookmark your favorite places across the file system
+# Define a variable containing a path and you will be able to cd into it
+# regardless of the directory you're in
+shopt -s cdable_vars
+
+# misc variables
 export TODAY=$(date +%Y%m%d)
 
