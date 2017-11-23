@@ -28,9 +28,10 @@ endfunction
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
 " ======= appearance
-"set background=dark
+set background=dark
 set t_Co=256 " 256 colors terminal
 set cursorline " highlight the line the cursor is on
+set titlestring=%t
 set title " show filename in terminal title
 syntax enable
 set encoding=utf-8
@@ -52,6 +53,7 @@ set scrolljump=5 "minimum number of lines to scroll
 set number
 set relativenumber
 set mouse=a " unleash the rodent
+set ttymouse=xterm2
 set backspace=indent,eol,start "allow backspacing everything in insert mode
 nnoremap <F1> <nop>
 nnoremap Q <nop>
@@ -405,4 +407,4 @@ Plug 'w0ng/vim-hybrid'
 call plug#end()
 
 "filetype plugin indent on " vim-plug already does that in plug#end()
-colorscheme default
+colorscheme Papercolor
