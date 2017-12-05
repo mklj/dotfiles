@@ -24,6 +24,7 @@ type = multifilesystem
 filesystem_folder = /home/mkl/dav
 filesystem_locking = True
 filesystem_fsync = True
+hook = git add -A && (git diff --cached --quiet || git commit -m "Changes by "%(user)s)
 
 [web]
 type = internal
