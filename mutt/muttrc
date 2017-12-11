@@ -1,0 +1,81 @@
+source "gpg -dq $HOME/.mutt/passwd.gpg |"
+# User variables must begin with "my". Example:
+# set my_name = "John Doe"
+set imap_user = "mja"
+set imap_pass = $my_passwd
+#set imap_url =
+set smtp_url = "smtp://mail2.amisw.com:465"
+set smtp_pass = $my_passwd
+set from = "michael.janin@bertin.fr"
+set use_from = yes
+set envelope_from = yes
+set send_charset="us-ascii:utf-8"
+set realname = "Michael Janin"
+set message_cachedir = ~/.mutt/cache/bodies
+set move = no
+set signature = ~/.mutt/signature
+set mail_check = 120 # check for new mail every x seconds
+set timeout = 0 #  after x secs of no keypresses, start checking for new mail
+set folder = "imaps://mail2.amisw.com/INBOX"
+set spoolfile = $folder
+#set mbox_type = mbox
+set mbox_type = Maildir
+set record = "+Sent"
+set postponed = "+Drafts"
+set header_cache = ~/.mutt/cache/headers
+# bash syntax $(...) does not work
+set editor = `echo \$EDITOR`
+set certificate_file = ~/.mutt/certificates
+set ssl_starttls = yes
+set ssl_force_tls = no
+unset imap_passive
+
+# Any IMAP folders that should be checked regularly for new mail should be listed here:
+#mailboxes =INBOX =family
+#mailboxes imaps://imap.gmail.com/INBOX imaps://imap.gmail.com/family
+# Alternatively, check for all subscribed IMAP folders (as if all were added
+# with a mailboxes line):
+set imap_check_subscribed
+# These two versions are equivalent if you want to subscribe to all folders. So
+# the second method is much more convenient, but the first one gives you more
+# flexibility. Also, newer Mutt versions are configured by default to include a
+# macro bound to the 'y' key which will allow you to change to any of the folders
+# listed under mailboxes.
+# If you do not set this variable, the spoolfile will be used by default. This
+# variable is also important for the sidebar.
+
+#echo "source ~/.mutt/gpg.rc >> ~/.mutt/muttrc"
+# display download progress
+set net_inc = 5
+
+bind pager j next-line
+bind pager k previous-line
+bind attach,index,pager \CD next-page
+bind attach,index,pager \CU previous-page
+bind pager g top
+bind pager G bottom
+bind attach,index g first-entry
+bind attach,index G last-entry
+
+# Cancel a message when subject is blank
+set abort_nosubject = yes
+
+source /home/mja/.mutt/colors/solarized-light-16.muttrc
+
+set smart_wrap = yes
+set sort = 'threads'
+set sort_aux = 'reverse-last-date-received'
+
+set date_format = "%d %b %R"
+set index_format = "%4C %Z %D %-15.15L (%4l) %s"
+
+# view HTML messages in external browser (lynx here)
+#set mailcap_path = ~/.mutt/mailcap
+#auto_view text/html
+
+# aliases
+alias ses sebastien.seron@bertin.fr
+alias cjo clement.joffart@bertin.fr
+alias alian alain.barbet@bertin.fr
+alias nat nathalie.marinier@bertin.fr
+
