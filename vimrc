@@ -400,11 +400,16 @@ Plug 'reewr/vim-monokai-phoenix'
 Plug 'roosta/srcery'
 Plug 'sjl/badwolf'
 Plug 'tomasr/molokai'
+Plug 'vim-scripts/calmar256-lightdark.vim'
+Plug 'vim-scripts/mayansmoke'
 Plug 'vim-scripts/wombat256.vim'
 Plug 'w0ng/vim-hybrid'
+Plug 'zeis/vim-kolor'
+Plug 'jnurmine/Zenburn'
 
 " ======= end of initialization
 call plug#end()
 
 "filetype plugin indent on " vim-plug already does that in plug#end()
-colorscheme Papercolor
+colorscheme PaperColor
+
