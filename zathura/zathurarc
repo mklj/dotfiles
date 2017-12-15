@@ -1,5 +1,5 @@
 ## MAPPINGS
-map <f> toggle_fullscreen
+map f toggle_fullscreen
 map <Esc> abort
 
 ## OPTIONS
