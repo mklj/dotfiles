@@ -1,6 +1,11 @@
 # $HOME/.cmus/rc personal configuration file
 
-cd /home/mja/music/playlists
+cd ~/music/playlists
 
 unbind -f common z
 bind -f common w player-prev
+
+unbind -f common ,
+unbind -f common .
+bind -f common < seek -1m
+bind -f common > seek +1m
