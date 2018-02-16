@@ -345,6 +345,7 @@ pss() { ps -eo euser,ruser,pid,ppid,lstart,stat,args | grep -v grep| grep -E "EU
 alias psleep='ps -eo ppid,pid,user,stat,pcpu,comm,wchan:32'
 highlight() { grep --color -E "$1|*"; }
 alias hl='highlight'
+alias trim='tr -s "\t" " "'
 
 alias hh='history'
 # history search
