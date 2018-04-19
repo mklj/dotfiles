@@ -42,7 +42,7 @@ set completion-map-case on
 # hit tab only once when there are several choices
 #set show-all-if-ambiguous on
 # produce a list only when no completion is possible
-set show-all-ifunmodified on
+set show-all-if-unmodified on
 # do not show hidden files in the list
 #set match-hidden-files off
 # remove the annoying "-- more --" prompt
