@@ -1,5 +1,0 @@
-# vim/backup is for temp files, but empty folders can't be commited in git
-# Ignore everything in this directory
-*
-# Except this file
-!.gitignore
