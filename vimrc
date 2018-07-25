@@ -240,9 +240,25 @@ nnoremap Y y$
 " :set noexpandtab
 " :retab!
 
-set expandtab
+" tabstop: How many columns a tab should be made up of in the editor view, it
+" takes care only of how tabs will be rendered and has no effect on the actual
+" text.
 set tabstop=4
+" expandtab: Enabling this option will insert the appropriate number of spaces
+" when in insert mode.
+set noexpandtab
+" shiftwidth: how many columns text will be indented when using indent
+" operations (such as << or >>) in normal or visual mode; this also covers
+" automatic C-style indentation.
 set shiftwidth=4
+" softtabstop: results in different behaviours depending on its own value and
+" the one set for tabstop and the status of the expandtab toggle:
+"     * softtabstop < tabstop, noexpandtab - This will result in a combination
+"     of tabs and spaces to make up the total spacing
+"     * softtabstop == tabstop, noexpandtab - This will always force the use of
+"     tabs
+"     * expandtab - The value of softtabstop will be ignored and spaces will be
+"     forced
 set softtabstop=4
 
 " ======= folding
