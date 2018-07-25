@@ -267,6 +267,7 @@ set_prompt() {
 	local color_off='\[\e[0m\]'   # text reset
 	local yellow='\[\e[0;33m\]'
 	local red='\[\e[0;91m\]'
+	local purple='\[\e[0;35m\]'
 	local bg_red='\[\e[41m\]'
 	local bg_grey='\[\e[7;37m\]'
 
@@ -274,7 +275,7 @@ set_prompt() {
 	if [[ $UID -eq 0 ]]; then
 		user_color=$red
     else
-		user_color=$yellow
+		user_color=$purple
 	fi
 	# server color
 	if [[ -n "$SSH_CLIENT" || -n "$SSH2_CLIENT" ]]; then

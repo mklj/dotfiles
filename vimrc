@@ -28,7 +28,6 @@ endfunction
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
 " ======= appearance
-set background=dark
 set t_Co=256 " 256 colors terminal
 set cursorline " highlight the line the cursor is on
 set titlestring=%t
@@ -408,10 +407,17 @@ Plug 'vim-scripts/wombat256.vim'
 Plug 'w0ng/vim-hybrid'
 Plug 'zeis/vim-kolor'
 Plug 'jnurmine/Zenburn'
+Plug 'chriskempson/base16-vim'
 
 " ======= end of initialization
 call plug#end()
 
 "filetype plugin indent on " vim-plug already does that in plug#end()
-colorscheme PaperColor
+set background=light
+"let g:solarized_termcolors=256
+"let g:solarized_contrast="normal"
+"let g:solarized_visibility="high"
+"let base16colorspace=256  " Access colors present in 256 colorspace
+
+colorscheme calmar256-light
 
