@@ -56,12 +56,14 @@ export PAPERSIZE=a4
 #export LC_ALL=
 
 # history
+# If the value of HISTCONTROL includes "ignorespace" or "ignoreboth", commands
+# that begin with a space are omitted from history. If the value includes
+# "ignore dups" or "ignoreboth", it's the same as "&" in HISTIGNORE
+export HISTIGNORE='exit:ls:bg:fg:history:clear:pwd:l:ll:la:lla:l.'
+export HISTCONTROL='erasedups:ignoreboth'
 export HISTTIMEFORMAT='%F %T - '
-export HISTIGNORE='&:[ ]*:exit:ls:bg:fg:history:clear:pwd:l:ll:la:lla:l.'
 export HISTSIZE=500000
 export HISTFILESIZE=$HISTSIZE
-#HISTCONTROL=ignorespace:ignoredups:
-export HISTCONTROL='erasedups:ignoreboth'
 
 # LESS OPTIONS
 export LESS='-iRn'
