@@ -261,6 +261,14 @@ set shiftwidth=4
 "     forced
 set softtabstop=4
 
+" Tabs and spaces visibility
+" trailing whitespace appears red
+autocmd syntax * syntax match ExtraWhitespace /\s\+$\| \+\ze\t/ containedin=ALL
+autocmd colorscheme * highlight ExtraWhitespace ctermbg=red guibg=red
+" tabs are underlined
+autocmd syntax * syntax match Tab /\t/ containedin=ALL
+autocmd colorscheme * highlight Tab cterm=underline gui=underline
+
 " ======= folding
 set foldenable "enable folds by default
 set foldcolumn=2
