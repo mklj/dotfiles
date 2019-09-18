@@ -375,6 +375,10 @@ alias za='zathura'
 alias o='less'
 alias oo='xdg-open'
 
+## screen
+alias sls='screen -ls'
+alias sr='screen -r'
+
 ## ADMIN
 # list all users
 # could also use 'lastlog | sort -bd'
