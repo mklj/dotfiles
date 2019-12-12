@@ -275,7 +275,7 @@ set_prompt() {
 	if [[ $UID -eq 0 ]]; then
 		user_color=$red
     else
-		user_color=$purple
+		user_color=$yellow
 	fi
 	# server color
 	if [[ -n "$SSH_CLIENT" || -n "$SSH2_CLIENT" ]]; then
