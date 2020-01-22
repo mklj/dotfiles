@@ -432,6 +432,8 @@ Plug 'w0ng/vim-hybrid'
 Plug 'zeis/vim-kolor'
 Plug 'jnurmine/Zenburn'
 Plug 'chriskempson/base16-vim'
+Plug 'mhinz/vim-janah'
+autocmd ColorScheme janah highlight Normal ctermbg=235
 
 " ======= end of initialization
 call plug#end()
