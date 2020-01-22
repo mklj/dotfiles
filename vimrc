@@ -437,11 +437,10 @@ Plug 'chriskempson/base16-vim'
 call plug#end()
 
 "filetype plugin indent on " vim-plug already does that in plug#end()
-set background=light
+set background=dark
 "let g:solarized_termcolors=256
 "let g:solarized_contrast="normal"
 "let g:solarized_visibility="high"
 "let base16colorspace=256  " Access colors present in 256 colorspace
-
-colorscheme calmar256-light
+colorscheme gruvbox
 
