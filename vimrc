@@ -407,22 +407,20 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
 " colorschemes
-Plug 'altercation/vim-colors-solarized'
 Plug 'arcticicestudio/nord-vim'
 Plug 'chriskempson/tomorrow-theme'
 Plug 'cocopon/iceberg.vim'
 Plug 'jacoborus/tender.vim'
+Plug 'jnurmine/Zenburn'
 Plug 'joshdick/onedark.vim'
-Plug 'lifepillar/vim-solarized8'
 Plug 'lokaltog/vim-distinguished'
+Plug 'mhinz/vim-janah'
+autocmd ColorScheme janah highlight Normal ctermbg=235
 Plug 'morhetz/gruvbox'
 Plug 'nanotech/jellybeans.vim'
-Plug 'nielsmadan/harlequin'
 Plug 'nlknguyen/papercolor-theme'
-Plug 'noahfrederick/vim-hemisu'
 Plug 'reedes/vim-colors-pencil'
 Plug 'reewr/vim-monokai-phoenix'
-Plug 'roosta/srcery'
 Plug 'sjl/badwolf'
 Plug 'tomasr/molokai'
 Plug 'vim-scripts/calmar256-lightdark.vim'
@@ -430,19 +428,11 @@ Plug 'vim-scripts/mayansmoke'
 Plug 'vim-scripts/wombat256.vim'
 Plug 'w0ng/vim-hybrid'
 Plug 'zeis/vim-kolor'
-Plug 'jnurmine/Zenburn'
-Plug 'chriskempson/base16-vim'
-Plug 'mhinz/vim-janah'
-autocmd ColorScheme janah highlight Normal ctermbg=235
 
 " ======= end of initialization
 call plug#end()
 
 "filetype plugin indent on " vim-plug already does that in plug#end()
 set background=dark
-"let g:solarized_termcolors=256
-"let g:solarized_contrast="normal"
-"let g:solarized_visibility="high"
-"let base16colorspace=256  " Access colors present in 256 colorspace
 colorscheme gruvbox
 
