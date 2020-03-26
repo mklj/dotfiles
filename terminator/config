@@ -1,9 +1,9 @@
 [global_config]
+  always_split_with_profile = True
   borderless = True
   broadcast_default = off
   focus = system
   tab_position = right
-  title_transmit_bg_color = "#d30102"
 [keybindings]
 [layouts]
   [[default]]
@@ -20,7 +20,8 @@
     background_color = "#282828"
     copy_on_selection = True
     cursor_blink = False
-    cursor_color = "#7c6f64"
+    cursor_color = "#ffa4fe"
+    cursor_color_fg = False
     font = Ubuntu Mono 12
     foreground_color = "#ebdbb2"
     palette = "#181818:#cc241d:#98971a:#d79921:#458588:#b16286:#689d6a:#ebdbb2:#928374:#fb4934:#b8bb26:#fabd2f:#83a598:#d3869b:#8ec07c:#ebdbb2"
@@ -30,11 +31,27 @@
     use_system_font = False
   [[gruvbox-dark]]
     background_color = "#282828"
-    cursor_color = "#7c6f64"
+    copy_on_selection = True
+    cursor_blink = False
+    cursor_color = "#ffa4fe"
+    cursor_color_fg = False
+    font = Ubuntu Mono 12
     foreground_color = "#ebdbb2"
     palette = "#181818:#cc241d:#98971a:#d79921:#458588:#b16286:#689d6a:#ebdbb2:#928374:#fb4934:#b8bb26:#fabd2f:#83a598:#d3869b:#8ec07c:#ebdbb2"
+    scrollback_infinite = True
+    scrollbar_position = hidden
+    show_titlebar = False
+    use_system_font = False
   [[gruvbox-light]]
     background_color = "#eee8d5"
-    cursor_color = "#002b36"
+    copy_on_selection = True
+    cursor_blink = False
+    cursor_color = "#cc0000"
+    cursor_color_fg = False
+    font = Ubuntu Mono 12
     foreground_color = "#002b36"
     palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
+    scrollback_infinite = True
+    scrollbar_position = hidden
+    show_titlebar = False
+    use_system_font = False
