@@ -11,7 +11,7 @@
 # https://www.gnu.org/software/bash/manual/html_node/Readline-Init-File.html
 # http://linux.about.com/library/cmd/blcmdl3_readline.htm
 #
-# You can re-read the inputrc file with C-x C-r.
+# You can re-read the inputrc file with C-x C-r, or run 'bind -f ~/.inputrc'.
 # Lines beginning with '#' are comments.
 #
 # First, include any system-wide bindings and variable
@@ -109,20 +109,24 @@ $if mode=emacs
     "\e-": yank-last-arg
 
     # Ctrl-left|right-arrow
-    "\e[1;5D": shell-backward-word
-    "\[1;5C": shell-forward-word
-    #"\e[1;5D": backward-word
-    #"\[1;5C": forward-word
-    # Alt-left|right-arrow
-    "\e[1;3D": backward-kill-word
-    "\e[1;3C": kill-word
+	"\e[1;5D": backward-word
+	"\e[1;5C": forward-word
+    #"\e[1;5D": shell-backward-word
+    #"\e[1;5C": shell-forward-word
+
+    # alt-left|right-arrow
+    #"\e[1;3D": backward-kill-word
+    #"\e[1;3C": kill-word
+
+    # shift-left|right-arrow
+    "\e[1;2D": backward-kill-word
+    "\e[1;2C": kill-word
     #"\e[1;3D": shell-backward-kill-word
     #"\e[1;3C": shell-kill-word
 
     # Alt-u|l
     "\eu": upcase-word
     "\el": downcase-word
-
 
     # This performs alias and history expansion as well as all of the shell word
     # expansions
