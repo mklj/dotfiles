@@ -428,6 +428,7 @@ Plug 'vim-scripts/mayansmoke'
 Plug 'vim-scripts/wombat256.vim'
 Plug 'w0ng/vim-hybrid'
 Plug 'zeis/vim-kolor'
+Plug 'jamessan/vim-gnupg'
 
 " ======= end of initialization
 call plug#end()
