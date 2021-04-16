@@ -50,7 +50,6 @@ set scrolloff=3 " minimum lines to keep above and below cursor
 set scrolljump=5 "minimum number of lines to scroll
 "set showmatch
 set number
-set relativenumber
 set mouse=a " unleash the rodent
 set ttymouse=xterm2
 set backspace=indent,eol,start "allow backspacing everything in insert mode
