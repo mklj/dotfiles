@@ -411,10 +411,12 @@ alias ports='netstat -anop | grep -i list | grep tcp'
 # ADDITIONAL STUFF
 # ==============================================================================
 
-function include_file {
-    if [[ -r "$1" ]]; then
-        source "$1"
-    fi
+include_file()
+{
+    [[ ! -r "$1" ]] && return 2
+	source "$1"
 }
 
 include_file $HOME/bash-lib/distro.sh && bootstrap_distro
+return 0
+
