@@ -8,4 +8,4 @@ Help on git submodules:
 * https://stackoverflow.com/questions/1260748/how-do-i-remove-a-submodule/36593218#36593218
 
 About dotfiles on GithHub:
-* http://dotfiles.github.io/
+* https://dotfiles.github.io/
