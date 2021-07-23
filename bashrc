@@ -417,6 +417,4 @@ function include_file {
     fi
 }
 
-include_file $HOME/lib/ami/albert.sh
-include_file $HOME/lib/distro.sh && bootstrap_distro
-#include_file $HOME/lib/bash-sensible/sensible.bash
+include_file $HOME/bash-lib/distro.sh && bootstrap_distro
