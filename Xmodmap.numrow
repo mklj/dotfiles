@@ -1,0 +1,16 @@
+! Activation :
+! xmodmap /chemin/vers/Xmodmap.numrow
+
+! Réinitialiser le clavier :
+! setxkbmap
+
+keycode 10 = 1 ampersand
+keycode 11 = 2 eacute
+keycode 12 = 3 quotedbl
+keycode 13 = 4 apostrophe
+keycode 14 = 5 parenleft
+keycode 15 = 6 minus
+keycode 16 = 7 egrave
+keycode 17 = 8 underscore
+keycode 18 = 9 ccedilla
+keycode 19 = 0 agrave
