@@ -39,6 +39,11 @@ fi
 if [ -d "$HOME/bin" ] && [ -z $(echo "$PATH" | grep -o "$HOME/bin") ]; then
         export PATH="$HOME/bin:${PATH}"
 fi
+
+# Add golang tools to PATH
+if [ -d "/usr/local/go/bin" ]; then
+	export PATH="/usr/local/go/bin:$PATH"
+fi
 # Add Rust tools to PATH
 if [ -d "$HOME/.cargo/bin" ]; then
 	export PATH="$HOME/.cargo/bin:$PATH"
@@ -91,6 +96,4 @@ shopt -s cdable_vars
 
 # misc variables
 export TODAY=$(date +%Y%m%d)
-
-
 
