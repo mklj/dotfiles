@@ -2,6 +2,7 @@
   always_split_with_profile = True
   borderless = True
   broadcast_default = off
+  enabled_plugins = ActivityWatch, InactivityWatch
   focus = system
   tab_position = right
 [keybindings]
