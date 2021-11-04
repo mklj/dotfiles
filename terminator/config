@@ -5,6 +5,9 @@
   focus = system
   tab_position = right
 [keybindings]
+  broadcast_off = None
+  broadcast_group = None
+  broadcast_all = None
 [layouts]
   [[default]]
     [[[child1]]]
