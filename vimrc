@@ -28,7 +28,6 @@ endfunction
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
 " ======= appearance
-set t_Co=256 " 256 colors terminal
 set cursorline " highlight the line the cursor is on
 set titlestring=%t
 set title " show filename in terminal title
@@ -405,34 +404,26 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
-" colorschemes
-Plug 'arcticicestudio/nord-vim'
-Plug 'chriskempson/tomorrow-theme'
-Plug 'cocopon/iceberg.vim'
-Plug 'jacoborus/tender.vim'
-Plug 'jnurmine/Zenburn'
-Plug 'joshdick/onedark.vim'
-Plug 'lokaltog/vim-distinguished'
-Plug 'mhinz/vim-janah'
-autocmd ColorScheme janah highlight Normal ctermbg=235
+" === COLORSCHEMES
 Plug 'morhetz/gruvbox'
-Plug 'nanotech/jellybeans.vim'
-Plug 'nlknguyen/papercolor-theme'
-Plug 'reedes/vim-colors-pencil'
-Plug 'reewr/vim-monokai-phoenix'
-Plug 'sjl/badwolf'
-Plug 'tomasr/molokai'
-Plug 'vim-scripts/calmar256-lightdark.vim'
-Plug 'vim-scripts/mayansmoke'
-Plug 'vim-scripts/wombat256.vim'
-Plug 'w0ng/vim-hybrid'
-Plug 'zeis/vim-kolor'
-Plug 'jamessan/vim-gnupg'
 
+Plug 'jamessan/vim-gnupg'
 " ======= end of initialization
 call plug#end()
 
 "filetype plugin indent on " vim-plug already does that in plug#end()
-set background=dark
+
+"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux. If you're using
+"tmux version 2.2 or later, you can remove the outermost $TMUX check and use
+"tmux's 24-bit color support (see
+"< http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+if (empty($TMUX))
+	if (has("termguicolors"))
+		set termguicolors
+	endif
+else
+	set t_Co=256
+endif
 colorscheme gruvbox
+set background=dark
 
