@@ -1,14 +1,15 @@
 # references:
 # https://hypedrivendev.wordpress.com/2013/09/30/git-config-les-options-indispensables/
 [alias]
-	co = checkout
+	br = branch
 	ci = commit
-	type = cat-file -t
+	co = checkout
 	dump = cat-file -p
 	l = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	ll = log --graph --oneline --decorate --all
-	br = branch
+	spush = push --recurse-submodules=on-demand
 	st = status
+	type = cat-file -t
 	wdiff = diff --word-diff
 [core]
 	autocrlf = input
