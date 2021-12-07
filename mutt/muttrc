@@ -1,22 +1,22 @@
 source "gpg -dq $HOME/.mutt/passwd.gpg |"
 # User variables must begin with "my". Example:
 # set my_name = "John Doe"
-set imap_user = "mja"
+set imap_user = "user"
 set imap_pass = $my_passwd
 #set imap_url =
-set smtp_url = "smtp://mail2.amisw.com:465"
+set smtp_url = "smtp://mail.example.com:465"
 set smtp_pass = $my_passwd
-set from = "michael.janin@bertin.fr"
+set from = "somebody@example.com"
 set use_from = yes
 set envelope_from = yes
 set send_charset="us-ascii:utf-8"
-set realname = "Michael Janin"
+set realname = ""
 set message_cachedir = ~/.mutt/cache/bodies
 set move = no
 set signature = ~/.mutt/signature
 set mail_check = 120 # check for new mail every x seconds
 set timeout = 0 #  after x secs of no keypresses, start checking for new mail
-set folder = "imaps://mail2.amisw.com/INBOX"
+set folder = "imaps://mail.example.com/INBOX"
 set spoolfile = $folder
 #set mbox_type = mbox
 set mbox_type = Maildir
@@ -60,7 +60,7 @@ bind attach,index G last-entry
 # Cancel a message when subject is blank
 set abort_nosubject = yes
 
-source /home/mja/.mutt/colors/solarized-light-16.muttrc
+#source /home/mja/.mutt/colors/colorscheme.muttrc
 
 set smart_wrap = yes
 set sort = 'threads'
@@ -74,8 +74,5 @@ set index_format = "%4C %Z %D %-15.15L (%4l) %s"
 #auto_view text/html
 
 # aliases
-alias ses sebastien.seron@bertin.fr
-alias cjo clement.joffart@bertin.fr
-alias alian alain.barbet@bertin.fr
-alias nat nathalie.marinier@bertin.fr
+alias gus gus@example.com
 
