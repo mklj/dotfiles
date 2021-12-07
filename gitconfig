@@ -34,6 +34,7 @@
 	autoupdate = false
 [status]
 	color = auto
+	submoduleSummary = true
 	# status will see inside untracked directories
 	showUntrackedFiles = all
 [user]
