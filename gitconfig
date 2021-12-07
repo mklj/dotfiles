@@ -20,6 +20,7 @@
 [diff]
 	color = auto
 	mnemoniprefix = true
+	submodule = log
 [fetch]
     prune = true
 [pull]
