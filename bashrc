@@ -90,7 +90,7 @@ show_name() {
 	#if [[ -n "$BASH_COMMAND" ]]
 	#then
 		#set -o functrace
-    trap 'echo -ne "\033]0;${HOSTNAME}\007"' DEBUG
+    trap 'echo -ne "\033]0;${USER}@${HOSTNAME}\007"' DEBUG
 		#trap 'echo -ne "\033]2;${HOSTNAME}: $(history 1 | sed "s/^[ ]*[0-9]*[ ]*//g")\007"' DEBUG
 		#trap 'echo -ne "\033]0;${HOSTNAME}: ${BASH_COMMAND%% *}\007"' DEBUG
 		#trap 'echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
