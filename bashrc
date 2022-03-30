@@ -417,6 +417,3 @@ include_file()
 	source "$1"
 }
 
-include_file $HOME/bash-lib/distro.sh && bootstrap_distro
-return 0
-
