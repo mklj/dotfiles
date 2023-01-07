@@ -365,12 +365,7 @@ alias egrep='egrep --color'
 alias cdiff='colordiff'
 
 ## APPLICATIONS
-alias ee='emacs --no-window'
-alias vv='vim'
-alias vvrc='vim $HOME/.vimrc'
-alias jc='javac'
-alias jj='java'
-alias uu='urxvt'
+alias vir='vim -R'
 alias za='zathura'
 alias o='less'
 alias oo='xdg-open'
