@@ -42,4 +42,6 @@
 [user]
 	name = mklj
 	email = mklj@pm.me
+[init]
+	defaultBranch = main
 
