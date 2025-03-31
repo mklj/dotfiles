@@ -1,7 +1,7 @@
 # references:
 # https://hypedrivendev.wordpress.com/2013/09/30/git-config-les-options-indispensables/
 [alias]
-	br = branch
+	br = branch -va
 	ci = commit
 	co = checkout
 	dump = cat-file -p
