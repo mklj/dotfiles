@@ -387,7 +387,7 @@ alias lsblk_my='lsblk -mio NAME,KNAME,MAJ:MIN,FSTYPE,MOUNTPOINT,LABEL,UUID,SIZE,
 #alias privateip="/sbin/ifconfig | grep 'inet addr' | awk -F: '{print $2}' | awk '{print $1}'"
 alias privateip="ip addr show eth0 | grep 'inet '"
 ## get public ip
-alias publicip="wget -qO- http://ipecho.net/plain; echo"
+alias publicip='curl ipinfo.io/ip'
 # show active network listeners
 alias netlisteners='lsof -i -P | grep LISTEN'
 # identify and search for active network connections
